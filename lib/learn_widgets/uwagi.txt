@@ -1,0 +1,20 @@
+// ---------------- uwagi
+
+/*
+* IndexedStack( //indexed stack - elementy są tworzone wszystkie naraz, a przechodzenie po nich odbywa sie bez build!
+    children: pages,
+    index: currTab,
+  ),
+* */
+
+//uwagi odnosnie zmiennej pages:
+//pages nie muszą byc stateful, bo ich zmienne są pamiętane w _HomePageState, a konstruktory sa wywoływane w momencie initState
+//jesli widgety bedą stateful, to ich stan nie jest przechowywany w nich samych, a jest w element tree;
+// jest przechowywany dopiero w momencie, gdy zamontujemy dany widget w drzewie elementow; jesli potem podmieniamy na drugi element, to stan jest całkowicie usuwany!
+//jesli montowalibysmy np dwa razy np ArticlesList i nie podawali key - wowczas stan nie bedzie usuwany! ale jesli podany key - stan bedzie usuniety
+//    pages =  <Widget>[
+//      Center(child: ArticlesList(key: const PageStorageKey('articles'))),
+//      Center(child: ArticlesList(key: const PageStorageKey('articles2'))),
+//    ];
+//bo komponent bedzie traktowany jako inny; tak samo jak podamy inny typ widgetu
+

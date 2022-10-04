@@ -1,0 +1,68 @@
+pulpit - tutaj moze byc lista zadan blyskawicznych na dzis - taka szybka to-do lista
+    - przyklad - jak zanotowac - Krzysiu, porób opłaty
+    - lista potraw
+
+      //zobaczc po co jest text form field, podlaczyc sie pod przycisk done
+      //formularze logowania - dac inny kolor dla hint - szary
+      //ogsluga bledow - wyswietlenie komunikatu, np niepoprawny email albo kod bledu z api
+      //gdy logujemy sie - loading i przejscie do zalogowanej aplikacji - stamtd mozna sie wylogowac
+      //zapamietanie bycia zalogowanym
+
+// -- pobierac dane na scrollu,
+// -- odswiezenie danych - cancelable operation - na pozniej -
+
+navigation rail dla orientacji poziomej
+
+-- splash screen
+
+[now] :
+
+1.
+poczytac o robieniu app bars
+    menu - profil, ustawienia, wyloguj - utworzenie nowego okna, ktore ma app bar ze strzalka powrotu
+        zrobic w ustawieniach zmiane trybu - jasna/ciemna skorka
+oprogramowc akcje app bar - sam print na razie
+search dla todos
+filtry - zaczątek
+
+2.
+nawigacja - przechodzenie w obrebie pojedynczej zakladki - np dla todos - kategorie, tworzenie kategorii; wejscie w konkretna liste
+? sprawdzic routing w material app - poczytac - tylko home vs routing
+
+3.
+todos oraz notes - proste, od razu do uzytku; add/edit/delete
+
+todos:
+nie znam ostatecznego wygladu, zaczynac od najprostszych rzeczy , czyli:
+tekst, ptaszek: zrobione/niezrobione
+
+ui elementu / listy
+  tryb podgladu:
+    text,
+    okrlagla przestrzen, ktora sie zaptaszy po kliknieciu
+    klikniecie - zrobione/niezrobione - przekresla sie i zaznacza ptaszek (potem opcja - przenies do zriobionych)
+    przytrzymanie - wejscie w tryb edycji - od razu zaznacz sie ten element i pokazuje sie operacje dostepne na tym elemencie
+
+  tryb edycji - na pasku gornym mozna wlaczyc/wylaczyc lub przytrzymujac element listy
+    klikniecie w element - zmiana tekstu
+    pojawi sie opcja zmiany miejsc elementow
+    opcja zaznacz
+        po zaznaczeniu dowolnego - pojawia sie operacje mozliwe do wykonania na zaznaczonych elementach
+            usun
+            przenieś (do innej listy)
+
+  przycisk dodaj nowy
+
+pasek gorny
+wyszukiwanie,
+filtrowanie : priorytet, data
+
+
+uwagi:
+// stan elementu - np zaznaczenie - stan moze byc w elencie listy, aby móc zmieniac wyglad elementu, natomiast zapamietywanie bedzie na poziomu stanu całej listy
+// - czyli poprzez element, operujemy na konkretnym elemencie w stanie listy
+
+
+sprawdzenie jak dziala local storage
+
+logowanie przy pomocy facebooka / konta google do aplikacji

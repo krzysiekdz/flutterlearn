@@ -1,0 +1,11 @@
+notification bubbles up the tree
+https://api.flutter.dev/flutter/widgets/NotificationListener-class.html
+
+value notifier & value listenable builder
+https://api.flutter.dev/flutter/widgets/ValueListenableBuilder-class.html
+
+An abstraction to allow working with files across multiple platforms.
+https://pub.dev/packages/cross_file
+
+przydatne pakiety
+https://pub.dev/publishers/flutter.dev/packages

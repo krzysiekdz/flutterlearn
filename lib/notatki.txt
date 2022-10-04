@@ -1,0 +1,52 @@
+// aplikacje zrobic jak najszybciej, aby sie pochawlic - portfolio
+// aplikacja - organizer : (aleorganizer)
+// todos, articles - wlasne notatki; kalendarz - umieszczanie zadan (todos)
+
+https://produktywni.pl/blog/macierz-eisenhowera-wazne-i-pilne/
+
+// todos - jako pierwsze - zaczac od tego! - todos to nawet coś szerszego - listy rzeczy
+// - podział na katalogi i grupy; katalog sklada sie z grup; grupa sklada sie z list todos ; lista todos: lista rzeczy do zrobienia
+// personalizacja - wyglad katagloow; wyglad grupy - kafelki - mozliwosc umieszczenia zdjecia badz wybrania przyjaznej ikony i koloru kafelka
+//  daną liste to do mozna udostepnic innemu uzytkownikowi - np lista zakupów udostepniona mamie i innym domownikom
+// powiadomienia, gdy dana rzecz dodana do listy/usunieta
+// czat? - dotyczacy tematyki danej listy - pod daną listą to do - obecnie wiele funkcji zastapil mesenger, ale przez to robi sie
+// w nim chaos - do pewnych rzeczy lepiej miec dedykowane aplikacje
+// mozna np dyskutowac z kims o danej liscie - np osoba robiąca zakupy - przeslanie zdjecia
+// przyklady list (mozna przygotowac szablony):
+// lista zakpów ; lodówka - potrawy;
+// czat - wiadomosc trafia do wszystkich przypisanych do listy - np czy ktos bedzie jadł dana rzecz z lodowki?
+// dodawanie produktow - rzeczy, ktore potem mozna dodac do listy todos - tak samo podzial na kategorie?
+// - kazda rzecz dodana do listy, zapamietuje sie, aby potem mozna dodac ja szybko znowu - mozliwosc usuwania permanetnego takze powinna byc
+
+//
+
+// informacja o macierzy eisenhowera w aplikacji
+// uzyc w aplikacji wnioskow z macierzy eisenhowera
+// jesli dam sobie termin na wykonanie pewnych rzeczy - np na te wazne, ale nie pilne - to z czasem beda one coraz bardziej pilne
+// co aplikacja powinna sygnalizowac (?)
+
+// dodanie grywalizacji?
+
+// lista todos:
+// zmiana kolenosci; oznaczenie - zrobione/niezrobione;
+// text; done 0-100 - moze to byc lista podzadan ; waga (waga zadania; domyslnie 1); ważność  (>0 wazne; < 0 są niewazne) ; pilność (tak jak waznosc) ;
+// zadanie moze miec termin - on okresla pilnosc - date_final; dzien wykonania - date_todo
+// przerzucanie rzeczy z jedenj listy na druga - na tzw liste główna; lub po prostu przenoszenie rzeczy z listy
+// lista moze skladac sie z podzadan
+
+// cześć zadan powinna byc umieszczana w kalendarzu - aplikacja powinna pokazywac zadania na dzis
+
+// mozna dodac przyjaciol - innych uzytkownikow i tworzyc dla nich zadania oraz mozna udostepniac pewne zadania - wtedy
+// mozemy np tworzyc zadania dla kogos (umówienie dziecka do dentysty - zapisujemy w jego zadaniach; mamy podlag do zadan przyjaciela
+// do tych, ktore odstepnil
+
+// kalendarz - umieszczanie rzeczy w kalendarzu; mozna przegladac kalendarz i listowac zadania na dany miesiac
+// z danej listy zadan, rzecz mozna umiescic w kalendarzu - oznacza to, zaplanowanie rzeczy na dany dzień
+
+// notatki - identyczny podzial - katalogi oraz grupy; np katalog: psychologia; grupy: nazwy autorow ksiazek; w konkretnej grupie
+// lista notatek do tej ksiazki, np nazwy rozdzialow
+// mozliwosc eksportu notatki do pdf
+// mozliwosc przesylania notatek z kompa - pisze na kompie i wysylam, a na komorce moge edytowac
+// moze jakas forma uczenia z notek/zadawanie pytan - oznaczanie jak dobrze umie sie dana rzecz
+
+// w jakis sposob dodac AI - jesli bedzie to potrzebne oczywiscie
