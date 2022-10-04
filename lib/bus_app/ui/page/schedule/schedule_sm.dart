@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_table_2.dart';
+import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_table_3.dart';
 import '../../../data/schedule_data.dart';
 import 'package:flutterlearn/core/Functions.dart';
 import '../../widgets/header.dart';
@@ -13,8 +13,8 @@ class ScheduleSM extends WebPage {
     return Column(
       children:   [
          const Header(title: 'Rozkłady jazdy'),
-         gap(h:48),
-         ScheduleTable2(data: ScheduleData.spy_szcz),
+//         gap(h:48),
+         ScheduleTable3(data: ScheduleData.spy_szcz),
       ],
     );
   }

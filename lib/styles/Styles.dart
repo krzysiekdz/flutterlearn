@@ -16,3 +16,7 @@ class Styles {
   }
 
 }
+
+BoxDecoration blackBorder() {
+  return BoxDecoration(border: Border.all(color: Colors.black, width: 1));
+}
