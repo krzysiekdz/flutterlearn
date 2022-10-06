@@ -20,6 +20,9 @@ class UrlNames {
   static const String news = '/aktualności';
   static const String contact = '/kontakt';
 
+  static const String scheduleSpySzcz = '$schedule/spychowo-szczytno';
+  static const String scheduleSzczSpy = '$schedule/szczytno-spychowo';
+
   static const String admin = '/admin';
 }
 

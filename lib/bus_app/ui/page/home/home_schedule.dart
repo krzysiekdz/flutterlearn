@@ -24,9 +24,9 @@ class HomeSchedule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text('Rozkłady jazdy', style: CustomStyles.header2(),),
-                line(),
-                TextButton.icon(onPressed: (){ AppRouter().setUrl(UrlNames.schedule); } , icon: const Text('Kurs Spychowo - Szczytno'), label:  const Icon(Icons.keyboard_arrow_right),),
-                TextButton.icon(onPressed: (){ AppRouter().setUrl(UrlNames.schedule); } , icon: const Text('Kurs Szczytno - Spychowo'), label:  const Icon(Icons.keyboard_arrow_right),),
+                linePrimary(),
+                TextButton.icon(onPressed: (){ AppRouter().setUrl(UrlNames.scheduleSpySzcz); } , icon: const Text('Kurs Spychowo - Szczytno'), label:  const Icon(Icons.keyboard_arrow_right),),
+                TextButton.icon(onPressed: (){ AppRouter().setUrl(UrlNames.scheduleSzczSpy); } , icon: const Text('Kurs Szczytno - Spychowo'), label:  const Icon(Icons.keyboard_arrow_right),),
               ],
             ),
           ),

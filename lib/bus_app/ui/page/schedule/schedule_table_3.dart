@@ -4,18 +4,19 @@ import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/styles/Styles.dart';
 
 class ScheduleTable3 extends StatelessWidget {
-  const ScheduleTable3({super.key, required this.data});
+  const ScheduleTable3({super.key, required this.data, required this.title});
 
   final List<List<String>> data;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
 
     return Container(
-//      decoration: blackBorder(),
+      margin: const EdgeInsets.all(CustomStyles.padding),
       child: Row(
         children: [
-          SingleColumn(data: data,),
+          SingleColumn(data: data, title: title,),
           Expanded(
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -30,38 +31,43 @@ class ScheduleTable3 extends StatelessWidget {
 
 class SingleColumn extends StatelessWidget {
   final List<List<String>> data;
-  const SingleColumn({super.key, required this.data});
-
+  final String title;
+  const SingleColumn({super.key, required this.data, required this.title});
 
 
   @override
   Widget build(BuildContext context) {
     return DataTable(
-//        headingRowColor: MaterialStateProperty.all(CustomColors.lightRed2),
         columnSpacing: 0,
-        decoration: const BoxDecoration(
-          border: Border(
-            right: BorderSide(
-              color: Colors.grey,
-              width: 1,
-            ),
-          ),
-        ),
-        columns: const [
-          DataColumn(label: Text('')),
+        dataRowHeight: 32,
+        horizontalMargin: 0,
+        decoration: border(color: CustomColors.greyLight2),
+        columns:  [
+          DataColumn(label: Expanded(child: Text(title, style: TextStyle(color: CustomColors.primary), textAlign: TextAlign.center,))),
         ],
-        rows: [
-          for(int i = 0; i < data.length; i++)
-            DataRow(
-                selected:  (i%2==0),
-                cells: [
-              DataCell(
-                  Container(
-                    child: Text(data[i][0]),
-                  )
-              ),
-            ]),
-        ],
+        rows: List<DataRow>.generate(data.length, (i) => DataRow(
+          selected: (i%2) == 0,
+          cells: List<DataCell>.generate(1, (j) => DataCell(
+            Container(
+                padding: const EdgeInsets.only(left: CustomStyles.padding, right: 4),
+                child: Text(data[i][j])
+            )
+          )),
+        )),
+
+//        [
+//
+//          for(int i = 0; i < data.length; i++)
+//            DataRow(
+//                selected:  (i%2==0),
+//                cells: [
+//              DataCell(
+//                  Container(
+//                    child: Text(data[i][0]),
+//                  )
+//              ),
+//            ]),
+//        ],
     );
   }
 }
@@ -73,15 +79,20 @@ class ScrollableTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
-//      headingRowColor: MaterialStateProperty.all(CustomColors.lightRed2),
       columnSpacing: 12,
+      dataRowHeight: 32,
+      horizontalMargin: 8,
+      decoration: border(color: CustomColors.greyLight2),
+      border: const TableBorder(verticalInside: BorderSide(color: CustomColors.greyLight2, width: 1)),
       columns:  [
         for(int i = 1; i < data[0].length; i++)
-           DataColumn(label: Text('#$i'))
+           DataColumn(label: Expanded(child: Text('#$i', textAlign: TextAlign.center,)))
       ],
-      //dokonczyc przyklad ze strony dla : colors (resolveWith)
       rows: List<DataRow>.generate(data.length, (i) => DataRow(
-        cells: List<DataCell>.generate(data[i].length, (j) => DataCell( Text(data[i][j]) ))
+        selected: i % 2 == 0,
+        cells: List<DataCell>.generate(data[i].length-1, (j) => DataCell(
+            Text(data[i][j+1])
+        )),
       )) ,
 
 //      [

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../services/schedule_page_service.dart';
+import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_select.dart';
 import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_table_3.dart';
-import '../../../data/schedule_data.dart';
-import 'package:flutterlearn/core/Functions.dart';
 import '../../widgets/header.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 
@@ -10,12 +11,23 @@ class ScheduleSM extends WebPage {
 
   @override
   Widget build(BuildContext context) {
+    print('Schedule: ${routeUrl.url}');
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children:   [
          const Header(title: 'Rozkłady jazdy'),
-//         gap(h:48),
-         ScheduleTable3(data: ScheduleData.spy_szcz),
+         ScheduleSelect.route(routeUrl: routeUrl),
+         if( ScheduleService.notFound(routeUrl.url) ) CPadding(child: Text('Nie znaleziono kursu', style: header2(),)),
+         if( ScheduleService.isMatched(routeUrl.url) ) ScheduleTable3(data: scheduleData(), title: title(),), //sprawdzic jeszcze resolveWith
       ],
     );
+  }
+
+  String title() {
+    return ScheduleService.getTitle(routeUrl.url);
+  }
+
+  List<List<String>> scheduleData() {
+    return ScheduleService.getData(routeUrl.url);
   }
 }

@@ -16,7 +16,7 @@ class HomeNews extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Uwaga, opóźnienie!', style: CustomStyles.header2(),),
-          line(),
+          linePrimary(),
           const Text('Dzisiejszy kurs (2022-09-29) o godzinie 11:45 ma opóźnienie 15 min. Za utrudenienia serdecznie przepraszamy!',
             style:  TextStyle(fontSize: CustomStyles.fsNormal, fontWeight: FontWeight.bold),),
           gap(),

@@ -1,0 +1,34 @@
+---------------------------
+ETAP 1
+
+//kontakt - prosty
+    ---- email/tel - odnosnik po kliknieciu
+oferta - prosta - 3 busy i krotkie info + zdjecia
+
+rozklad - na wejsciu rozklad spychowo - szczytno
+    prawidlowe dane
+    oznaczenie wybranego rozkladu
+
+aktualnosci - pierwsza informacja przykladowa
+
+strona glowna - do oferty, do kontaktu
+
+belka gorna - wybierz telefou
+
+
+wersja desktop
+menu belka gorna, paddingi itp
+
+
+htaccess - wszystko powinno kierowac na strone index.html, zeby dzialalo wklejanie linkow i chodzenie do tylu
+zeby dziala aplikacja jaka mozna zainstlowac ze strony
+
+wykupienie domeny
+-----------------------------------------
+
+ETAP 2
+
+dynamiczne pobieranie danych,
+admin
+wyszukiwanie kursow?
+kontakt - mapka google?

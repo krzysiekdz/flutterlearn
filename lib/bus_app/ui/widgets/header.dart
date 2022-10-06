@@ -20,7 +20,7 @@ class Header extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: CustomStyles.header(),),
-          line(),
+          linePrimary(),
         ],
       ),
     );
