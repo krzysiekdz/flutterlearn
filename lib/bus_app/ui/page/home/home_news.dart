@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 import 'package:flutterlearn/core/Functions.dart';
 
 class HomeNews extends StatelessWidget {
@@ -15,7 +16,7 @@ class HomeNews extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Uwaga, opóźnienie!', style: CustomStyles.header2(),),
+          Text('Uwaga, opóźnienie!', style: header2(),),
           linePrimary(),
           const Text('Dzisiejszy kurs (2022-09-29) o godzinie 11:45 ma opóźnienie 15 min. Za utrudenienia serdecznie przepraszamy!',
             style:  TextStyle(fontSize: CustomStyles.fsNormal, fontWeight: FontWeight.bold),),

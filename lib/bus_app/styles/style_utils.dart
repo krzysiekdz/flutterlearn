@@ -26,25 +26,6 @@ class CustomStyles {
     isDark: true,
   );
 
-  static TextStyle header() {
-    return const TextStyle(
-      fontSize: 28,
-      fontWeight: FontWeight.bold,
-    );
-  }
-
-  static TextStyle header2() {
-    return const TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.bold,
-    );
-  }
-
-  static TextStyle header2n() {
-    return const TextStyle(
-      fontSize: 24,
-    );
-  }
 }
 
 TextStyle header() {
@@ -80,27 +61,6 @@ TextStyle header3n() {
   );
 }
 
-Widget linePrimary() {
-  return Container(
-    width: 60,
-    height: 4,
-    margin: const EdgeInsets.only(top: 12, bottom: 12),
-    decoration: const BoxDecoration(
-      color: CustomColors.primary,
-    ),
-  );
-}
-
-Widget lineThin({double margin = 12}) {
-  return Container(
-    width: 100,
-    height: 1,
-    margin: EdgeInsets.only(top: margin, bottom: margin),
-    decoration: const BoxDecoration(
-      color: CustomColors.greyLight2,
-    ),
-  );
-}
 
 BoxDecoration boxDecoration() {
   return BoxDecoration(
@@ -123,22 +83,4 @@ BoxDecoration boxDecoration() {
   );
 }
 
-class CPadding extends StatelessWidget {
-  final Widget child;
-  const CPadding({super.key,  required this.child });
 
-  @override
-  Widget build(BuildContext context) =>  Padding(padding: const EdgeInsets.all(CustomStyles.padding), child: child);
-}
-
-Widget buttonLink({required String text, required VoidCallback action }) => OutlinedButton.icon(
-    onPressed: (){ action(); },
-    icon: Text(text),
-    label: const Icon(Icons.keyboard_arrow_right)
-);
-
-Widget link({required String text, required VoidCallback action }) => TextButton.icon(
-    onPressed: (){ action(); },
-    icon: Text(text),
-    label: const Icon(Icons.keyboard_arrow_right)
-);

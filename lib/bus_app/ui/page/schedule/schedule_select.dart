@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import '../../../services/schedule_page_service.dart';
+import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
+import '../../../services/schedule_service.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/core/Functions.dart';
 

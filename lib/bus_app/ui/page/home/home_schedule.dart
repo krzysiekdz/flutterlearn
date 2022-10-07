@@ -4,6 +4,7 @@ import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 
 class HomeSchedule extends StatelessWidget {
 
@@ -23,7 +24,7 @@ class HomeSchedule extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Rozkłady jazdy', style: CustomStyles.header2(),),
+                Text('Rozkłady jazdy', style: header2(),),
                 linePrimary(),
                 TextButton.icon(onPressed: (){ AppRouter().setUrl(UrlNames.scheduleSpySzcz); } , icon: const Text('Kurs Spychowo - Szczytno'), label:  const Icon(Icons.keyboard_arrow_right),),
                 TextButton.icon(onPressed: (){ AppRouter().setUrl(UrlNames.scheduleSzczSpy); } , icon: const Text('Kurs Szczytno - Spychowo'), label:  const Icon(Icons.keyboard_arrow_right),),

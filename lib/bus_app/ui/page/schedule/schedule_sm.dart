@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../services/schedule_page_service.dart';
+import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
+import '../../../services/schedule_service.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_select.dart';
 import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_table_3.dart';

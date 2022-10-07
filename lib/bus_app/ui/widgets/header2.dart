@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 
 class Header2 extends StatelessWidget {
 
@@ -19,7 +20,7 @@ class Header2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: CustomStyles.header(),),
+          Text(title, style: header(),),
           linePrimary(),
         ],
       ),
