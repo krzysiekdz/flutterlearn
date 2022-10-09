@@ -8,7 +8,7 @@ import '../../widgets/header.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 
 class ScheduleSM extends WebPage {
-  const ScheduleSM.route({required super.routeUrl}) : super.route();
+  const ScheduleSM.route({required super.routeUrl}) : super.routeOnly();
 
   @override
   Widget build(BuildContext context) {

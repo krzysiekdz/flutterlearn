@@ -9,7 +9,7 @@ import 'package:flutterlearn/core/Functions.dart';
 import '../../core/web_page.dart';
 
 class ScheduleSelect extends WebPage {
-  const ScheduleSelect.route({required super.routeUrl}) : super.route();
+  const ScheduleSelect.route({required super.routeUrl}) : super.routeOnly();
 
   @override
   Widget build(BuildContext context) {

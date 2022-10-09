@@ -8,7 +8,7 @@ import 'package:flutterlearn/core/Functions.dart';
 
 class Home_SM extends WebPage {
 
-  Home_SM.route({required super.routeUrl}) : super.route();
+  Home_SM.route({required super.routeUrl}) : super.routeOnly();
 
   @override
   Widget build(BuildContext context) {

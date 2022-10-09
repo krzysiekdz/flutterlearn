@@ -4,7 +4,7 @@ import '../../widgets/header.dart';
 
 
 class OfferXL extends WebPage {
-  const OfferXL({super.key, required super.routeUrl}) : super.route();
+  const OfferXL({super.key, required super.routeUrl}) : super.routeOnly();
 
   @override
   Widget build(BuildContext context) {
