@@ -7,11 +7,11 @@ abstract class CarService {
 }
 
 //service przekazywac do ui - wtedy decydujemy czy dane lokalne czy z api
-class CarServiceLocal extends CarService {
+class CarServiceSample extends CarService {
   @override
   Future<List<Car>> getCars()  {
     List<Car> cars = [ CarData.car1, CarData.car2, CarData.car3 ];
-    return Future.delayed( const Duration(seconds: 3) , () => cars );
+    return Future.delayed( const Duration(seconds: 1) , () => cars );
   }
 }
 

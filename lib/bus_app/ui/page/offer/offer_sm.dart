@@ -17,9 +17,7 @@ class OfferSM extends WebPage {
       children:  [
         const Header(title: 'Autobusy'),
         gap(),
-        Text(cars[0]?.title ?? '', style: header2n(),),
-        Text(cars[1]?.title ?? '', style: header2n(),),
-        Text(cars[2]?.title ?? '', style: header2n(),),
+        for(Car c in cars ) CarCard(car: c),
       ],
     );
   }

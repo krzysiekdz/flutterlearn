@@ -30,11 +30,11 @@ class _OfferState extends State<_Offer> {
     super.initState();
     print('Offer : initState()');
 
-    carService = CarServiceLocal();
+    carService = CarServiceSample();
     initCars();
   }
 
-  void initCars() async{
+  void initCars() async {
     cars = await carService.getCars();
     setState(() {
       isLoading = false;
@@ -50,13 +50,10 @@ class _OfferState extends State<_Offer> {
 //    else { page = Home_XL(); }
 //
 
-    if(isLoading) { page = const CircularProgressIndicator(); }
-    else { page = OfferSM(routeUrl: widget.routeUrl, cars: cars); }
+    if(isLoading) { page = const Center(child:  CircularProgressIndicator()); }
+    else { page = SingleChildScrollView(  child: OfferSM(routeUrl: widget.routeUrl, cars: cars)); }
 
-
-    return SingleChildScrollView(
-      child: page,
-    );
+    return page;
   }
 }
 

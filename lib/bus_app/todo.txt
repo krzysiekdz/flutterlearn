@@ -4,13 +4,15 @@ ETAP 1
 //kontakt - prosty
     ---- email/tel - odnosnik po kliknieciu
 oferta - prosta - 3 busy i krotkie info + zdjecia
-    - tutaj zaczac - rozwazycz stateful jako web pages
+
+zaczac od - przyciski na sliderze, potem powiekszenie zdjecia i skalowanie
 
 rozklad - na wejsciu rozklad spychowo - szczytno
     prawidlowe dane
     oznaczenie wybranego rozkladu
 
 aktualnosci - pierwsza informacja przykladowa
+    ----- aktualnosci to artykuly - jest lista i mozna wejsc w artykul ? - na potem
 
 strona glowna - do oferty, do kontaktu
 
@@ -20,6 +22,13 @@ belka gorna - wybierz telefou
 wersja desktop
 menu belka gorna, paddingi itp
 
+wersja ciemna skorki
+
+usprawnienie ładowania - na poczatku aplikacji zaladowac wszystkie dane do stron - wtdy chodzenie po stronach jest bez ładowania
+    czyli przechoze po stronach i wyswietlam to co pobralem na poczaktu
+    jak aktualizowac? co kazde przejscie na stronie, ładuje to co jest, ale dodatkowo wyslam zapytanie o zmiany - jesli zmiany sa
+    pojawi sie podswietlenie przy danej pozycji menu - ze sa nowe dane
+    dodatkowo, aplikacja co 2 min robi ping - czy sa zmiany
 
 htaccess - wszystko powinno kierowac na strone index.html, zeby dzialalo wklejanie linkow i chodzenie do tylu
 zeby dziala aplikacja jaka mozna zainstlowac ze strony
