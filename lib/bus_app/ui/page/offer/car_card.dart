@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/models/car.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/ui/widgets/image_preview.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/slider.dart';
 import 'package:flutterlearn/core/Functions.dart';
-import 'package:flutterlearn/styles/Styles.dart';
 
-class CarCard extends StatelessWidget {
+
+class CarCard extends StatefulWidget {
   final Car car;
+  const CarCard({super.key, required this.car});
 
-  const CarCard({required this.car});
+  @override
+  State<StatefulWidget> createState() => _CardCarState();
+}
+
+class _CardCarState extends State<CarCard> {
+//  late final Map<String, UniqueKey> imgKeys;
+
+  @override
+  void initState() {
+    super.initState();
+
+//    imgKeys = {};
+//    for(String i in widget.car.img) {
+//      imgKeys[i] = UniqueKey();
+//    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,53 +36,22 @@ class CarCard extends StatelessWidget {
       child: Column(
         children: [
           CSlider(
-              height: 150,
-              items: car.img.map( (e) => ImageItem(imgSrc: e) ).toList(),
-              indicatorBuilder: (context, position, length) => Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [ Text( '${ (position - position.floor()) >= 0.5 ? position.floor() + 2 : position.floor() + 1}/$length' ) ],
-              ),
+            height: 150,
+            items: widget.car.img.map( (e) => ImagePreview(imgSrc: e, listImgSrc: widget.car.img,) ).toList(),
+            indicatorBuilder: (context, position, length) => Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [ Text( '${ (position - position.floor()) >= 0.5 ? position.floor() + 2 : position.floor() + 1}/$length' ) ],
+            ),
           ),
           gap(),
-          Row(children: [ Text(car.title, style: header3()) ]),
+          Row(children: [ Text(widget.car.title, style: header3()) ]),
           gap(h:4),
-          Row(children: [Text(car.places, style: const TextStyle(color: Colors.grey) )]),
+          Row(children: [Text(widget.car.places, style: const TextStyle(color: Colors.grey) )]),
           gap(h:4),
-          Text(car.descr),
+          Text(widget.car.descr),
         ],
       ),
     );
   }
 }
 
-class ImageItem extends StatefulWidget {
-  final String imgSrc;
-
-  const ImageItem({required this.imgSrc});
-
-  @override
-  State<StatefulWidget> createState() => _ImageItemState();
-
-}
-
-class _ImageItemState extends State<ImageItem> with AutomaticKeepAliveClientMixin<ImageItem>{
-
-  @override
-  void initState() {
-    super.initState();
-
-    print('ImageItem: initState()');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    print('ImageItem: build() ${widget.imgSrc}');
-    return Image.asset(widget.imgSrc);
-  }
-
-  @override
-  bool get wantKeepAlive => true;
-
-
-}

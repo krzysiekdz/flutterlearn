@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 import '../../../services/schedule_service.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
@@ -20,6 +21,7 @@ class ScheduleSM extends WebPage {
          ScheduleSelect.route(routeUrl: routeUrl),
          if( ScheduleService.notFound(routeUrl.url) ) CPadding(child: Text('Nie znaleziono kursu', style: header2(),)),
          if( ScheduleService.isMatched(routeUrl.url) ) ScheduleTable3(data: scheduleData(), title: title(),), //sprawdzic jeszcze resolveWith
+        if( routeUrl.url == UrlNames.schedule ) ScheduleTable3(data: scheduleData(), title: title(),), //sprawdzic jeszcze resolveWith
       ],
     );
   }

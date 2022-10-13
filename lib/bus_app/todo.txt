@@ -3,13 +3,13 @@ ETAP 1
 
 //kontakt - prosty
     ---- email/tel - odnosnik po kliknieciu
-oferta - prosta - 3 busy i krotkie info + zdjecia
+//oferta - prosta - 3 busy i krotkie info + zdjecia
 
-zaczac od - przyciski na sliderze, potem powiekszenie zdjecia i skalowanie
+rozklad -
+    //na wejsciu rozklad spychowo - szczytno
+    //oznaczenie wybranego rozkladu
 
-rozklad - na wejsciu rozklad spychowo - szczytno
-    prawidlowe dane
-    oznaczenie wybranego rozkladu
+żeby linki działały
 
 aktualnosci - pierwsza informacja przykladowa
     ----- aktualnosci to artykuly - jest lista i mozna wejsc w artykul ? - na potem

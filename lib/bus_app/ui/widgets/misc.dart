@@ -10,6 +10,12 @@ class CPadding extends StatelessWidget {
   Widget build(BuildContext context) =>  Padding(padding: const EdgeInsets.all(CustomStyles.padding), child: child);
 }
 
+Widget selectedLink({required String text, required VoidCallback action }) => ElevatedButton.icon(
+    onPressed: (){ action(); },
+    icon: Text(text),
+    label: const Icon(Icons.keyboard_arrow_right)
+);
+
 Widget buttonLink({required String text, required VoidCallback action }) => OutlinedButton.icon(
     onPressed: (){ action(); },
     icon: Text(text),

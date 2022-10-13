@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/styles/Styles.dart';
 
 class CSlider extends StatefulWidget {
 
@@ -36,14 +34,22 @@ class _CSliderState extends State<CSlider> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 //    print('Slider: build() , currPage = $currPageValue');
+    double r = currPageValue - currPageValue.floor();
+
     return Column(
       children: [
 
         Container(
           height: widget.height,
-          decoration: blackBorder(),
+//          decoration: blackBorder(),
           child: Stack(
             children: [
               PageView.builder(
@@ -52,8 +58,6 @@ class _CSliderState extends State<CSlider> {
                 controller: controller,
                 itemCount: widget.items.length,
                 itemBuilder: (context, i) {
-                  double r = currPageValue - currPageValue.floor();
-
                   if( i == currPageValue.floor() ) {
                     return Transform.scale(scale: 1 - r , child: widget.items[i] );
                   }
@@ -61,14 +65,42 @@ class _CSliderState extends State<CSlider> {
                     return Transform.scale(scale: r , child: widget.items[i] );
                   }
                   else {
-                    return widget.items[i];
+                    return Transform.scale(//this transform do nothing, but when all children are transform widgets, then we do not loose state of widget.item[i]
+                        scale: 1,
+                        child: widget.items[i]
+                    );
                   }
                 },
               ),
 
-              IconButton(alignment: Alignment.centerLeft, onPressed: (){}, icon: const Icon(Icons.keyboard_arrow_left)),
+              if( currPageValue >= 0.5 ) Align(
+                alignment: Alignment.centerLeft,
+                child: Transform.scale(
+                  scale: (){ if(r > 0 && currPageValue <= 1) { return r; } else {return 1.0;} }(),
+                  child: Opacity(
+                    opacity: 0.5,
+                    child: Container(
+                        decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1), shape: BoxShape.circle),
+                        child: IconButton(onPressed: (){ back(); }, icon: const Icon(Icons.keyboard_arrow_left, color: Colors.grey,))
+                    ),
+                  ),
+                ),
+              ),
 
-              IconButton(alignment: Alignment.centerRight, onPressed: (){}, icon: const Icon(Icons.keyboard_arrow_right)),
+              if( currPageValue < widget.items.length-1.5 ) Align(
+                alignment: Alignment.centerRight,
+                child: Transform.scale(
+                  scale: (){ if(currPageValue >= widget.items.length - 2 ) { return 1-r; } else {return 1.0;} }(),
+                  child: Opacity(
+                    opacity: 0.5,
+                    child: Container(
+                        decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1), shape: BoxShape.circle),
+                        child: IconButton(onPressed: (){ next(); }, icon: const Icon(Icons.keyboard_arrow_right, color: Colors.grey))
+                    ),
+                  ),
+                ),
+              ),
+
             ],
           ),
         ),
@@ -78,5 +110,16 @@ class _CSliderState extends State<CSlider> {
       ]
 
     );
+  }
+
+  void next() {
+    int p = (controller.page?.floor() ?? 0) + 1;
+    controller.animateToPage(p, duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  void back() {
+    int p = controller.page!.floor() - 1;
+    if(p < 0) p = 0;
+    controller.animateToPage(p, duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 }

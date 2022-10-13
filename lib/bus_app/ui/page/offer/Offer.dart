@@ -36,6 +36,7 @@ class _OfferState extends State<_Offer> {
 
   void initCars() async {
     cars = await carService.getCars();
+    if(!mounted) return;
     setState(() {
       isLoading = false;
     });

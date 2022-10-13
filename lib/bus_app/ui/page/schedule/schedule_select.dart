@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
+import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 import '../../../services/schedule_service.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
@@ -16,24 +17,57 @@ class ScheduleSelect extends WebPage {
     return SizedBox(
       width: double.infinity,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children:   [
-          CPadding(child: Text('Wybierz kurs', style: header2n())),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: CustomStyles.padding, right: CustomStyles.padding),
-            child: Row(
-              children: [
-                buttonLink(text: ScheduleService.nameSpySzcz, action: () { AppRouter().setUrl(UrlNames.scheduleSpySzcz); }),
-                gap(),
-                buttonLink(text: ScheduleService.nameSzczSpy, action: () { AppRouter().setUrl(UrlNames.scheduleSzczSpy); }),
-                gap(),
-                buttonLink(text: 'Szczytno - Olsztyn', action: () { AppRouter().setUrl(UrlNames.schedule + '/szczytno-olsztyn'); }),
-              ],
-            ),
-          )
+          gap(h:18),
+          Text('Wybierz kurs', style: header3()),
+          gap(h:4),
+          renderTextSelected(),
+          gap(),
+          renderLinkSpySzcz(),
+          gap(),
+          renderLinkSzczSpy()
         ],
       ),
     );
+  }
+
+  Widget renderTextSelected() {
+    if(routeUrl.url == UrlNames.schedule || routeUrl.url == UrlNames.scheduleSpySzcz) {
+      return const Text('Wybrano: ${ScheduleService.nameSpySzcz}', style: TextStyle(color: CustomColors.primary));
+    }
+    else if (routeUrl.url == UrlNames.scheduleSzczSpy) {
+      return const Text('Wybrano: ${ScheduleService.nameSzczSpy}', style: TextStyle(color: CustomColors.primary));
+    }
+    else {
+      return const SizedBox();
+    }
+  }
+
+  Widget renderLinkSpySzcz() {
+    if(routeUrl.url == UrlNames.schedule || routeUrl.url == UrlNames.scheduleSpySzcz) {
+      return selectedLink(text: ScheduleService.nameSpySzcz, action: () {
+        AppRouter().setUrl(UrlNames.scheduleSpySzcz);
+      });
+    }
+    else {
+      return buttonLink(text: ScheduleService.nameSpySzcz, action: () {
+        AppRouter().setUrl(UrlNames.scheduleSpySzcz);
+      });
+    }
+  }
+
+  Widget renderLinkSzczSpy() {
+    if (routeUrl.url == UrlNames.scheduleSzczSpy) {
+      return selectedLink(text: ScheduleService.nameSzczSpy, action: () {
+        AppRouter().setUrl(UrlNames.scheduleSzczSpy);
+      });
+    }
+    else {
+      return buttonLink(text: ScheduleService.nameSzczSpy, action: () {
+        AppRouter().setUrl(UrlNames.scheduleSzczSpy);
+      });
+    }
+
   }
 }

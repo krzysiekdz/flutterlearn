@@ -19,12 +19,20 @@ class CustomStyles {
   //kolor ciemny
   static final AppColors colorsDark = AppColors(
     primary: CustomColors.primary,
-    textColor: Colors.white70,
-    hintColor: Colors.white70,
-    surface: CustomColors.dark,
-    barColor: CustomColors.darken,
-    isDark: true,
+    textColor: Colors.black,
+    hintColor: Colors.grey,
+    surface: Colors.white,
+    barColor: Colors.white,
   );
+
+//  static final AppColors colorsDark = AppColors(
+//    primary: CustomColors.primary,
+//    textColor: Colors.white70,
+//    hintColor: Colors.white70,
+//    surface: CustomColors.dark,
+//    barColor: CustomColors.darken,
+//    isDark: true,
+//  );
 
 }
 

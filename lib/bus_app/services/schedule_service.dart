@@ -31,6 +31,7 @@ class ScheduleService {
     else {
       if( url == UrlNames.scheduleSzczSpy ) { return ScheduleData.szcz_spy; }
       else if( url == UrlNames.scheduleSpySzcz) { return ScheduleData.spy_szcz; }
+      else if( url == UrlNames.schedule) { return ScheduleData.spy_szcz; }
       else { return []; }
     }
   }
