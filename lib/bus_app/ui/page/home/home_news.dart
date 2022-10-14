@@ -4,7 +4,7 @@ import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
-import 'package:flutterlearn/core/Functions.dart';
+import 'package:flutterlearn/core/widgets.dart';
 
 class HomeNews extends StatelessWidget {
 
@@ -14,15 +14,15 @@ class HomeNews extends StatelessWidget {
       width: double.infinity,
       padding:   const EdgeInsets.all(CustomStyles.padding),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Uwaga, opóźnienie!', style: header2(),),
+          Text('Uwaga!', style: header2(),),
           linePrimary(),
           const Text('Dzisiejszy kurs (2022-09-29) o godzinie 11:45 ma opóźnienie 15 min. Za utrudenienia serdecznie przepraszamy!',
-            style:  TextStyle(fontSize: CustomStyles.fsNormal, fontWeight: FontWeight.bold),),
-          gap(),
+            style:  TextStyle(fontSize: CustomStyles.fsNormal, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+          gap(h:18),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OutlinedButton(onPressed: (){ AppRouter().setUrl(UrlNames.news); }, child: Row(
                 children: const [

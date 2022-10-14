@@ -8,7 +8,7 @@ import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/utils/fun.dart';
 import 'package:flutterlearn/bus_app/utils/types.dart';
-import 'package:flutterlearn/core/Functions.dart';
+import 'package:flutterlearn/core/widgets.dart';
 
 /*
 * web widgets should be stateless?  all state is in url?

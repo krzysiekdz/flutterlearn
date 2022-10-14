@@ -11,7 +11,8 @@ class CarServiceSample extends CarService {
   @override
   Future<List<Car>> getCars()  {
     List<Car> cars = [ CarData.car1, CarData.car2, CarData.car3 ];
-    return Future.delayed( const Duration(seconds: 1) , () => cars );
+    return Future.value(cars);
+//    return Future.delayed( const Duration(seconds: 1) , () => cars );
   }
 }
 

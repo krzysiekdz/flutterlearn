@@ -22,6 +22,7 @@ class ScheduleService {
       String s = '';
       if( url == UrlNames.scheduleSzczSpy ) { s = nameSzczSpy; }
       else if( url == UrlNames.scheduleSpySzcz) { s = nameSpySzcz; }
+      else if( url == UrlNames.schedule) { s = nameSpySzcz; }
       return s;
     }
   }

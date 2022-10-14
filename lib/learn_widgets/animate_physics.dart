@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/core/ThemeHelper.dart';
 import 'package:provider/provider.dart';
 
-import '../core/Functions.dart';
+import '../core/widgets.dart';
 
 class PhysicsCardDemo extends StatelessWidget {
   const PhysicsCardDemo({Key? key}) : super(key: key);
