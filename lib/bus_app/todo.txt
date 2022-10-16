@@ -1,14 +1,11 @@
 ---------------------------
 ETAP 1
 
-
-strona glowna -
-    do oferty, - zaczac tutaj
-    do kontaktu
-belka gorna - wybierz telefou
-rozkład - wyszukiwarka
-
 żeby linki działały
+belka gorna - wybierz telefou
+uzupelnienie danymi
+htaccess
+
 wersja desktop
 
 htaccess - wszystko powinno kierowac na strone index.html, zeby dzialalo wklejanie linkow i chodzenie do tylu
@@ -25,6 +22,9 @@ aktualnosci
 -----------------------------------------
 
 ETAP 2
+
+home - widget w ktorym mozna podac stacje startowa i koncowa - i wyswietla odjazdy z tej stacji
+rozkład - wyszukiwarka
 
 dynamiczne pobieranie danych,
 admin

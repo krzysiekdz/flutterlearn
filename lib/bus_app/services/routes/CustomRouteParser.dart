@@ -12,6 +12,8 @@ class CustomRouteParser  extends RouteInformationParser<RouteUrl> {
     print('CustomRouteParser : parseRouteInformation = ${routeInformation.location}');
 
     String url = routeInformation.location ?? UrlNames.home;
+    url = Uri.decodeFull(url);
+    print('url = $url');
     return parseUrl(url);
   }
 

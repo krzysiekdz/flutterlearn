@@ -7,6 +7,10 @@ import 'package:flutterlearn/styles/Styles.dart';
 
 class HomeSlider extends StatelessWidget {
 
+  final Alignment alignment;
+
+  const HomeSlider({ required this.alignment});
+
    @override
   Widget build(BuildContext context) {
      return Container(
@@ -22,22 +26,24 @@ class HomeSlider extends StatelessWidget {
        child: Stack(
          children: [
 
-           Align(alignment: Alignment.bottomLeft, child: Opacity(opacity: 0.4, child: Container(width: 250, height: 140, decoration: BoxDecoration(color: Colors.black),))),
+           Align(alignment: alignment, child: Opacity(opacity: 0.4, child: Container(width: 250, height: 100, decoration: BoxDecoration(color: Colors.black),))),
 
            Padding(
-             padding: const EdgeInsets.only(left: 8, bottom: 8),
+             padding: const EdgeInsets.all(8),
              child: Column(
-               mainAxisAlignment: MainAxisAlignment.end,
-               crossAxisAlignment: CrossAxisAlignment.start,
+               mainAxisAlignment: getColumnMainAlign(alignment),
+               crossAxisAlignment: getColumnCrossAlign(alignment),
                children: [
-                 Text('Usługi dla ludności', style: header().copyWith(color: CustomColors.white),),
-                 gap(),
-                 Text('Przewóz osób', style: header2().copyWith(color: CustomColors.white),),
-                 gap(),
-                 Row( children: [
-                   Text('Stanisław ', style: header2().copyWith(color: CustomColors.white),),
-                   textStroke(text: 'Gołaś', fillColor: CustomColors.red, strokeColor: CustomColors.white, strokeWidth: 0.5, fontSize: 36),
-//                   Text('Gołaś', style: header().copyWith(color: CustomColors.red),),
+//                 Text('Usługi dla ludności', style: header().copyWith(color: CustomColors.white),),
+//                 gap(),
+                 Text('Przewozy osób'.toUpperCase(), style: header().copyWith(color: CustomColors.white, ),),
+                 gap(h:2),
+                 Row(
+                   mainAxisAlignment: getRowMainAlign(alignment),
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   children: [
+                   Text('Stanisław ', style: header3().copyWith(color: CustomColors.white),),
+                   TextStroke(text: 'Gołaś', fillColor: CustomColors.red, strokeColor: CustomColors.white, strokeWidth: 0.5, fontSize: 36),
                  ], )
                ],
              ),
@@ -45,21 +51,30 @@ class HomeSlider extends StatelessWidget {
 
          ],
        )
-
-//       Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           textStroke(text: 'Usługi dla ludności', fillColor: Colors.white, strokeColor: Colors.black, strokeWidth: 0.5, fontSize: 24),
-////           Text('Usługi dla ludności', style: header().copyWith(color: CustomColors.red),),
-//           gap(h:6),
-////           Text('Przewóz osób', style: header2().copyWith(color: CustomColors.red),),
-//           textStroke(text: 'Przewóz osób', fillColor: Colors.white, strokeColor: Colors.black, strokeWidth: 0.5, fontSize: 24),
-//           gap(h:6),
-////           Text('Stanisław Gołaś', style: header2().copyWith(color: CustomColors.red),),
-//           textStroke(text: 'Stanisław Gołaś', fillColor: Colors.white, strokeColor: Colors.black, strokeWidth: 0.5, fontSize: 24),
-//         ],
-//       ),
      );
+  }
+
+  MainAxisAlignment getColumnMainAlign(Alignment alignment) {
+    if(alignment == Alignment.topLeft || alignment == Alignment.topCenter || alignment == Alignment.topRight) { return MainAxisAlignment.start; }
+    else if(alignment == Alignment.centerLeft || alignment == Alignment.center || alignment == Alignment.centerRight) { return MainAxisAlignment.center; }
+    else { return MainAxisAlignment.end; }
+  }
+
+  CrossAxisAlignment getColumnCrossAlign(Alignment alignment) {
+    if(alignment == Alignment.centerLeft || alignment == Alignment.bottomLeft || alignment == Alignment.topLeft) { return CrossAxisAlignment.start; }
+    else if(alignment == Alignment.center || alignment == Alignment.topCenter || alignment == Alignment.bottomCenter) { return CrossAxisAlignment.center; }
+    else { return CrossAxisAlignment.end; }
+  }
+
+  MainAxisAlignment getRowMainAlign(Alignment alignment) {
+    if(alignment == Alignment.centerLeft || alignment == Alignment.bottomLeft || alignment == Alignment.topLeft) { return MainAxisAlignment.start; }
+    else if(alignment == Alignment.center || alignment == Alignment.topCenter || alignment == Alignment.bottomCenter) { return MainAxisAlignment.center; }
+    else { return MainAxisAlignment.end; }
+  }
+
+  CrossAxisAlignment getRowCrossAlign(Alignment alignment) {
+    if(alignment == Alignment.topLeft || alignment == Alignment.topCenter || alignment == Alignment.topRight) { return CrossAxisAlignment.start; }
+    else if(alignment == Alignment.centerLeft || alignment == Alignment.center || alignment == Alignment.centerRight) { return CrossAxisAlignment.center; }
+    else { return CrossAxisAlignment.end; }
   }
 }

@@ -5,7 +5,7 @@ Widget gap({double? h, double? w}) {
   return SizedBox(height: h ?? 12, width: w ?? 12,);
 }
 
-Widget textStroke({required String text, required Color fillColor, required Color strokeColor, double strokeWidth = 1 , double fontSize = 18}) {
+Widget TextStroke({required String text, required Color fillColor, required Color strokeColor, double strokeWidth = 1 , double fontSize = 18}) {
   return Stack(
     children: [
       Text(

@@ -69,6 +69,19 @@ TextStyle header3n() {
   );
 }
 
+TextStyle header4() {
+  return const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle header4n() {
+  return const TextStyle(
+    fontSize: 16,
+  );
+}
+
 
 BoxDecoration boxDecoration() {
   return BoxDecoration(

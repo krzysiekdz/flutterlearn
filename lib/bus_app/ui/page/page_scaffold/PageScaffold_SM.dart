@@ -9,6 +9,7 @@ import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/utils/fun.dart';
 import 'package:flutterlearn/bus_app/utils/types.dart';
 import 'package:flutterlearn/core/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /*
 * web widgets should be stateless?  all state is in url?
@@ -60,7 +61,7 @@ class PageScaffold_SM extends StatelessWidget {
     return  Container(
       margin: const EdgeInsets.all(8),
       child: OutlinedButton(
-        onPressed: (){},
+        onPressed: (){ launch('tel://604281529'); },
         child: Row(
           children: [
             const Icon(Icons.phone),

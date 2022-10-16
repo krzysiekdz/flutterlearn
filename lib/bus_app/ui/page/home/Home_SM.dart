@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
+import 'package:flutterlearn/bus_app/ui/page/home/home_contact.dart';
 import 'package:flutterlearn/bus_app/ui/page/home/home_news.dart';
 import 'package:flutterlearn/bus_app/ui/page/home/home_offer.dart';
 import 'package:flutterlearn/bus_app/ui/page/home/home_schedule.dart';
@@ -17,7 +18,7 @@ class Home_SM extends WebPage {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          HomeSlider(),
+          const HomeSlider(alignment: Alignment.centerLeft,),
           gap(),
 
           HomeNews(),
@@ -27,6 +28,9 @@ class Home_SM extends WebPage {
           gap(),
 
           HomeOffer(),
+          gap(),
+
+          HomeContact()
         ],
       ),
     );

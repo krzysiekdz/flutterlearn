@@ -14,12 +14,12 @@ class Contact extends WebPage {
 
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children:  [
           const Header(title: 'Kontakt'),
           gap(),
           CPadding(child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Usługi dla ludności', style: header2(),),
               gap(),
@@ -27,7 +27,7 @@ class Contact extends WebPage {
               gap(),
               Text('Stanisław Gołaś', style:  header3n(),),
 
-              lineThin(margin: 18),
+              lineThin(margin: 24),
 
               Text('Bystrz 21', style:  header3n(),),
               gap(),
@@ -35,7 +35,7 @@ class Contact extends WebPage {
               gap(),
               Text('woj. Warmińsko - Mazurskie', style:  header3n(),),
 
-              lineThin(margin: 18),
+              lineThin(margin: 24),
 
               Text('tel. (+48) 604 281 529', style:  header3(),),
               gap(),
