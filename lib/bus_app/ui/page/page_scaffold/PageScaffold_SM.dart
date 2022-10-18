@@ -11,9 +11,7 @@ import 'package:flutterlearn/bus_app/utils/types.dart';
 import 'package:flutterlearn/core/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/*
-* web widgets should be stateless?  all state is in url?
-* */
+
 class PageScaffold_SM extends StatelessWidget {
 
   final RouteUrl route;

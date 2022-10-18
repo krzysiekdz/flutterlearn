@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 
@@ -27,6 +28,18 @@ Widget link({required String text, required VoidCallback action }) => TextButton
     icon: Text(text),
     label: const Icon(Icons.keyboard_arrow_right)
 );
+
+Widget Link({required String text, required String url}) {
+  return link(text: text, action: () { AppRouter().setUrl(url); });
+}
+
+Widget ButtonLink({required String text, required String url}) {
+  return buttonLink(text: text, action: () { AppRouter().setUrl(url); });
+}
+
+Widget SelectedLink({required String text, required String url}) {
+  return selectedLink(text: text, action: () { AppRouter().setUrl(url); });
+}
 
 
 Widget linePrimary() {

@@ -1,0 +1,19 @@
+menu: główna, rozklady, autobusy, kontakt
+
+home:
+    home_news
+    ?home_slider : img, text
+
+rozklady
+    linia/kurs
+
+autobusy
+
+kontakt
+
+
+
+-----------------------
+
+api: logowanie
+

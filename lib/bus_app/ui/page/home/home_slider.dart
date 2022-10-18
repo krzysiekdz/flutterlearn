@@ -34,9 +34,7 @@ class HomeSlider extends StatelessWidget {
                mainAxisAlignment: getColumnMainAlign(alignment),
                crossAxisAlignment: getColumnCrossAlign(alignment),
                children: [
-//                 Text('Usługi dla ludności', style: header().copyWith(color: CustomColors.white),),
-//                 gap(),
-                 Text('Przewozy osób'.toUpperCase(), style: header().copyWith(color: CustomColors.white, ),),
+                 Text('Przewóz osób'.toUpperCase(), style: header().copyWith(color: CustomColors.white, ),),
                  gap(h:2),
                  Row(
                    mainAxisAlignment: getRowMainAlign(alignment),

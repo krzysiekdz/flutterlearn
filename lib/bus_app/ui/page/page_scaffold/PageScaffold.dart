@@ -21,8 +21,7 @@ class PageScaffold extends StatelessWidget {
 
     Widget page;
     if( size == ScreenSize.sm) { page = PageScaffold_SM(route: route); }
-//    else { page = PageScaffold_XL(route: route); }
-    else { page = PageScaffold_SM(route: route); }
+    else { page = PageScaffold_XL(route: route); }
 
     return SafeArea(child: page);
   }

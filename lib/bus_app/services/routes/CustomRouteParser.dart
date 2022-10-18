@@ -12,16 +12,14 @@ class CustomRouteParser  extends RouteInformationParser<RouteUrl> {
     print('CustomRouteParser : parseRouteInformation = ${routeInformation.location}');
 
     String url = routeInformation.location ?? UrlNames.home;
-    url = Uri.decodeFull(url);
-    print('url = $url');
-    return parseUrl(url);
+    return parseUrl( Uri.decodeFull(url) );
   }
 
   @override
   RouteInformation? restoreRouteInformation(RouteUrl configuration) {
     print('CustomRouteParser : restoreRouteInformation = ${configuration.url}');
 
-    return RouteInformation(location: configuration.url);
+    return RouteInformation(location: Uri.encodeFull(configuration.url) );
   }
 
 

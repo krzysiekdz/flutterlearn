@@ -16,8 +16,7 @@ ScreenSize resolveScreenSize(BuildContext context) {
 RouteData getRouteData(String url, List<RouteData> all) {
   bool test(RouteData i) {
     if(i.path == '/') { return url == '/'; }
-    else { return url.startsWith(i.path!); }
-    //Uri.parse(url); - uzyc tego zamiast powyzszego
+    else { return  (url == i.path) ||  url.startsWith('${i.path!}/'); }
   }
   return all.firstWhere( test , orElse: () => not_found);
 }

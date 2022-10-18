@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/core/widgets.dart';
 import 'package:flutterlearn/styles/Styles.dart';
 
 class ScheduleTable3 extends StatelessWidget {
@@ -14,16 +15,25 @@ class ScheduleTable3 extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.all(CustomStyles.padding),
-      child: Row(
+      child: Column(
         children: [
-          SingleColumn(data: data, title: title,),
-          Expanded(
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: ScrollableTable(data: data,)
+
+          Row(
+            children: [
+              SingleColumn(data: data, title: title,),
+              Expanded(
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: ScrollableTable(data: data,)
+                ),
               ),
+            ],
           ),
-        ],
+
+          gap(),
+          const Text('LEGENDA:'),
+          const Text('e - nie kursuje w okresie ferii letnich'),
+        ]
       ),
     );
   }
@@ -86,12 +96,14 @@ class ScrollableTable extends StatelessWidget {
       border: const TableBorder(verticalInside: BorderSide(color: CustomColors.greyLight2, width: 1)),
       columns:  [
         for(int i = 1; i < data[0].length; i++)
-           DataColumn(label: Expanded(child: Text('#$i', textAlign: TextAlign.center,)))
+           DataColumn(
+               label: Expanded(child: Text(data[0][i], textAlign: TextAlign.center, style: const TextStyle(color: CustomColors.primary),))
+           )
       ],
       rows: List<DataRow>.generate(data.length, (i) => DataRow(
         selected: i % 2 == 0,
         cells: List<DataCell>.generate(data[i].length-1, (j) => DataCell(
-            Text(data[i][j+1])
+            Container( child: Text(data[i][j+1]))
         )),
       )) ,
 
