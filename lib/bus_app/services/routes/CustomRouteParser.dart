@@ -15,6 +15,14 @@ class CustomRouteParser  extends RouteInformationParser<RouteUrl> {
     return parseUrl( Uri.decodeFull(url) );
   }
 
+  //here we can ovverride url, for example: /admin/* => shows as /admin
+  /*
+  * example logs, when type '/admin/abc' in browser
+  * CustomRouteParser : parseRouteInformation = /admin/abc
+    AppRouter : setNewRoutePath = /admin
+    AppRouter: get currentConfiguration = /admin
+    CustomRouteParser : restoreRouteInformation = /admin
+  * */
   @override
   RouteInformation? restoreRouteInformation(RouteUrl configuration) {
     print('CustomRouteParser : restoreRouteInformation = ${configuration.url}');
@@ -25,7 +33,16 @@ class CustomRouteParser  extends RouteInformationParser<RouteUrl> {
 
   static RouteUrl parseUrl(String url) {
     RouteData routeData = getRouteData(url, PageRoutes.all);
-    if( routeData.isUnknown ) { routeData = getRouteData(url, AdminRoutes.all); }
+    if( routeData.isUnknown ) {
+      if( url == UrlNames.admin || url.startsWith( '${UrlNames.admin}/' ) ) {
+        routeData = AdminRoutes.home;
+        url = UrlNames.admin; //replacing all starts with admin urls to 'admin'
+      }
+      else {
+        routeData = not_found;
+      }
+      //routeData = getRouteData(url, AdminRoutes.all);
+    }
     return RouteUrl(url: url, routeData: routeData );
   }
 

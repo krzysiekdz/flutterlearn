@@ -9,9 +9,7 @@ import 'package:flutterlearn/bus_app/utils/types.dart';
 * */
 class AdminScaffold_XL extends StatelessWidget {
 
-  final RouteUrl route;
-
-  const AdminScaffold_XL({Key? key, required this.route}) : super(key: key);
+  const AdminScaffold_XL({Key? key}) : super(key: key);
 
 
   @override
@@ -23,7 +21,7 @@ class AdminScaffold_XL extends StatelessWidget {
       appBar: AppBar(
         title: Text('AdminScaffold_XL'),
       ),
-      body: route.routeData.builder( WebPageParams(screenSize: ScreenSize.xl, routeUrl: route) ),
+      body: Text('Admin XL')
     );
   }
 

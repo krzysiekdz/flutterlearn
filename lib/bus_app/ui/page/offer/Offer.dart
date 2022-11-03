@@ -49,7 +49,6 @@ class _OfferState extends State<_Offer> {
     Widget page;
 //    if(screenSize == ScreenSize.sm) { page = Home_SM(); }
 //    else { page = Home_XL(); }
-//
 
     if(isLoading) { page = const Center(child:  CircularProgressIndicator()); }
     else { page = SingleChildScrollView(  child: OfferSM(routeUrl: widget.routeUrl, cars: cars)); }

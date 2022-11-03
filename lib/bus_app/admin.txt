@@ -6,6 +6,7 @@ home:
 
 rozklady
     linia/kurs
+    kazda linia ma reguly kiedy kursuje oraz kiedy nie kursuje - dla nie kursuje mozna wybrac wybiorcze dni
 
 autobusy
 
@@ -15,5 +16,29 @@ kontakt
 
 -----------------------
 
-api: logowanie
+//utworzneie tabel: user, session, home_news; dodanie pola type do user
+//przygotowanie api : logowanie, list/get/add/update/delete dla home_news
+//zaczac od przypominania: page scaffold
+aplikacja admin -
+    logowanie,
+    home_news -  list/get/add/update/delete
+apliakacja page - pobieranie danych , cykliczne odswiezanie
 
+
+rozkłady
+autobusy
+kontakt
+glowna - slider, sekcje - kolejnosc oraz tresc
+
+wynik:
+aplikacja: admin, page - powinno sie czyms roznic od www
+strona www: admin, page
+
+koniec - wtedy kolejny projekt! :)
+
+? aplikacja dla fryzjera
+? organizer - dla przeciwczenia pewnych kwestii oraz portfolio; cwiczenie - db - api - frontend; dowolnosc tworzenia (projekty dla kogos ogranicznaja, ale daja $)
+? mpfirma / b2b -
+? znajdowanie projektow do zrobienia w internecie
+
+tworzenie swojego portfolio na bazie zrobionych projektow

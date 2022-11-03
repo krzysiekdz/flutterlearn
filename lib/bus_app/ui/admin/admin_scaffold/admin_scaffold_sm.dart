@@ -9,33 +9,69 @@ import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/utils/fun.dart';
 import 'package:flutterlearn/bus_app/utils/types.dart';
 
-/*
-* web widgets should be stateless?  all state is in url?
-* */
-class AdminScaffold_SM extends StatelessWidget {
 
-  final RouteUrl route;
+class AdminScaffold_SM extends StatefulWidget {
 
-  const AdminScaffold_SM({Key? key, required this.route}) : super(key: key);
+  const AdminScaffold_SM({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _AdminSM_State();
+
+}
+
+class _AdminSM_State extends State<AdminScaffold_SM> {
+
+  int selectedTab = 0;
+  //zrobic bez uzycia page view - zobaczyc w jaki sposob samemu uzyskam mechanizm zakladek
+
+  @override
+  void initState() {
+    super.initState();
+    print('AdminScaffold_SM : initState()');
+  }
+
+  void setTab(int i) {
+    setState(() {
+      selectedTab = i;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     print('AdminScaffold_SM : build()');
 
     return Scaffold(
-      body: route.routeData.builder( WebPageParams(screenSize: ScreenSize.sm, routeUrl: route) ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: route.routeData.index,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int i) { onTapNav(i); },
-        items: _buildNavItems(),
-      ),
+      body: _buildBody(),
+      bottomNavigationBar: _buildBottomNav(),
+    );
+  }
+
+  Widget _buildBody() {
+    return SafeArea(
+        child: getViewForTab()
+    );
+  }
+
+  Widget getViewForTab() {
+    RouteData newRoute = getRouteDataByIndex(selectedTab, AdminRoutes.all);
+    return newRoute.builder(WebPageParams(
+        screenSize: ScreenSize.sm,
+        routeUrl: RouteUrl(url: UrlNames.admin, routeData: AdminRoutes.home)
+    ));
+  }
+
+
+  Widget _buildBottomNav() {
+    return BottomNavigationBar(
+      currentIndex: selectedTab,
+      type: BottomNavigationBarType.fixed,
+      onTap: (int i) { onTapNav(i); },
+      items: _buildNavItems(),
     );
   }
 
   void onTapNav( int i) {
-    RouteData newRoute = getRouteDataByIndex(i, AdminRoutes.all);
-    AppRouter().setNewRoutePath( RouteUrl(url: newRoute.path!, routeData: newRoute) );
+    setTab(i);
   }
 
   List<BottomNavigationBarItem> _buildNavItems() {
@@ -43,5 +79,5 @@ class AdminScaffold_SM extends StatelessWidget {
         BottomNavigationBarItem( icon: Icon(e.icon), label: e.captionShort )
     ).toList();
   }
-
 }
+

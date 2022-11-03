@@ -53,13 +53,11 @@ Widget linePrimary() {
   );
 }
 
-Widget lineThin({double margin = 12}) {
+Widget lineThin({double margin = 12, double width = 100}) {
   return Container(
-    width: 100,
+    width: width,
     height: 1,
     margin: EdgeInsets.only(top: margin, bottom: margin),
-    decoration: const BoxDecoration(
-      color: CustomColors.greyLight2,
-    ),
+    decoration: const BoxDecoration(color: CustomColors.greyLight2,),
   );
 }

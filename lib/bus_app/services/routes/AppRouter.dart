@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/models/routing.dart';
 import 'package:flutterlearn/bus_app/services/routes/CustomRouteParser.dart';
-import 'package:flutterlearn/bus_app/ui/admin/admin_scaffold/admin_scaffold.dart';
+import 'package:flutterlearn/bus_app/ui/admin/admin_scaffold/admin_main.dart';
 import 'package:flutterlearn/bus_app/ui/notfound/not_found.dart';
 import 'package:flutterlearn/bus_app/ui/page/page_scaffold/PageScaffold.dart';
 
@@ -47,7 +47,7 @@ class AppRouter extends RouterDelegate<RouteUrl>
   List<Page> get adminStack =>  [
     MaterialPage(
       name: url,
-      child: AdminScaffold(route: routeUrl),
+      child: const AdminMain(),
     ),
   ];
 
