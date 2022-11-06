@@ -29,6 +29,7 @@ abstract class WebPageStateful extends StatefulWidget {
 class WebPageParams {
   final ScreenSize screenSize;
   final RouteUrl routeUrl;
+  final Key? key;
 
-  const WebPageParams({ required this.screenSize, required this.routeUrl });
+  const WebPageParams({ required this.screenSize, required this.routeUrl, this.key });
 }

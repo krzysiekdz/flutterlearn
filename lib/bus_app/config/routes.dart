@@ -50,15 +50,15 @@ class PageRoutes {
 class AdminRoutes {
 
   static final RouteData home =
-    RouteData(path: UrlNames.admin, builder: (p) => AdminHome(screenSize: p.screenSize), index: 0, captionShort: 'Pulpit', icon: Icons.home);
+    RouteData(path: UrlNames.admin, builder: (p) => AdminHome(screenSize: p.screenSize, key: p.key), index: 0, captionShort: 'Pulpit', icon: Icons.home);
   static final RouteData offer =
-    RouteData(path: UrlNames.admin + UrlNames.offer, builder: (p) => AdminOffer(screenSize: p.screenSize), index: 2, captionShort: 'Oferta', icon: Icons.bus_alert);
+    RouteData(path: UrlNames.admin + UrlNames.offer, builder: (p) => AdminOffer(screenSize: p.screenSize, key: p.key), index: 2, captionShort: 'Oferta', icon: Icons.bus_alert);
   static final RouteData schedule =
-    RouteData(path: UrlNames.admin + UrlNames.schedule, builder: (p)=> AdminSchedule(screenSize: p.screenSize), index: 1, captionShort: 'Rozkład', icon: Icons.schedule);
+    RouteData(path: UrlNames.admin + UrlNames.schedule, builder: (p)=> AdminSchedule(screenSize: p.screenSize, key: p.key), index: 1, captionShort: 'Rozkład', icon: Icons.schedule);
 //  static final RouteData news =
 //    RouteData(path: UrlNames.admin + UrlNames.news, builder: (p) => AdminNews(params: p), index: 1, captionShort: 'Aktualności', icon: Icons.newspaper);
   static final RouteData contact =
-    RouteData(path: UrlNames.admin + UrlNames.contact, builder: (p) => AdminContact(screenSize: p.screenSize), index: 3, captionShort: 'Kontakt', icon: Icons.contact_phone);
+    RouteData(path: UrlNames.admin + UrlNames.contact, builder: (p) => AdminContact(screenSize: p.screenSize, key: p.key), index: 3, captionShort: 'Kontakt', icon: Icons.contact_phone);
 
 
   static final List<RouteData> all = [ home, contact, offer, schedule ]

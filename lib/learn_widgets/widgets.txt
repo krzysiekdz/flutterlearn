@@ -9,3 +9,11 @@ https://pub.dev/packages/cross_file
 
 przydatne pakiety
 https://pub.dev/publishers/flutter.dev/packages
+
+https://api.flutter.dev/flutter/widgets/PageStorage-class.html
+
+RenderBox, RenderObject
+
+ListTile
+
+dart draw in canvas

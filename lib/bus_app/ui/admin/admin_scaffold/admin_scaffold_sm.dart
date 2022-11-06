@@ -22,7 +22,7 @@ class AdminScaffold_SM extends StatefulWidget {
 class _AdminSM_State extends State<AdminScaffold_SM> {
 
   int selectedTab = 0;
-  //zrobic bez uzycia page view - zobaczyc w jaki sposob samemu uzyskam mechanizm zakladek
+  final PageStorageBucket _bucket = PageStorageBucket();
 
   @override
   void initState() {
@@ -48,15 +48,20 @@ class _AdminSM_State extends State<AdminScaffold_SM> {
 
   Widget _buildBody() {
     return SafeArea(
-        child: getViewForTab()
+        child: PageStorage(
+            bucket: _bucket,
+            child: getViewForTab()
+        )
     );
   }
-
+  //zaczac od - zapisywanie stanu i odczytwanie poprzez read/write w konkretnych widgetach
+  //sprawdzci czy zapamietuje sie scroll
   Widget getViewForTab() {
     RouteData newRoute = getRouteDataByIndex(selectedTab, AdminRoutes.all);
     return newRoute.builder(WebPageParams(
         screenSize: ScreenSize.sm,
-        routeUrl: RouteUrl(url: UrlNames.admin, routeData: AdminRoutes.home)
+        routeUrl: RouteUrl(url: UrlNames.admin, routeData: AdminRoutes.home),//nieistotne
+        key: PageStorageKey<int>(selectedTab),
     ));
   }
 

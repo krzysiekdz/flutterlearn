@@ -10,8 +10,8 @@ class AdminSchedule extends StatefulWidget {
 
   const AdminSchedule({required this.screenSize, super.key});
 
-@override
-State<StatefulWidget> createState() => _AdminScheduleState();
+  @override
+  State<StatefulWidget> createState() => _AdminScheduleState();
 }
 
 class _AdminScheduleState extends State<AdminSchedule> with AutomaticKeepAliveClientMixin<AdminSchedule> {
@@ -24,6 +24,7 @@ class _AdminScheduleState extends State<AdminSchedule> with AutomaticKeepAliveCl
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     print('AdminSchedule: build()');
 
     Widget page;

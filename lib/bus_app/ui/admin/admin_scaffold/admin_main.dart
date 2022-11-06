@@ -36,7 +36,6 @@ class _AdminState extends State<AdminMain> {
 
     ScreenSize size = resolveScreenSize(context);
 
-    //przypomnic sobie change notifier oraz provider
     Widget page;
     if(isLogged) {
       //uwaga: po przejsciu pomiedzy SM - XL stany wewnętrzne sie wyczyszczą
