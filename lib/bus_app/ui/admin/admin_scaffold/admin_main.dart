@@ -7,8 +7,6 @@ import 'package:flutterlearn/bus_app/ui/admin/login/admin_login.dart';
 
 import 'package:flutterlearn/bus_app/utils/fun.dart';
 import 'package:flutterlearn/bus_app/utils/types.dart';
-import 'package:flutterlearn/learn_widgets/global_keys.dart';
-import 'package:flutterlearn/learn_widgets/inherited_widg_ex.dart';
 
 
 class AdminMain extends StatefulWidget {

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -11,10 +12,28 @@ void main() {
 //  setPathUrlStrategy();
 
   runApp(
-//      OrganizerApp()
     BusApp()
   );
 }
+*/
 
+
+
+import 'dart:async';
+
+import 'build_own_flutter/material.dart' ;
+
+
+
+void main() async {
+  Future(() => print('hello world 0'));
+  scheduleMicrotask(() => print('hello world1'));
+  print('hello world2');
+  scheduleMicrotask(() => print('hello world3'));
+  print(Zone.current == Zone.root);
+  Zone.current.scheduleMicrotask(() { print('hello world4');});
+
+  //doczytac dalej artykul o event loop oraz zones
+}
 
 

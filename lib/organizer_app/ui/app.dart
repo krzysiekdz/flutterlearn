@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/AppColors.dart';
 import '../../core/ThemeHelper.dart';
 import '../../core/CommonData.dart';
-import '../../learn_widgets/animate_physics.dart';
+import '../../learn/animate_physics.dart';
 import 'login/LoginRouter.dart';
 import 'main_scaffold/main_scaffold.dart';
 
