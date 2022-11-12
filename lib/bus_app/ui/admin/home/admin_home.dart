@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlearn/bus_app/models/home_news.dart';
+import 'package:flutterlearn/bus_app/services/home_news_service.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/utils/types.dart';
+
+import '../../../models/response.dart';
+import '../../../services/repo/repo.dart';
 
 
 
@@ -14,18 +19,40 @@ class AdminHome extends StatefulWidget {
   State<StatefulWidget> createState() => _AdminHomeState();
 }
 
+//zrobic jako klasa ListController
 class _AdminHomeState extends State<AdminHome> {
 
-  late final List<int> data;
-  int len = 100;
+  late final HomeNewsService service;
+  late final Repo repo;
+  late List<dynamic> data;
+  late Response res;
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
     print('AdminHome: initState()');
 
-    data = List.filled(len, 0);
-    for(int i = 0; i < len; i++) { data[i] = i; }
+    service = HomeNewsService();
+    repo = service.createRepo();
+    fetchData();
+    print('init state end');
+  }
+
+  void fetchData() async {
+    print('fetch data');
+    setState(() {
+      isLoading = true;
+    });
+    res = await repo.list();
+
+    if(!mounted) return;
+
+    data = res.data ?? [];
+    print('fetch end');
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -33,26 +60,47 @@ class _AdminHomeState extends State<AdminHome> {
     print('AdminHome: build()');
 
     Widget page;
-//    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text('Home small'),); }
-//    else { page = Center(child: Text('Home LARGE'),); }
 
-    //przecwiczyc jak tworzyc ListTiles na rozne sposoby, a potem zrobic list tiles dla home news
-    page = ListView.builder(
-        itemCount: len,
+    if(isLoading) {
+      //dodac rozroznienie, czy jest isLoading & data.lenth == 0 czy dociagamy kolejne dane
+      page = const Center(child: CircularProgressIndicator(),);
+    }
+    else if(res.isError()) {
+      print('build error ${res.msg}');
+      page = _showInfo(context, res.msg);
+    }
+    else {
+      if(data.length == 0) {
+        page = _showInfo(context, 'Brak elementów');
+      }
+      else {
+        page = _buildList(context);
+      }
+    }
+    return page;
+
+  }
+
+  Widget _buildList(BuildContext context) {
+    return ListView.builder(
+        itemCount: data.length,
         itemExtent: 100,
         itemBuilder: (context, i) {
           print('ListTile $i');
+          HomeNews item = data[i];
+
           return Card(
               child: ListTile(
-                title: Text('Item no $i'),
-                tileColor: Colors.lightBlue,
-                textColor: Colors.white,
+                leading: CircleAvatar(child: Text('${item.id}'),),
+                title: Text(item.title),
+                subtitle: Text(item.content),
               )
           );
         }
     );
+  }
 
-    return page;
-
+  Widget _showInfo(BuildContext context, String msg) {
+    return Center(child: Text(msg),);
   }
 }
