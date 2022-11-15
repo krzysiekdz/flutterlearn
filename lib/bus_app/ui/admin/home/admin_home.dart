@@ -48,7 +48,7 @@ class _AdminHomeState extends State<AdminHome> {
 
     if(!mounted) return;
 
-    data = res.data ?? [];
+    data = res.data  ?? [];
     print('fetch end');
     setState(() {
       isLoading = false;
@@ -66,7 +66,7 @@ class _AdminHomeState extends State<AdminHome> {
       page = const Center(child: CircularProgressIndicator(),);
     }
     else if(res.isError()) {
-      print('build error ${res.msg}');
+      print('AdminHome error ${res.msg}');
       page = _showInfo(context, res.msg);
     }
     else {

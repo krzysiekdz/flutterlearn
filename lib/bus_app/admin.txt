@@ -16,6 +16,22 @@ kontakt
 
 -----------------------
 
+lista
+    dodawanie elementow
+    edycja elementow
+    usuwanie elementow
+    widok elementu na liscie - potestowac rozne
+    paginacja - dociaganie elementow - loading ma nie zatrzymywac aplikacji
+
+    zeby sie nie odswiezala zawsze gdy przechodze po zakladakch - ma sie zapamietac i wczytac
+    wyszukiwanie
+    filtrowanie
+    zmiana kolejnosci
+    dodatkowe opcje: ukryj/wlacz
+    zaznaczanie wielu elementow
+
+home: news / galeria / slider
+
 //utworzneie tabel: user, session, home_news; dodanie pola type do user
 //przygotowanie api : logowanie, list/get/add/update/delete dla home_news
 //zaczac od przypominania: page scaffold
@@ -40,5 +56,6 @@ koniec - wtedy kolejny projekt! :)
 ? organizer - dla przeciwczenia pewnych kwestii oraz portfolio; cwiczenie - db - api - frontend; dowolnosc tworzenia (projekty dla kogos ogranicznaja, ale daja $)
 ? mpfirma / b2b -
 ? znajdowanie projektow do zrobienia w internecie
+? aplikacja do liczenia punktow vabanque
 
 tworzenie swojego portfolio na bazie zrobionych projektow

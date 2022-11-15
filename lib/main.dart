@@ -20,38 +20,27 @@ void main() {
 
 
 //import 'dart:async';
-
-//import 'build_own_flutter/material.dart' ;
-
-
-
-//void main() async {
 //
+//
+//void main() {
+//
+//  Stopwatch stopwatch = Stopwatch();
+//  stopwatch.start();
 //  print('main start');
-//  foo(1);
-//  var f;
-//  runZoned(() {
-//     f = Future( ()=>foo(2) ).then( (r)=> foo(r) );
-//  });
-//  print('main after zone');
-//  f.then( (r)=>foo(r) );
+//  Timer( const Duration(seconds: 5), () { print('timer callback! , elapsed = ${stopwatch.elapsedMicroseconds}'); } );
+//  Timer.periodic( const Duration(seconds: 4), (timer) {
+//    print('timer periodic: ${timer.tick}, elapsed: ${stopwatch.elapsedMicroseconds}');
+//    if(timer.tick > 10) {
+//      timer.cancel();
+//      stopwatch.stop();
+//    }
+//  } );
+//  Timer.run(() { print('timer run!, elapsed = ${stopwatch.elapsedMicroseconds}'); });
 //  print('main end');
 //
-//}
-//
-//int foo(int p) {
-//  print('foo $p, is in root zone =>  ${Zone.root == Zone.current}');
-//  return p+1;
+//  //zrobic przyklad z nadpisaenim zone dla print; oraz wyrzcenie wyjatku w zone; oraz delay w periodic timer
 //}
 
-/*
-main start
-foo 1, is in root zone =>  true
-main after zone
-main end
-foo 2, is in root zone =>  false
-foo 3, is in root zone =>  false
-foo 4, is in root zone =>  true
-* */
+
 
 
