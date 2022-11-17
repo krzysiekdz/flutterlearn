@@ -4,7 +4,7 @@ import 'package:flutterlearn/bus_app/config/routes.dart';
 import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
-import 'package:flutterlearn/core/widgets.dart';
+import 'package:flutterlearn/utils/widgets.dart';
 
 class HomeNews extends StatelessWidget {
 

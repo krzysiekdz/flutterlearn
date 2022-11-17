@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import '/styles/Styles.dart';
+import 'Styles.dart';
 
 
 //"sciąga" w postacie szablonów widgetów do kopiowania

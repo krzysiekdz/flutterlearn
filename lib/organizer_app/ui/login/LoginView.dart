@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/types.dart';
-import '../../../styles/Styles.dart';
+import '../../../utils/types.dart';
+import '../../../utils/Styles.dart';
 import '../app.dart';
 import 'LoginRouter.dart';
 

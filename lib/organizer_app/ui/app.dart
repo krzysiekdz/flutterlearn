@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../core/AppColors.dart';
-import '../../core/ThemeHelper.dart';
-import '../../core/CommonData.dart';
+import '../../utils/AppColors.dart';
+import '../../utils/ThemeHelper.dart';
+import '../../utils/CommonData.dart';
 import '../../learn/animate_physics.dart';
 import 'login/LoginRouter.dart';
 import 'main_scaffold/main_scaffold.dart';

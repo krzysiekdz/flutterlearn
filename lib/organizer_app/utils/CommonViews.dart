@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/AppColors.dart';
-import '../../core/ThemeHelper.dart';
-import '../../styles/Styles.dart';
+import '../../utils/AppColors.dart';
+import '../../utils/ThemeHelper.dart';
+import '../../utils/Styles.dart';
 import '../config/AppConfig.dart';
 
 class CommonViews {

@@ -5,7 +5,7 @@ import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 import '../../../services/schedule_service.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/core/widgets.dart';
+import 'package:flutterlearn/utils/widgets.dart';
 
 import '../../core/web_page.dart';
 

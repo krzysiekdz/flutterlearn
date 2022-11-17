@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
+import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/utils/AppColors.dart';
 
 class CustomStyles {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets.dart';
-import '../../../core/types.dart';
+import '../../../utils/widgets.dart';
+import '../../../utils/types.dart';
 import '../../utils/CommonViews.dart';
 
 

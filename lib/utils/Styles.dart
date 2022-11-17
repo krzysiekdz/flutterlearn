@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../core/AppColors.dart';
-import 'CustomTheme.dart';
+import 'AppColors.dart';
+import './CustomTheme.dart';
 
 class Styles {
 

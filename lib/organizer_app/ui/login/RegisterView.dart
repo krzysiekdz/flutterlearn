@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../styles/Styles.dart';
+import '../../../utils/Styles.dart';
 
 class RegisterView extends StatefulWidget {
 

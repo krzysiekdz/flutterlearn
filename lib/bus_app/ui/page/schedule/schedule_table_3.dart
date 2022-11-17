@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/core/widgets.dart';
-import 'package:flutterlearn/styles/Styles.dart';
+import 'package:flutterlearn/utils/widgets.dart';
+import '../../../../utils/Styles.dart';
 
 class ScheduleTable3 extends StatelessWidget {
   const ScheduleTable3({super.key, required this.data, required this.title});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/AppColors.dart';
+import '../../utils/AppColors.dart';
 import '../styles/CustomColors.dart';
 
 class AppConfig {

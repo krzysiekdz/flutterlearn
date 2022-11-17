@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'global_keys.dart';
 
-import '../core/XNavigator.dart';
+import '../utils/XNavigator.dart';
 
 
 class LoginTest extends StatefulWidget {

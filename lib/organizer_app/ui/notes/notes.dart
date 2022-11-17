@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/ListState.dart';
-import '../../../core/Repo.dart';
+import '../../../utils/ListState.dart';
+import '../../../utils/Repo.dart';
 import '../../models/Note.dart';
 
 

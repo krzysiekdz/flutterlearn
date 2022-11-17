@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/models/routing.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/utils/fun.dart';
-import 'package:flutterlearn/styles/Styles.dart';
+import '../../../utils/Styles.dart';
 
 
 class NotFoundScaffold extends StatelessWidget {

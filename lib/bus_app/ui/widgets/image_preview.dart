@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/slider.dart';
-import 'package:flutterlearn/styles/Styles.dart';
+
 
 class ImagePreview extends StatefulWidget {
   final String imgSrc;

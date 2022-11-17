@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/core/types.dart';
+import 'package:flutterlearn/utils/types.dart';
 
 import '../app.dart';
 import '../calendar/app_bar.dart';

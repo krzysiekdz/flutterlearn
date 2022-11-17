@@ -3,7 +3,7 @@ import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/services/routes/CustomRouteParser.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 
-import 'package:flutterlearn/styles/Styles.dart';
+import '../utils/Styles.dart';
 import 'package:flutterlearn/bus_app/config/app_config.dart';
 
 

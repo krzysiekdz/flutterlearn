@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/XNavigator.dart';
-import '../../../core/types.dart';
+import '../../../utils/XNavigator.dart';
+import '../../../utils/types.dart';
 import '../../utils/CommonViews.dart';
 import '../../utils/RouteHelper.dart';
 import '../../utils/NotFound.dart';

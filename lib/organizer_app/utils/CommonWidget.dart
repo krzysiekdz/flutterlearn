@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutterlearn/core/ThemeHelper.dart';
-import 'package:provider/provider.dart';
-import '../../core/CommonData.dart';
+import '../../utils/CommonData.dart';
 
 mixin CommonWidget {
   late CommonData commonData;

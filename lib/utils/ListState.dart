@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/core/Repo.dart';
+import 'Repo.dart';
 import 'Response.dart' as okdev;
 
 abstract class ListState<T extends StatefulWidget, E> extends State<T> with AutomaticKeepAliveClientMixin<T> {

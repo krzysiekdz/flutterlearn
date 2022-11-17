@@ -6,8 +6,7 @@ import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
 import 'package:flutterlearn/bus_app/ui/widgets/slider.dart';
-import 'package:flutterlearn/core/widgets.dart';
-import 'package:flutterlearn/styles/Styles.dart';
+import 'package:flutterlearn/utils/widgets.dart';
 
 class HomeOffer extends StatelessWidget {
 

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/models/car.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/ui/page/offer/car_card.dart';
-import 'package:flutterlearn/core/widgets.dart';
+import 'package:flutterlearn/utils/widgets.dart';
 import '../../widgets/header.dart';
 
 
