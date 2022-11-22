@@ -67,6 +67,8 @@ flutter:
 
   assets:
     - assets/images/bus_app/
+    - assets/images/bsxmobile/mpfirma/
+    - assets/images/bsxmobile/mpfaktura/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

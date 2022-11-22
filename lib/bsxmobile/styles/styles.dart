@@ -6,10 +6,14 @@ class CustomStyles {
   static const double padding = 18;
   static const double fsNormal = 18;
 
+  static const double buttonHeight = 60;
+  static const double borderRadius = 12;
+  static const double gap = 18;
+
 
   //kolor jasny
   static final AppColors colorsLight = AppColors(
-    primary: CustomColors.primary,
+    primary: Colors.blueAccent,
     textColor: Colors.black,
     hintColor: Colors.grey,
     surface: Colors.white,
@@ -18,21 +22,13 @@ class CustomStyles {
 
   //kolor ciemny
   static final AppColors colorsDark = AppColors(
-    primary: CustomColors.primary,
-    textColor: Colors.black,
-    hintColor: Colors.grey,
-    surface: Colors.white,
-    barColor: Colors.white,
+    primary: Colors.blueAccent,
+    textColor: Colors.white70,
+    hintColor: Colors.white70,
+    surface: CustomColors.dark,
+    barColor: CustomColors.darken,
+    isDark: true,
   );
-
-//  static final AppColors colorsDark = AppColors(
-//    primary: CustomColors.primary,
-//    textColor: Colors.white70,
-//    hintColor: Colors.white70,
-//    surface: CustomColors.dark,
-//    barColor: CustomColors.darken,
-//    isDark: true,
-//  );
 
 }
 
@@ -82,6 +78,13 @@ TextStyle header4n() {
   );
 }
 
+TextStyle bold() {
+  return const TextStyle(fontWeight: FontWeight.bold);
+}
+
+Widget gap({double h = CustomStyles.gap, double w = CustomStyles.gap}) {
+  return SizedBox(height: h, width: w,);
+}
 
 BoxDecoration boxDecoration() {
   return BoxDecoration(

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_scaffold.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_scaffold.dart';
+import 'package:flutterlearn/utils/AppColors.dart';
+import 'package:flutterlearn/utils/ThemeHelper.dart';
+import 'package:provider/provider.dart';
 
 class MpFirma extends StatefulWidget {
 
   final Config config;
+  final AppColors colorsLight;//potem zrobic, zeby kolory szły z configu
+  final AppColors colorsDark;
 
-  const MpFirma({Key? key, required this.config}) : super(key: key);
+  const MpFirma({Key? key, required this.config, required this.colorsLight, required this.colorsDark}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MpFirmaState();
@@ -15,7 +21,7 @@ class MpFirma extends StatefulWidget {
 
 class _MpFirmaState extends State<MpFirma> {
 
-  bool isLogged = true;
+  bool isLogged = false;
 
   @override
   void initState() {
@@ -32,10 +38,12 @@ class _MpFirmaState extends State<MpFirma> {
       page = MainScaffold(config: widget.config);
     }
     else {
-      page = MainScaffold(config: widget.config);
+      page = LoginScaffold(config: widget.config, initialRoute: LoginRoute.initial,);
     }
 
-
-    return page;
+    return ChangeNotifierProvider<ThemeHelper>(
+      create: (context) => ThemeHelper(widget.colorsLight, widget.colorsDark),
+      child: page,
+    );
   }
 }

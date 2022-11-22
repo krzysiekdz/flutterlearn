@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 
 import 'package:flutterlearn/utils/AppColors.dart';
 
@@ -63,23 +64,31 @@ class CustomTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular( CustomStyles.borderRadius ),
 //              side: const BorderSide(color: Colors.redAccent),
           )),
-//          minimumSize: MaterialStateProperty.all(const Size.fromHeight(50)),
+          minimumSize: MaterialStateProperty.all(const Size.fromHeight( CustomStyles.buttonHeight )),
         ),
       ),
 
       outlinedButtonTheme: OutlinedButtonThemeData(
           style: ButtonStyle(
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular( CustomStyles.borderRadius ),
             )),
-//            minimumSize: MaterialStateProperty.all(const Size.fromHeight(50)),
+            minimumSize: MaterialStateProperty.all(const Size.fromHeight( CustomStyles.buttonHeight )),
             side: MaterialStateProperty.all( BorderSide(color: c.primary)),
           )
       ),
 
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular( CustomStyles.borderRadius ),
+          )),
+          minimumSize: MaterialStateProperty.all(const Size.fromHeight( CustomStyles.buttonHeight )),
+        )
+      ),
 
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: c.primary,

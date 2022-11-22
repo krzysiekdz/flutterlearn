@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'AppColors.dart';
 
-class ThemeHelper extends ChangeNotifier{
+class ThemeHelper extends ChangeNotifier {
   final AppColors colorsLight;
   final AppColors colorsDark;
   bool isDark = false;
@@ -43,7 +43,7 @@ class ThemeHelper extends ChangeNotifier{
     this.isDark = isDark;
     isLight = !isDark;
 
-    if(!isDark) { //light mode
+    if(isLight) { //light mode
       AppColors c = colorsLight;
       systemTheme = SystemUiOverlayStyle.dark.copyWith(
         systemNavigationBarColor: c.barColor,

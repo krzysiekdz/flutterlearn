@@ -11,7 +11,7 @@ class RouteHelper {
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
 
         var tween = Tween(begin: const Offset(1.0, 0.0), end: Offset.zero).chain(CurveTween(curve: Curves.easeOut));
-
+        tween.animate(animation);
 //        return SlideTransition(position: animation.drive(tween), child: child,);
 
         return SlideTransition(
