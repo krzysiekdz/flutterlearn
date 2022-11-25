@@ -109,6 +109,10 @@ class CustomTheme {
         color: c.textColor,
       ),
 
+      popupMenuTheme: PopupMenuThemeData(
+        color: c.surface,
+      ),
+
 
     );
   }

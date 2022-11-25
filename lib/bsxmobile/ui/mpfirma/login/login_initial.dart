@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_page.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_scaffold.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
 
 
 class LoginInitial extends StatefulWidget {
@@ -26,15 +26,16 @@ class _LoginInitialState extends State<LoginInitial> {
   }
 
   void appInit() {
-    Future.delayed(const Duration(seconds: 5), () => gotoLoginToCloud() );
+    Future.delayed(const Duration(seconds: 5), () => _gotoLoginToCloud() );
   }
 
-  void gotoLoginToCloud() {
-    Navigator.of(context).pushNamed(LoginRoute.cloud.route);
+  void _gotoLoginToCloud() {
+    LoginRouter.of(context).goto(LoginRoute.cloud);
   }
 
   @override
   void dispose() {
+    print('LoginInitial : dispose()');
     super.dispose();
   }
 

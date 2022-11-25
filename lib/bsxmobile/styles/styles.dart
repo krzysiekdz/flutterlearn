@@ -8,7 +8,7 @@ class CustomStyles {
 
   static const double buttonHeight = 60;
   static const double borderRadius = 12;
-  static const double gap = 18;
+  static const double gap = padding;
 
 
   //kolor jasny

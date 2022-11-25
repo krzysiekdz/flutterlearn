@@ -1,0 +1,9 @@
+zaczac od app bar - przycisk zdjecie circle avatar
+
+app bar:
+menu actions - przycisk ze zdjeciem, i rozwiniecie podmenu
+drawer
+
+mechanizm logowania oraz wylogowywanie
+zapamietywanie zalogowanego uzytkownika
+mechanizm pin (oraz obejscie pinu, jesli mozliwe) - np gdzies w menu ustawianie

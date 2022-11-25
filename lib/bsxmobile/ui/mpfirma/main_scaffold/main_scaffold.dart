@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/menu_data.dart';
+import 'package:flutterlearn/bsxmobile/styles/styles.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
 
 
 
@@ -11,11 +12,15 @@ class MainScaffold extends StatefulWidget {
   const MainScaffold({Key? key, required this.config}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _MainScaffoldState();
+  State<StatefulWidget> createState() => MainScaffoldState();
+
+  static MainScaffoldState of(BuildContext context) {
+    return context.findAncestorStateOfType<MainScaffoldState>()!;
+  }
 
 }
 
-class _MainScaffoldState extends State<MainScaffold> {
+class MainScaffoldState extends State<MainScaffold> {
 
   int selectedTab = 0;
   late List<MenuData> menuItems;
@@ -25,6 +30,12 @@ class _MainScaffoldState extends State<MainScaffold> {
   void initState() {
     super.initState();
     print('MainScaffold : initState()');
+  }
+
+  @override
+  void dispose() {
+    print('MainScaffold : dispose()');
+    super.dispose();
   }
 
   void setTab(int i) {
@@ -47,7 +58,20 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
+      leading: const Icon(Icons.menu),
       title:  Text(widget.config.appName),
+      actions: [
+        IconButton(onPressed: (){ gotoLoginUser(); }, icon: const Icon(Icons.logout)),
+        PopupMenuButton(
+            child: const CircleAvatar(child: Text('X'),),
+            itemBuilder: (context) => const [
+          PopupMenuItem(value: 'opcja1', child: Text('opcja1')),
+          PopupMenuItem(value: 'opcja2', child: Text('opcja2')),
+          PopupMenuItem(value: 'opcja3', child: Text('opcja3')),
+        ]),
+        gap(w:8),
+      ],
+
     );
   }
 
@@ -89,5 +113,18 @@ class _MainScaffoldState extends State<MainScaffold> {
         BottomNavigationBarItem( icon: Icon(e.icon), label: e.caption )
     ).toList();
   }
+
+  void gotoLoginUser() {
+    MpFirma.of(context).goto(AppRoute.loginUser);
+  }
+
+  void gotoLoginCloud() {
+    MpFirma.of(context).goto(AppRoute.loginCloud);
+  }
+
+  void gotoLoginInitial() {
+    MpFirma.of(context).goto(AppRoute.loginInitial);
+  }
+
 }
 

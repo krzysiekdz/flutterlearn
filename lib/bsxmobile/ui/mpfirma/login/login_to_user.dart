@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_page.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
 
 
 class LoginToUser extends StatefulWidget {
@@ -30,6 +32,7 @@ class _LoginToUserState extends State<LoginToUser> {
 
   @override
   void dispose() {
+    print('LoginToUser : dispose()');
     login.dispose();
     password.dispose();
     super.dispose();
@@ -63,7 +66,7 @@ class _LoginToUserState extends State<LoginToUser> {
                 ),
                 gap(),
 
-                ElevatedButton(onPressed: (){}, child: Text('Zaloguj się')),
+                ElevatedButton(onPressed: (){ _logIn(); }, child: Text('Zaloguj się')),
                 gap(),
                 TextButton(onPressed: (){ _logoutCloud(); }, child: Text('Wyloguj się z chmury')),
               ],
@@ -78,7 +81,11 @@ class _LoginToUserState extends State<LoginToUser> {
 
 
   void _logoutCloud() {
-    Navigator.of(context).pop();
+    LoginRouter.of(context).goto(LoginRoute.cloud);
+  }
+
+  void _logIn() {
+    MpFirma.of(context).goto(AppRoute.main);
   }
 
 }

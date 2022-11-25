@@ -1,9 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/utils/ThemeHelper.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -14,18 +11,32 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Center(
-      child: Consumer<ThemeHelper>(
-        builder: (context, themeHelper, ch) => Container(
+    return Scaffold(
+      body: Center(
+        child: SizedBox(
           width: double.infinity,
-          decoration: BoxDecoration(color: themeHelper.currentColor.surface),
-          child: ch,
-        ),
-        child: SingleChildScrollView(
-          padding:  const EdgeInsets.all(CustomStyles.padding),
-          child: child,
+          child: SingleChildScrollView(
+            padding:  const EdgeInsets.all(CustomStyles.padding),
+            child: child,
+          ),
         ),
       ),
     );
+
+    //ustawiamy kolor, bo widget jest przezroczysty; jesli bysmy w navigatorze dodawali Scaffold, wtedy kolor bylby brany automatycznie ze stylu
+//    return Center(
+//      child: Consumer<ThemeHelper>(
+//        builder: (context, themeHelper, ch) => Container(
+//          width: double.infinity,
+//          decoration: BoxDecoration(color: themeHelper.currentColor.surface),
+//          child: ch,
+//        ),
+//        child: SingleChildScrollView(
+//          padding:  const EdgeInsets.all(CustomStyles.padding),
+//          child: child,
+//        ),
+//      ),
+//    );
+
   }
 }

@@ -20,7 +20,7 @@ void main() {
 
 
 
-
+//
 //import 'dart:async';
 //
 //
@@ -29,6 +29,7 @@ void main() {
 //  Stopwatch stopwatch = Stopwatch();
 //  stopwatch.start();
 //  print('main start');
+//  Future.delayed(duration)
 //  Timer( const Duration(seconds: 5), () { print('timer callback! , elapsed = ${stopwatch.elapsedMicroseconds}'); } );
 //  Timer.periodic( const Duration(seconds: 4), (timer) {
 //    print('timer periodic: ${timer.tick}, elapsed: ${stopwatch.elapsedMicroseconds}');
