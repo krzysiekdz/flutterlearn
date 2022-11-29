@@ -57,7 +57,7 @@ class MpFirmaState extends State<MpFirma> {
   }
 
   void goto(AppRoute route) {
-    _navKey.currentState!.pushNamedAndRemoveUntil(route.name, (route) => false);
+    _navKey.currentState!.pushNamedAndRemoveUntil(route.name,  (route) => false);
   }
 
   //w app barze zrobic listę akcji - wyloguj z chmury, uzytkownika, zamknij apliakcje

@@ -1,4 +1,5 @@
-zaczac od app bar - przycisk zdjecie circle avatar
+zaczac od app bar - menu avatar - przygotowac i oprogramowac, potem drawer z lewej - graficznie;
+potem inputy w logowaniu i zrobic logowanie z api oraz zapamietywanie bycia zalogowanym
 
 app bar:
 menu actions - przycisk ze zdjeciem, i rozwiniecie podmenu

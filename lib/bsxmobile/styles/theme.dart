@@ -113,6 +113,11 @@ class CustomTheme {
         color: c.surface,
       ),
 
+      dividerTheme: DividerThemeData(
+        color: c.dividerColor,
+      ),
+
+
 
     );
   }

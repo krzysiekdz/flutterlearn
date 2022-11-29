@@ -72,8 +72,7 @@ class _HomeState extends State<Home> {
           return Card(
               child: ListTile(
                 title: Text('$item'),
-                tileColor: Colors.red,
-                textColor: Colors.white,
+                tileColor: Theme.of(context).scaffoldBackgroundColor,
               )
           );
         }

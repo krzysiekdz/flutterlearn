@@ -45,6 +45,9 @@ class MpFirmaConfig extends Config{
   @override
   String get pathLogo => '${assets}logo.png';
 
+  @override
+  String get pathAvatar => '${assets}avatar.png';
+
   /*
   * layout
   * */

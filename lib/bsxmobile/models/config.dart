@@ -6,5 +6,6 @@ abstract class Config {
   List<MenuData> get bottomNav;
   String get assets;
   String get pathLogo;
+  String get pathAvatar;
   double get padding;
 }

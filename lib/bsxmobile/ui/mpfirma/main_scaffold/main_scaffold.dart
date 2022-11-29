@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/menu_data.dart';
+import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/app_bar.dart';
 
 
 
@@ -50,28 +52,12 @@ class MainScaffoldState extends State<MainScaffold> {
     menuItems = widget.config.bottomNav;
 
     return Scaffold(
-      appBar: _buildAppBar(context),
+//      appBar: Builder(
+//        builder: (context) => AppBar()
+//      ),
+      //MainAppBar.build(context: context, title: widget.config.appName, pathAvatar: widget.config.pathAvatar),
       body: _buildBody(context),
       bottomNavigationBar: _buildBottomNav(context),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      leading: const Icon(Icons.menu),
-      title:  Text(widget.config.appName),
-      actions: [
-        IconButton(onPressed: (){ gotoLoginUser(); }, icon: const Icon(Icons.logout)),
-        PopupMenuButton(
-            child: const CircleAvatar(child: Text('X'),),
-            itemBuilder: (context) => const [
-          PopupMenuItem(value: 'opcja1', child: Text('opcja1')),
-          PopupMenuItem(value: 'opcja2', child: Text('opcja2')),
-          PopupMenuItem(value: 'opcja3', child: Text('opcja3')),
-        ]),
-        gap(w:8),
-      ],
-
     );
   }
 
@@ -127,4 +113,6 @@ class MainScaffoldState extends State<MainScaffold> {
   }
 
 }
+
+
 

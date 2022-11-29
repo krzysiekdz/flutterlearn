@@ -3,8 +3,9 @@ import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/utils/AppColors.dart';
 
 class CustomStyles {
+  static const double smPadding = 8;
   static const double padding = 18;
-  static const double fsNormal = 18;
+  static const double fsNormal = 18;//font style normal
 
   static const double buttonHeight = 60;
   static const double borderRadius = 12;
@@ -18,6 +19,7 @@ class CustomStyles {
     hintColor: Colors.grey,
     surface: Colors.white,
     barColor: Colors.white,
+    dividerColor: Colors.grey,
   );
 
   //kolor ciemny
@@ -27,6 +29,7 @@ class CustomStyles {
     hintColor: Colors.white70,
     surface: CustomColors.dark,
     barColor: CustomColors.darken,
+    dividerColor: Colors.white70,
     isDark: true,
   );
 
