@@ -1,5 +1,5 @@
-ostylowac inputy w logowaniu
-logowanie z api
+logowanie z api - zajrzec do invoice service oraz przeanalizowac kod php bsx online - i na tej podstawie
+stworzyc klasy; przyjrzec sie desing pattern dla repository
 zapamietywanie bycia zalogowanym
 wylogowywanie do chmury/uzytkownika/zamykanie aplikacji
 ping
