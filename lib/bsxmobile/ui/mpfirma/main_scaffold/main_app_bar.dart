@@ -2,14 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_scaffold.dart';
+import 'package:flutterlearn/bsxmobile/ui/widgets/circle_image.dart';
 
-class MainAppBar  {
-//chyba zrobic to jako dziedziczaca klase a app bar i wtedy parametry przekazac do konstruktora super
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
-  static AppBar build({required BuildContext context, required String title, required String pathAvatar}) {
+  String title;
+  String pathAvatar;
+  Size _preferredSize;
+
+  MainAppBar({super.key, required this.title, required this.pathAvatar, double height = kToolbarHeight}) :
+    _preferredSize = Size.fromHeight(height);
+
+  @override
+  Size get preferredSize => _preferredSize;
+
+  @override
+  Widget build(BuildContext context) {
+    print('MainAppBar: build()');
+
     return AppBar(
-      leading: const Icon(Icons.menu),
-      title:  Text(title),
+      title: Text(title),
       actions: [
 
         //button with rounded image
@@ -17,37 +29,29 @@ class MainAppBar  {
             splashRadius: 0,
             tooltip: '',
             offset: const Offset(CustomStyles.padding, 60),
-            child: CircleAvatar(
-              radius: 26,
-              backgroundColor: CustomColors.greyLight200,
-              child: CircleAvatar(
-                radius: 24,
-                backgroundImage: Image.asset(pathAvatar, fit: BoxFit.fill,).image,
-              ),
-            ),
+            child: CircleImage(imgAsset: pathAvatar, radius: 26, border: 2),
             onSelected: (result) {
               if(result == 0) { MainScaffold.of(context).gotoLoginInitial(); }
               else if(result == 1) { MainScaffold.of(context).gotoLoginUser(); }
               else if(result == 2) { MainScaffold.of(context).gotoLoginCloud(); }
-
             },
             itemBuilder: (context)   {
               return [
-                buildPopupItem(value: 0, title: 'Zamknij aplikację', icon: Icons.exit_to_app),
+                _buildPopupItem(value: 0, title: 'Zamknij aplikację', icon: Icons.exit_to_app),
                 const PopupMenuDivider(),
-                buildPopupItem(value: 1, title: 'Wyloguj użytkownika', icon: Icons.logout),
+                _buildPopupItem(value: 1, title: 'Wyloguj użytkownika', icon: Icons.logout),
                 const PopupMenuDivider(),
-                buildPopupItem(value: 2, title: 'Zmień chmurę', icon: Icons.cloud_off),
+                _buildPopupItem(value: 2, title: 'Zmień chmurę', icon: Icons.cloud_off),
               ];
             }),
+
         gap(),
+
       ],
-
     );
-
   }
 
-  static PopupMenuItem<int> buildPopupItem({ required int value, required String title, required IconData icon }) {
+  PopupMenuItem<int> _buildPopupItem({ required int value, required String title, required IconData icon }) {
     return PopupMenuItem(
       value: value,
       padding: const EdgeInsets.all(CustomStyles.smPadding),
@@ -60,4 +64,6 @@ class MainAppBar  {
       ),
     );
   }
+
+
 }

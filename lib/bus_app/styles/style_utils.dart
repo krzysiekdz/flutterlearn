@@ -10,19 +10,19 @@ class CustomStyles {
   //kolor jasny
   static final AppColors colorsLight = AppColors(
     primary: CustomColors.primary,
-    textColor: Colors.black,
-    hintColor: Colors.grey,
+    text: Colors.black,
+    hint: Colors.grey,
     surface: Colors.white,
-    barColor: Colors.white,
+    bar: Colors.white,
   );
 
   //kolor ciemny
   static final AppColors colorsDark = AppColors(
     primary: CustomColors.primary,
-    textColor: Colors.black,
-    hintColor: Colors.grey,
+    text: Colors.black,
+    hint: Colors.grey,
     surface: Colors.white,
-    barColor: Colors.white,
+    bar: Colors.white,
   );
 
 //  static final AppColors colorsDark = AppColors(

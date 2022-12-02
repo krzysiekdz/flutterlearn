@@ -50,7 +50,7 @@ class MpFirmaState extends State<MpFirma> {
         child: Navigator(
           key: _navKey,
           onGenerateRoute: _onGenerateRoute,
-          initialRoute: AppRoute.main.name,
+          initialRoute: AppRoute.loginInitial.name,
         ),
       ),
     );

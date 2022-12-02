@@ -9,19 +9,19 @@ class AppConfig {
   //kolor jasny
   static final AppColors style1 = AppColors(
     primary: CustomColors.palette1_2,
-    textColor: Colors.black54,
-    hintColor: Colors.grey,
+    text: Colors.black54,
+    hint: Colors.grey,
     surface: Colors.white,
-    barColor: CustomColors.white1,
+    bar: CustomColors.white1,
   );
 
   //kolor ciemny
   static final AppColors style1Dark = AppColors(
     primary: CustomColors.palette1_1,
-    textColor: Colors.white70,
-    hintColor: Colors.white70,
+    text: Colors.white70,
+    hint: Colors.white70,
     surface: CustomColors.palette1_0,
-    barColor: CustomColors.palette1_0_d1,
+    bar: CustomColors.palette1_0_d1,
     isDark: true,
   );
 }

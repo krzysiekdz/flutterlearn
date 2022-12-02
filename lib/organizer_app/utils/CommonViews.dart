@@ -20,7 +20,7 @@ class CommonViews {
   }
 
   static Widget getLogo(AppColors c) {
-    return Image.asset('images/organizer.png', width: 80, height: 80, color: c.textColor,);
+    return Image.asset('images/organizer.png', width: 80, height: 80, color: c.text,);
   }
 
   static Widget buildLogo() {

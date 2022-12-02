@@ -3,6 +3,7 @@ import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_page.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/ui/widgets/misc.dart';
 
 
 class LoginInitial extends StatefulWidget {
@@ -47,10 +48,9 @@ class _LoginInitialState extends State<LoginInitial> {
     return LoginPage(
         child: Column(
           children: [
-            Image.asset(widget.config.pathLogo, width: 120,),
-            gap(h:24),
-
-            const CircularProgressIndicator(),
+            Logo(widget.config.pathLogo),
+            gap(h:48),
+            const SizedBox(width: 50, height: 50,  child: CircularProgressIndicator()),
           ],
         ),
     );

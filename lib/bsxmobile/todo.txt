@@ -1,10 +1,12 @@
-zaczac od app bar - menu avatar - przygotowac i oprogramowac, potem drawer z lewej - graficznie;
-potem inputy w logowaniu i zrobic logowanie z api oraz zapamietywanie bycia zalogowanym
+ostylowac inputy w logowaniu
+logowanie z api
+zapamietywanie bycia zalogowanym
+wylogowywanie do chmury/uzytkownika/zamykanie aplikacji
+ping
 
-app bar:
-menu actions - przycisk ze zdjeciem, i rozwiniecie podmenu
-drawer
+pobranie danych na stronę głowna / opracowanie prostej strony glownej
+    na appbar, zdjecie , pobranie modulow
+listy ...
 
-mechanizm logowania oraz wylogowywanie
-zapamietywanie zalogowanego uzytkownika
+
 mechanizm pin (oraz obejscie pinu, jesli mozliwe) - np gdzies w menu ustawianie

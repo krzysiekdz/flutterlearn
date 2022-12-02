@@ -3,8 +3,10 @@ import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/menu_data.dart';
 import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_to_user.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/app_bar.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_app_bar.dart';
+import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_drawer.dart';
 
 
 
@@ -52,10 +54,8 @@ class MainScaffoldState extends State<MainScaffold> {
     menuItems = widget.config.bottomNav;
 
     return Scaffold(
-//      appBar: Builder(
-//        builder: (context) => AppBar()
-//      ),
-      //MainAppBar.build(context: context, title: widget.config.appName, pathAvatar: widget.config.pathAvatar),
+      appBar: MainAppBar(title: widget.config.appName, pathAvatar: widget.config.pathAvatar),
+      drawer: MainDrawer(config: widget.config),
       body: _buildBody(context),
       bottomNavigationBar: _buildBottomNav(context),
     );

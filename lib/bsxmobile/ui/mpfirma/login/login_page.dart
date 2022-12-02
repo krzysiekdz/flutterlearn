@@ -12,12 +12,14 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: double.infinity,
-          child: SingleChildScrollView(
-            padding:  const EdgeInsets.all(CustomStyles.padding),
-            child: child,
+      body: SafeArea(
+        child: Center(
+          child: SizedBox(
+            width: double.infinity,
+            child: SingleChildScrollView(
+              padding:  const EdgeInsets.all(CustomStyles.padding),
+              child: child,
+            ),
           ),
         ),
       ),

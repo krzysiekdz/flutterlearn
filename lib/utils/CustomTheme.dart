@@ -16,26 +16,26 @@ class CustomTheme {
       primaryColor: c.primary,
 
       textTheme: textTheme.apply(
-        bodyColor: c.textColor,
-        displayColor: c.textColor,
+        bodyColor: c.text,
+        displayColor: c.text,
       ),
 
       scaffoldBackgroundColor: c.surface,
 
       appBarTheme: AppBarTheme(
-          backgroundColor: c.barColor,
-          iconTheme: IconThemeData(color: c.textColor),
-          foregroundColor: c.textColor,
+          backgroundColor: c.bar,
+          iconTheme: IconThemeData(color: c.text),
+          foregroundColor: c.text,
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: c.barColor,
+            statusBarColor: c.bar,
             statusBarIconBrightness: c.isDark ? Brightness.light : Brightness.dark,
           )
       ),
 
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: c.barColor,
+        backgroundColor: c.bar,
         selectedItemColor: c.primary,
-        unselectedItemColor: c.textColor,
+        unselectedItemColor: c.text,
       ),
 
       colorScheme: ColorScheme.fromSeed(seedColor: c.primary, primary: c.primary),
@@ -44,21 +44,21 @@ class CustomTheme {
 
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: c.barColor,
+        fillColor: c.bar,
         hintStyle: TextStyle(
-          color: c.hintColor,
+          color: c.hint,
         ),
         labelStyle: TextStyle(
-          color: c.hintColor,
+          color: c.hint,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
         helperStyle: TextStyle(
-          color: c.hintColor,
+          color: c.hint,
         ),
-        prefixIconColor: c.hintColor,
-        suffixIconColor: c.hintColor,
+        prefixIconColor: c.hint,
+        suffixIconColor: c.hint,
       ),
 
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -98,7 +98,7 @@ class CustomTheme {
       ),
 
       iconTheme: IconThemeData(
-        color: c.textColor,
+        color: c.text,
       ),
 
 

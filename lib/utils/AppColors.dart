@@ -4,18 +4,31 @@ import 'package:flutter/material.dart';
 class AppColors {
 
   final Color primary;
-  final Color barColor;
+  final Color bar;
   final Color surface;
+  final Color listTile;
 
-  final Color textColor;
-  final Color hintColor;
+  final Color text;
+  final Color hint;
 
-  final Color dividerColor;
+  final Color divider;
+  final Color splash;
 
   final bool isDark;
 
-  AppColors({required this.primary, required this.textColor, required this.surface,
-        required this.barColor, this.isDark = false, required this.hintColor, this.dividerColor = Colors.grey});
+  AppColors({
+    required this.primary,
+    required this.text,
+    required this.surface,
+    required this.bar,
+
+    this.isDark = false,
+
+    this.divider = Colors.grey,
+    this.hint = Colors.grey,
+    this.splash = Colors.grey,
+    this.listTile = Colors.white,
+  });
 
 
 }

@@ -7,29 +7,31 @@ class CustomStyles {
   static const double padding = 18;
   static const double fsNormal = 18;//font style normal
 
-  static const double buttonHeight = 60;
+  static const double buttonHeight = 50;
   static const double borderRadius = 12;
   static const double gap = padding;
 
 
   //kolor jasny
   static final AppColors colorsLight = AppColors(
-    primary: Colors.blueAccent,
-    textColor: Colors.black,
-    hintColor: Colors.grey,
+    primary: CustomColors.blueLight,
+    text: Colors.black,
+    hint: Colors.grey,
     surface: Colors.white,
-    barColor: Colors.white,
-    dividerColor: Colors.grey,
+    bar: Colors.white,
+    divider: Colors.grey,
   );
 
   //kolor ciemny
   static final AppColors colorsDark = AppColors(
-    primary: Colors.blueAccent,
-    textColor: Colors.white70,
-    hintColor: Colors.white70,
+    primary: CustomColors.blueLight,
+    text: Colors.white,
+    hint: Colors.white70,
+    bar: CustomColors.darken,
     surface: CustomColors.dark,
-    barColor: CustomColors.darken,
-    dividerColor: Colors.white70,
+    listTile: CustomColors.darkLighter,
+    divider: Colors.white70,
+    splash: CustomColors.greyDark55,
     isDark: true,
   );
 

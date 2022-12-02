@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 
 import 'package:flutterlearn/utils/AppColors.dart';
@@ -16,49 +17,55 @@ class CustomTheme {
       primaryColor: c.primary,
 
       textTheme: textTheme.apply(
-        bodyColor: c.textColor,
-        displayColor: c.textColor,
+        bodyColor: c.text,
+        displayColor: c.text,
       ),
 
       scaffoldBackgroundColor: c.surface,
 
       appBarTheme: AppBarTheme(
-          backgroundColor: c.barColor,
-          iconTheme: IconThemeData(color: c.textColor),
-          foregroundColor: c.textColor,
+          backgroundColor: c.bar,
+          iconTheme: IconThemeData(color: c.text),
+          foregroundColor: c.text,
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: c.barColor,
+            statusBarColor: c.bar,
             statusBarIconBrightness: c.isDark ? Brightness.light : Brightness.dark,
           )
       ),
 
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: c.barColor,
+        backgroundColor: c.bar,
         selectedItemColor: c.primary,
-        unselectedItemColor: c.textColor,
+        unselectedItemColor: c.text,
       ),
 
       colorScheme: ColorScheme.fromSeed(seedColor: c.primary, primary: c.primary),
 
-      splashColor: c.primary,
+      splashColor: c.splash,
 
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: c.barColor,
+        fillColor: c.surface,
         hintStyle: TextStyle(
-          color: c.hintColor,
+          color: c.hint,
         ),
         labelStyle: TextStyle(
-          color: c.hintColor,
+          color: c.hint,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(color: c.text),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: BorderSide(color: c.text),
         ),
         helperStyle: TextStyle(
-          color: c.hintColor,
+          color: c.hint,
         ),
-        prefixIconColor: c.hintColor,
-        suffixIconColor: c.hintColor,
+        prefixIconColor: c.hint,
+        suffixIconColor: c.hint,
+        contentPadding: const EdgeInsets.all(16),
       ),
 
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -106,7 +113,7 @@ class CustomTheme {
       ),
 
       iconTheme: IconThemeData(
-        color: c.textColor,
+        color: c.text,
       ),
 
       popupMenuTheme: PopupMenuThemeData(
@@ -114,10 +121,14 @@ class CustomTheme {
       ),
 
       dividerTheme: DividerThemeData(
-        color: c.dividerColor,
+        color: c.divider,
       ),
 
-
+      listTileTheme: ListTileThemeData(
+        iconColor: c.text,
+        textColor: c.text,
+        tileColor: c.listTile,
+      ),
 
     );
   }

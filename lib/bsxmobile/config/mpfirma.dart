@@ -15,6 +15,9 @@ class MpFirmaConfig extends Config{
   @override
   String get appName => 'mpFirma';
 
+  @override
+  String get versionName => 'v22.12.01';
+
 
   /*
   * bottom menu

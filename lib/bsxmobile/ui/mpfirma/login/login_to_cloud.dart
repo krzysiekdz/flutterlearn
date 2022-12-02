@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_page.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/ui/widgets/misc.dart';
 
 
 class LoginToCloud extends StatefulWidget {
@@ -42,20 +44,27 @@ class _LoginToCloudState extends State<LoginToCloud> {
     return LoginPage(
       child: Column(
         children: [
-          Image.asset(widget.config.pathLogo, width: 120,),
-          gap(h:24),
+          Logo(widget.config.pathLogo),
+          gap(h:48),
 
-          Text('Wprowadź klucz bsxCloud', style: header3()),
-          gap(),
+          Text('Wprowadź klucz do bsxCloud', style: header3()),
+          gap(h:36),
 
           SizedBox(
-            width: 400,
+            width: 320,
             child: Column(
               children: [
                 TextField(
                   controller: fkey,
+                  style: header4().copyWith(letterSpacing: 5),
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.characters,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.key),
+                    label: Text('Klucz bsxCloud'),
+                  ),
                 ),
-                gap(),
+                gap(h:24),
                 ElevatedButton(onPressed: (){ _goToLoginUser(); }, child: const Text('Dalej')),
               ],
             ),

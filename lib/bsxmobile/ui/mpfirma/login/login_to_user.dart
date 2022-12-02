@@ -4,6 +4,7 @@ import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_page.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
 import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/ui/widgets/misc.dart';
 
 
 class LoginToUser extends StatefulWidget {
@@ -20,6 +21,8 @@ class _LoginToUserState extends State<LoginToUser> {
 
   final TextEditingController login = TextEditingController();
   final TextEditingController password = TextEditingController();
+
+  bool showPassword = false;
 
   @override
   void initState() {
@@ -46,29 +49,47 @@ class _LoginToUserState extends State<LoginToUser> {
     return LoginPage(
       child: Column(
         children: [
-          Image.asset(widget.config.pathLogo, width: 120,),
-          gap(h:24),
+          Logo(widget.config.pathLogo),
+          gap(h:48),
 
           Text('Zaloguj się', style: header3()),
-          gap(),
+          gap(h:36),
 
           SizedBox(
-            width: 400,
+            width: 320,
             child: Column(
               children: [
                 TextField(
                   controller: login,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.account_circle),
+                    label: Text('Login'),
+                  ),
                 ),
-                gap(),
+                gap(h:24),
 
+                //zrobic kontrolke typu password
                 TextField(
                   controller: password,
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.done,
+                  obscureText: !showPassword,
+                  decoration:  InputDecoration(
+                    prefixIcon: const Icon(Icons.lock),
+                    label: const Text('Hasło'),
+                    suffixIcon: IconButton(
+                        icon: showPassword ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
+                        onPressed: (){ _toggleShowPassword(); }
+                        ),
+                  ),
                 ),
-                gap(),
+                gap(h:24),
 
-                ElevatedButton(onPressed: (){ _logIn(); }, child: Text('Zaloguj się')),
+                ElevatedButton(onPressed: (){ _logIn(); }, child: const Text('Zaloguj się')),
                 gap(),
-                TextButton(onPressed: (){ _logoutCloud(); }, child: Text('Wyloguj się z chmury')),
+                TextButton(onPressed: (){ _logoutCloud(); }, child: const Text('Wyloguj się z chmury')),
               ],
             ),
           ),
@@ -79,6 +100,11 @@ class _LoginToUserState extends State<LoginToUser> {
 
   }
 
+  void _toggleShowPassword() {
+    setState(() {
+      showPassword = !showPassword;
+    });
+  }
 
   void _logoutCloud() {
     LoginRouter.of(context).goto(LoginRoute.cloud);

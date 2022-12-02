@@ -46,17 +46,17 @@ class ThemeHelper extends ChangeNotifier {
     if(isLight) { //light mode
       AppColors c = colorsLight;
       systemTheme = SystemUiOverlayStyle.dark.copyWith(
-        systemNavigationBarColor: c.barColor,
+        systemNavigationBarColor: c.bar,
         systemNavigationBarIconBrightness: Brightness.dark,
-        systemNavigationBarDividerColor: c.barColor,
+        systemNavigationBarDividerColor: c.bar,
       );
     }
     else { //dark mode
       AppColors c = colorsDark;
       systemTheme = SystemUiOverlayStyle.light.copyWith(
-        systemNavigationBarColor: c.barColor,
+        systemNavigationBarColor: c.bar,
         systemNavigationBarIconBrightness: Brightness.light,
-        systemNavigationBarDividerColor: c.barColor,
+        systemNavigationBarDividerColor: c.bar,
       );
     }
 
