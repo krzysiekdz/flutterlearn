@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/menu_data.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/home/home.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/invoices/invoices.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/settings/settings.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/home/home.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/invoices/invoices.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/settings/settings.dart';
 
-class MpFirmaConfig extends Config{
+class MpFirmaConfig extends Config {
 
   /*
   * app name
@@ -18,6 +18,8 @@ class MpFirmaConfig extends Config{
   @override
   String get versionName => 'v22.12.01';
 
+  @override
+  bool get isDevMode => true;
 
   /*
   * bottom menu

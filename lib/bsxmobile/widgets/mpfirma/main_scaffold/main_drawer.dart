@@ -4,11 +4,11 @@ import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/menu_data.dart';
 import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_scaffold.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/users/user_profile.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/circle_image.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/misc.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/pill.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main_scaffold/main_scaffold.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/users/user_profile.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/circle_image.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/misc.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/pill.dart';
 import 'package:flutterlearn/bsxmobile/utils/misc.dart';
 
 class MainDrawer extends StatelessWidget {

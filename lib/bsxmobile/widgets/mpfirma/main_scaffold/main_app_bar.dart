@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bsxmobile/styles/colors.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_scaffold.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/circle_image.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main_scaffold/main_scaffold.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/circle_image.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 

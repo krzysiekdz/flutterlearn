@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/circle_image.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/circle_image.dart';
 
 class UserProfile extends StatefulWidget {
 

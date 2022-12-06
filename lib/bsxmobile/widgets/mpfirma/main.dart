@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
+import 'package:flutterlearn/bsxmobile/models/session.dart';
+import 'package:flutterlearn/bsxmobile/services/bsx_api_service.dart';
+import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_scaffold.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main_scaffold/main_scaffold.dart';
 import 'package:flutterlearn/bsxmobile/utils/misc.dart';
 import 'package:flutterlearn/utils/AppColors.dart';
 import 'package:flutterlearn/utils/ThemeHelper.dart';
@@ -33,10 +36,20 @@ class MpFirmaState extends State<MpFirma> {
 
   final _navKey = GlobalKey<NavigatorState>();
 
+  late final BsxApiService bsxApi;
+  late Session session;
+  late final CoreService coreService;
+  late final CoreRepo coreRepo;
+
   @override
   void initState() {
     super.initState();
     print('MpFirma: initState()');
+
+    session = Session();
+    bsxApi = BsxApiService(config: widget.config, session: session);
+    coreService = CoreService(bsxApi: bsxApi);
+    coreRepo = coreService.getRepo();
   }
 
   @override

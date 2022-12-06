@@ -9,4 +9,5 @@ abstract class Config {
   String get pathAvatar;
   String get versionName;
   double get padding;
+  bool get isDevMode;
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_page.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_router.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/misc.dart';
-import 'package:flutterlearn/bsxmobile/ui/widgets/password.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_page.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/misc.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/password.dart';
 
 
 class LoginToUser extends StatefulWidget {

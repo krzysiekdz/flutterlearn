@@ -3,7 +3,7 @@ import 'package:flutterlearn/bsxmobile/config/mpfaktura.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/styles/theme.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
 import 'package:flutterlearn/utils/AppColors.dart';
 
 import 'config/mpfirma.dart';

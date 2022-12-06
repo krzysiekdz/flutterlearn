@@ -13,3 +13,7 @@
 * zapamietywanie danych: klucz, uzytkownik i haslo; jesli zapamietany tylko klucz - loguemy do chmury; jesli uzytkownik tez,
 * to logujemy od razu na uzytkownika
 * */
+
+import 'package:flutterlearn/bsxmobile/services/bsx_module_service.dart';
+
+//class InvoicesModuleService extends BsxModuleService {}

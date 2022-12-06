@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/menu_data.dart';
-import 'package:flutterlearn/bsxmobile/styles/colors.dart';
-import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_to_user.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_app_bar.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main_scaffold/main_drawer.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main_scaffold/main_app_bar.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main_scaffold/main_drawer.dart';
 
 
 

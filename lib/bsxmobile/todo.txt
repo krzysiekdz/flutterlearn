@@ -1,5 +1,12 @@
-logowanie z api - zajrzec do invoice service oraz przeanalizowac kod php bsx online - i na tej podstawie
-stworzyc klasy; przyjrzec sie desing pattern dla repository
+
+zaczac od CoreRepo
+skupic sie na zrobieniu pierwszego zapytania - verify cloud key
+
+//zrobic zapytanie do api, potem rozbudowac jeszcze ten service; przetestowac model BsxModel
+//jak najszybciej polaczyc sie z api i rozbudowywac w trakcie
+
+logowanie z api - zaczac od : bsx api service : post
+    bsx api service jest szczuplejsze, od logowania jest bsx login service , dla obslugi danych - repository
 zapamietywanie bycia zalogowanym
 wylogowywanie do chmury/uzytkownika/zamykanie aplikacji
 ping

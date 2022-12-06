@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_initial.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_to_cloud.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/login/login_to_user.dart';
-import 'package:flutterlearn/bsxmobile/ui/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_initial.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_to_cloud.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_to_user.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
 import 'package:flutterlearn/bsxmobile/utils/misc.dart';
 
 /*
