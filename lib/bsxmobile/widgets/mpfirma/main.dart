@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
+import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
 import 'package:flutterlearn/bsxmobile/models/session.dart';
 import 'package:flutterlearn/bsxmobile/services/bsx_api_service.dart';
 import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
@@ -36,20 +37,26 @@ class MpFirmaState extends State<MpFirma> {
 
   final _navKey = GlobalKey<NavigatorState>();
 
-  late final BsxApiService bsxApi;
+  late BsxApiService bsxApi;
   late Session session;
-  late final CoreService coreService;
-  late final CoreRepo coreRepo;
+  late CoreService coreService;
+  late CoreRepo coreRepo;
+
+  Config get config => widget.config;
 
   @override
   void initState() {
     super.initState();
     print('MpFirma: initState()');
 
+    _init();
+  }
+
+  void _init() {
     session = Session();
-    bsxApi = BsxApiService(config: widget.config, session: session);
-    coreService = CoreService(bsxApi: bsxApi);
-    coreRepo = coreService.getRepo();
+    bsxApi = BsxApiService(config: config, session: session, handleResult: bsxResponseHandler);
+    coreService = CoreService(session: session, bsxApi: bsxApi, config: config);
+    coreRepo = coreService.coreRepo;
   }
 
   @override
@@ -91,6 +98,28 @@ class MpFirmaState extends State<MpFirma> {
     }
 
     return slideRoute(page);
+  }
+
+  BsxRawResponse bsxResponseHandler(BsxRawResponse res) {
+    if(res.isError()) {
+      showDialog(context: context, builder: (context) =>
+          AlertDialog(
+            title: Row(
+              children: [
+                const Icon(Icons.dangerous_outlined),
+                gap(),
+                const Text('Wystąpił błąd')
+              ],
+            ),
+            content: Text(res.msg, style: const TextStyle(color: Colors.redAccent),),
+            actions: [
+              ElevatedButton(onPressed: (){ Navigator.of(context).pop(); }, child: const Text('OK'))
+            ],
+          )
+      );
+    }
+
+    return res;
   }
 
   Future<bool> _canExitApp() async {

@@ -1,8 +1,12 @@
 
 class BsxModel {
-  Map<String, dynamic> data;
+  Map<String, dynamic> _data;
 
-  BsxModel( { this.data = const {} } );
+  BsxModel( { Map<String, dynamic>? data } ) : _data = data ?? const {};
+
+  Map<String, dynamic> get data => _data;
+
+  set data(Map<String, dynamic> d) { _data = d; }
 
   dynamic get(String key) {
     if( data.containsKey(key) ) { return data[key]; }
@@ -14,7 +18,7 @@ class BsxModel {
     return this;
   }
 
-  operator [](String key) { return get(key); }
+//  operator [](String key) { return get(key); }
 
 
 }

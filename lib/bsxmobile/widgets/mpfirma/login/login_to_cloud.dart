@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
+import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_page.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
+import 'package:flutterlearn/bsxmobile/widgets/shared/loader_button.dart';
 import 'package:flutterlearn/bsxmobile/widgets/shared/misc.dart';
 
 
@@ -19,13 +23,17 @@ class LoginToCloud extends StatefulWidget {
 class _LoginToCloudState extends State<LoginToCloud> {
 
   final TextEditingController fkey = TextEditingController();
+  late final CoreRepo coreRepo;
+  final _btnLoader = GlobalKey<LoaderButtonState>();
 
   @override
   void initState() {
     super.initState();
     print('LoginToCloud : initState()');
 
-    fkey.addListener(() {  print('key on edit = ${fkey.text}'); });
+    coreRepo = MpFirma.of(context).coreRepo;
+
+    fkey.addListener(() { _keyOnChanged( fkey.text ); });
   }
 
   @override
@@ -64,7 +72,7 @@ class _LoginToCloudState extends State<LoginToCloud> {
                   ),
                 ),
                 gap(h:24),
-                ElevatedButton(onPressed: (){ _goToLoginUser(); }, child: const Text('Dalej')),
+              LoaderButton(key: _btnLoader, enabled: false, child: const Text('Dalej'), onPressed: (){ _verifyCloudKey(); }),
               ],
             ),
           ),
@@ -75,8 +83,29 @@ class _LoginToCloudState extends State<LoginToCloud> {
 
   }
 
+  void _verifyCloudKey() async {
+    _btnLoader.currentState!.setLoading(true);
+    String key = fkey.text;
+    BsxResponse<CloudInfo> r = await coreRepo.verifyCloudKey(key: key);
+    if(!mounted) return;
+
+    _btnLoader.currentState!.setLoading(false);
+
+    if(r.isSuccess()) {
+      CloudInfo cloudInfo = r.obj;
+      print('cloud info = ${cloudInfo.data}');
+      _goToLoginUser();
+    }
+  }
+
   void _goToLoginUser() {
     LoginRouter.of(context).goto(LoginRoute.user);
   }
+
+  void _keyOnChanged(String key) {
+    if(key.trim() == '') { _btnLoader.currentState!.setDisabled(); }
+    else { _btnLoader.currentState!.setEnabled(); }
+  }
+
 }
 

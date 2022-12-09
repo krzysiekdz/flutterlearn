@@ -1,42 +1,43 @@
 
 import 'package:flutterlearn/bsxmobile/models/bsx_model.dart';
-import 'package:flutterlearn/bsxmobile/models/response.dart';
+import 'package:flutterlearn/bsxmobile/models/config.dart';
+import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
+import 'package:flutterlearn/bsxmobile/models/session.dart';
+import 'package:flutterlearn/bsxmobile/services/bsx_api_service.dart';
 import 'package:flutterlearn/bsxmobile/services/bsx_module_service.dart';
 import 'package:flutterlearn/bsxmobile/services/bsx_repository.dart';
 
 class CoreService extends BsxModuleService {
 
-  CoreService({ required super.bsxApi });
+  CoreService({ required Session session, required BsxApiService bsxApi, required Config config }) : super() {
+    this.session = session;
+    this.bsxApi = bsxApi;
+    this.config = config;
+    coreService = this;
+    coreRepo = createRepo();
+  }
 
   @override
-  CoreRepo getRepo() => CoreRepo(bsxApi: bsxApi);
+  CoreRepo createRepo() => CoreRepo(bsxApi: bsxApi);
 
 }
+
 
 class CoreRepo extends BsxApiRepository {
 
-
   CoreRepo({required super.bsxApi}) : super(endpoint: 'core', canList: false, canGet: false);
 
-  Future<CloudResult> verifyCloudKey({ required String key }) async{
+  Future<BsxResponse<CloudInfo>> verifyCloudKey({ required String key }) async {
     String url = '$endpoint/verifyCloudKey';
     Map<String, String> params = {'key':key};
+    BsxRawResponse r = await bsxApi.post(endpoint: url, params: params);
 
-    Response r = await bsxApi.post(endpoint: url, params: params);
-//    if( r.isSuccess() ) {
-//      CloudResult cloudResult = CloudResult();
-//
-//    }
-
-    //co ma byc odpowiedzia?  czy jednak zwracac response? i zakladac ze data bedzie okreslonego typu? chyba tak
-    return CloudResult();
-
+    return BsxResponse<CloudInfo>(response: r, obj: CloudInfo(data: r.raw));
   }
-
 
 }
 
 
-class CloudResult extends BsxModel {
-  CloudResult({ super.data });
+class CloudInfo extends BsxModel {
+  CloudInfo({ super.data });
 }

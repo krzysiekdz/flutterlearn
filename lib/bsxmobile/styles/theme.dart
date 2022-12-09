@@ -70,6 +70,9 @@ class CustomTheme {
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
+//          backgroundColor: MaterialStateProperty.resolveWith<Color?>((states) {
+//            if(states.contains(MaterialState.disabled)) { return Colors.grey; }
+//          }),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular( CustomStyles.borderRadius ),
 //              side: const BorderSide(color: Colors.redAccent),
