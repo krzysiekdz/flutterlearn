@@ -1,5 +1,6 @@
 
 
+import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
 import 'package:flutterlearn/bsxmobile/services/bsx_api_service.dart';
 
 abstract class BsxRepository<T> {
@@ -28,8 +29,8 @@ abstract class BsxRepository<T> {
     this.canImport = false,
   });
 
-  Future<List<T>> list({ int start = 0, int limit = 10, Map<String, dynamic> params = const {} });
-  Future<T> get({ Map<String, dynamic> params = const {} });
+  Future<BsxResponse<List<T>>> list({ int start = 0, int limit = 10, Map<String, dynamic> params = const {} });
+  Future<BsxResponse<T>> get({ Map<String, dynamic> params = const {} });
 }
 
 
@@ -53,17 +54,16 @@ class BsxApiRepository<T> extends BsxRepository {
   });
 
   @override
-  Future<List<T>> list({int start = 0, int limit = 10, Map<String, dynamic> params = const {}}) async{
-    // TODO: implement list
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<T> get({Map<String, dynamic> params = const {}}) {
+  Future<BsxResponse<T>> get({Map<String, dynamic> params = const {}}) {
     // TODO: implement get
     throw UnimplementedError();
   }
 
+  @override
+  Future<BsxResponse<List<T>>> list({int start = 0, int limit = 10, Map<String, dynamic> params = const {}}) {
+    // TODO: implement list
+    throw UnimplementedError();
+  }
 
 
 

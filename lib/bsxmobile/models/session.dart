@@ -1,9 +1,15 @@
 
 
 
+import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
+
 class Session {
-//  User? user;
-  String token = '';
+  CloudInfo? cloudInfo;
 
   Session();
+
+  String get token => cloudInfo?.token ?? '';
+
+  bool isLoggedToCloud() => cloudInfo != null;
+
 }

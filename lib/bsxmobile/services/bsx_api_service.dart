@@ -5,7 +5,7 @@ import 'package:flutterlearn/bsxmobile/models/session.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
 
-typedef BsxApiResponseHandler = BsxRawResponse Function(BsxRawResponse res);
+typedef BsxApiResponseHandler = BsxJsonResponse Function(BsxJsonResponse res);
 
 class BsxApiService {
 
@@ -13,17 +13,17 @@ class BsxApiService {
   final String mode;
   final Config config;
   Session session; //sesja przekazywana z głównego widgetu MpFirma
-  BsxApiResponseHandler handleResult;
+  BsxApiResponseHandler responseHandler;
 
   BsxApiService( {
     this.host = 'api.bsxonline.pl',
     this.mode = 'api/mp',
     required this.config,
     required this.session,
-    required this.handleResult,
+    required this.responseHandler,
   } );
 
-  Future<BsxRawResponse> post({
+  Future<BsxJsonResponse> post({
     required String endpoint,
     Map<String, String> params = const {},
     Map<String, String> options = const {},
@@ -35,7 +35,7 @@ class BsxApiService {
         params['debug'] = '1';
         params['wwwdebug'] = '1';
       }
-      if(session.token != '') {
+      if(session.token != '' && !options.containsKey('ignoreToken')) {
         params['token'] = session.token;
       }
       Uri uri = Uri.https(host, '$mode/$endpoint', params);
@@ -46,27 +46,27 @@ class BsxApiService {
       data = jsonDecode(r.body);
     } catch (e) { //czy nie ma bledu parsowania
       print('BSX API ERROR : ${e.toString()}');
-      return  handleResult( BsxRawResponse(code: -999, msg: 'Wystapił błąd') );
+      return  responseHandler( BsxJsonResponse(code: -999, msg: 'Wystapił błąd') );
     }
 
     //czy nie ma bledu http
     if(r.statusCode < 200 || r.statusCode >= 300) {
       print('BSX API STATUS CODE : ${r.statusCode}');
-      return handleResult( BsxRawResponse(code: -r.statusCode, msg: 'Wystąpił błąd ( ${r.statusCode} )') );
+      return responseHandler( BsxJsonResponse(code: -r.statusCode, msg: 'Wystąpił błąd ( ${r.statusCode} )') );
     }
 
     //czy api nie zwraca bledu
-    BsxRawResponse res = BsxRawResponse(code: data['resultCode'] ?? -1);
+    BsxJsonResponse res = BsxJsonResponse(code: data['resultCode'] ?? -1);
 
     //odpowiedź api bez błędu - analizujemy
     if(res.isSuccess()) {
-      res.raw = data;
+      res.json = data;
     }
     else {
       res.msg = data['errorStr'] ?? 'Wystąpił błąd (! ${data['resultCode'] ?? -1})' ;
     }
 
-    return  handleResult(res);
+    return  responseHandler(res);
   }
 
 

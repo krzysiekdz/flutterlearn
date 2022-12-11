@@ -22,9 +22,12 @@ class LoginToCloud extends StatefulWidget {
 
 class _LoginToCloudState extends State<LoginToCloud> {
 
-  final TextEditingController fkey = TextEditingController();
+  final TextEditingController ckey = TextEditingController();
   late final CoreRepo coreRepo;
+  late final CoreService coreService;
+
   final _btnLoader = GlobalKey<LoaderButtonState>();
+  LoaderButtonState get btnLoader => _btnLoader.currentState!;
 
   @override
   void initState() {
@@ -32,14 +35,15 @@ class _LoginToCloudState extends State<LoginToCloud> {
     print('LoginToCloud : initState()');
 
     coreRepo = MpFirma.of(context).coreRepo;
+    coreService = MpFirma.of(context).coreService;
 
-    fkey.addListener(() { _keyOnChanged( fkey.text ); });
+    ckey.addListener(() { _keyOnChanged( ckey.text ); });
   }
 
   @override
   void dispose() {
     print('LoginToCloud : dispose()');
-    fkey.dispose();
+    ckey.dispose();
     super.dispose();
   }
 
@@ -62,7 +66,7 @@ class _LoginToCloudState extends State<LoginToCloud> {
             child: Column(
               children: [
                 TextField(
-                  controller: fkey,
+                  controller: ckey,
                   style: header4().copyWith(letterSpacing: 5),
                   keyboardType: TextInputType.text,
                   textCapitalization: TextCapitalization.characters,
@@ -84,16 +88,14 @@ class _LoginToCloudState extends State<LoginToCloud> {
   }
 
   void _verifyCloudKey() async {
-    _btnLoader.currentState!.setLoading(true);
-    String key = fkey.text;
-    BsxResponse<CloudInfo> r = await coreRepo.verifyCloudKey(key: key);
+    btnLoader.setLoading(true);
+    BsxResponse<CloudInfo> r = await coreRepo.verifyCloudKey(key: ckey.text);
     if(!mounted) return;
 
-    _btnLoader.currentState!.setLoading(false);
+    btnLoader.setLoading(false);
 
     if(r.isSuccess()) {
-      CloudInfo cloudInfo = r.obj;
-      print('cloud info = ${cloudInfo.data}');
+      coreService.loginToCloudFinalize(r.obj);
       _goToLoginUser();
     }
   }
@@ -103,8 +105,8 @@ class _LoginToCloudState extends State<LoginToCloud> {
   }
 
   void _keyOnChanged(String key) {
-    if(key.trim() == '') { _btnLoader.currentState!.setDisabled(); }
-    else { _btnLoader.currentState!.setEnabled(); }
+    if(key.trim() == '') { btnLoader.setDisabled(); }
+    else { btnLoader.setEnabled(); }
   }
 
 }

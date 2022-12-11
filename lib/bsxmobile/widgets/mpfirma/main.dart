@@ -54,7 +54,7 @@ class MpFirmaState extends State<MpFirma> {
 
   void _init() {
     session = Session();
-    bsxApi = BsxApiService(config: config, session: session, handleResult: bsxResponseHandler);
+    bsxApi = BsxApiService(config: config, session: session, responseHandler: bsxResponseHandler);
     coreService = CoreService(session: session, bsxApi: bsxApi, config: config);
     coreRepo = coreService.coreRepo;
   }
@@ -100,7 +100,7 @@ class MpFirmaState extends State<MpFirma> {
     return slideRoute(page);
   }
 
-  BsxRawResponse bsxResponseHandler(BsxRawResponse res) {
+  BsxJsonResponse bsxResponseHandler(BsxJsonResponse res) {
     if(res.isError()) {
       showDialog(context: context, builder: (context) =>
           AlertDialog(
