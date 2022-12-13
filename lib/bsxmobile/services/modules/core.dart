@@ -1,17 +1,24 @@
 
 import 'package:flutterlearn/bsxmobile/models/bsx_model.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
-import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
+import 'package:flutterlearn/bsxmobile/models/response.dart';
 import 'package:flutterlearn/bsxmobile/models/session.dart';
 import 'package:flutterlearn/bsxmobile/services/bsx_api_service.dart';
-import 'package:flutterlearn/bsxmobile/services/bsx_module_service.dart';
-import 'package:flutterlearn/bsxmobile/services/bsx_repository.dart';
+import 'package:flutterlearn/bsxmobile/services/local_storage/local_storage_service.dart';
+import 'bsx_module_service.dart';
+import 'package:flutterlearn/bsxmobile/services/repository/bsx_api_repository.dart';
 
 class CoreService extends BsxModuleService {
 
-  CoreService({ required Session session, required BsxApiService bsxApi, required Config config }) : super() {
+  CoreService({
+    required Session session,
+    required LocalStorageService localStorage,
+    required BsxApiService bsxApi,
+    required Config config })
+      : super() {
     this.session = session;
     this.bsxApi = bsxApi;
+    this.localStorage = localStorage;
     this.config = config;
     coreService = this;
     coreRepo = createRepo();
@@ -21,10 +28,14 @@ class CoreService extends BsxModuleService {
   CoreRepo createRepo() => CoreRepo(bsxApi: bsxApi);
 
   void loginToCloudFinalize(CloudInfo cloudInfo) {
-    session.cloudInfo = cloudInfo; //czyli cały pierwszy response jest zapisany w sesji
+    session.cloudInfo = cloudInfo;
+
+    localStorage.getLoggedCloudRepo().insert( params: cloudInfo.data );
+
     //zapamietac w local storage key chmury - kolejne wejscie powoduje automatyczne logowanie do chmury
     //zapisac klucz do chmury w zapamietanych kluczach - lista kluczy - lista kluczy pojawia sie przy logowaniu do chmury
     //nalezy zrobic kolejny service - zapisujacy dane w local storage - klucze oraz zalogowany klucz do chmury oraz zalogowany uzytkownik
+    //service zapamietujacy dane: 1. wpisane klucze 2. zalogowany klucz 3. zalogowany uzytkownik
   }
 
 }
@@ -34,15 +45,16 @@ class CoreRepo extends BsxApiRepository {
 
   CoreRepo({required super.bsxApi}) : super(endpoint: 'core', canList: false, canGet: false);
 
-  Future<BsxResponse<CloudInfo>> verifyCloudKey({ required String key }) async {
+  Future<ObjResponse<CloudInfo>> verifyCloudKey({ required String key }) async {
     String url = '$endpoint/verifyCloudKey';
     Map<String, String> params = {'key':key};
-    BsxJsonResponse r = await bsxApi.post(endpoint: url, params: params);
+    JsonResponse r = await bsxApi.post(endpoint: url, params: params);
 
-    return BsxResponse<CloudInfo>(response: r, obj: CloudInfo(data: r.json));
+    return ObjResponse<CloudInfo>(response: r, obj: CloudInfo(data: r.json));
   }
 
 }
+
 
 
 class CloudInfo extends BsxModel {

@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/models/session.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
+import 'package:flutterlearn/bsxmobile/models/response.dart';
 
-typedef BsxApiResponseHandler = BsxJsonResponse Function(BsxJsonResponse res);
+typedef BsxApiResponseHandler = JsonResponse Function(JsonResponse res);
 
 class BsxApiService {
 
@@ -23,7 +23,7 @@ class BsxApiService {
     required this.responseHandler,
   } );
 
-  Future<BsxJsonResponse> post({
+  Future<JsonResponse> post({
     required String endpoint,
     Map<String, String> params = const {},
     Map<String, String> options = const {},
@@ -46,17 +46,17 @@ class BsxApiService {
       data = jsonDecode(r.body);
     } catch (e) { //czy nie ma bledu parsowania
       print('BSX API ERROR : ${e.toString()}');
-      return  responseHandler( BsxJsonResponse(code: -999, msg: 'Wystapił błąd') );
+      return  responseHandler( JsonResponse(code: -999, msg: 'Wystapił błąd') );
     }
 
     //czy nie ma bledu http
     if(r.statusCode < 200 || r.statusCode >= 300) {
       print('BSX API STATUS CODE : ${r.statusCode}');
-      return responseHandler( BsxJsonResponse(code: -r.statusCode, msg: 'Wystąpił błąd ( ${r.statusCode} )') );
+      return responseHandler( JsonResponse(code: -r.statusCode, msg: 'Wystąpił błąd ( ${r.statusCode} )') );
     }
 
     //czy api nie zwraca bledu
-    BsxJsonResponse res = BsxJsonResponse(code: data['resultCode'] ?? -1);
+    JsonResponse res = JsonResponse(code: data['resultCode'] ?? -1);
 
     //odpowiedź api bez błędu - analizujemy
     if(res.isSuccess()) {

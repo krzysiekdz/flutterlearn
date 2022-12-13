@@ -18,7 +18,6 @@ class BsxModel {
     return this;
   }
 
-//  operator [](String key) { return get(key); }
-
+  operator [](String key) { return get(key); }
 
 }

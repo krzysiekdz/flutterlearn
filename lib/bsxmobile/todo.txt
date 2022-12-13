@@ -1,4 +1,6 @@
 
+utworzyc prywatne repo , a publiczne usunac!
+
 zaczac od CoreRepo
 skupic sie na zrobieniu pierwszego zapytania - verify cloud key
 

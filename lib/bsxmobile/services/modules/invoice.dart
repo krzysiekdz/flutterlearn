@@ -14,6 +14,6 @@
 * to logujemy od razu na uzytkownika
 * */
 
-import 'package:flutterlearn/bsxmobile/services/bsx_module_service.dart';
+import 'bsx_module_service.dart';
 
 //class InvoicesModuleService extends BsxModuleService {}

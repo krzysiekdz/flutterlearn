@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterlearn/bsxmobile/models/bsx_response.dart';
+import 'package:flutterlearn/bsxmobile/models/response.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
@@ -89,7 +89,7 @@ class _LoginToCloudState extends State<LoginToCloud> {
 
   void _verifyCloudKey() async {
     btnLoader.setLoading(true);
-    BsxResponse<CloudInfo> r = await coreRepo.verifyCloudKey(key: ckey.text);
+    ObjResponse<CloudInfo> r = await coreRepo.verifyCloudKey(key: ckey.text);
     if(!mounted) return;
 
     btnLoader.setLoading(false);
