@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_page.dart';
-import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
 import 'package:flutterlearn/bsxmobile/widgets/shared/misc.dart';
 import 'package:flutterlearn/bsxmobile/widgets/shared/password.dart';
@@ -91,7 +90,7 @@ class _LoginToUserState extends State<LoginToUser> {
   }
 
   void _logoutCloud() {
-    LoginRouter.of(context).goto(LoginRoute.cloud);
+    MpFirma.of(context).goto(AppRoute.loginToCloud);
   }
 
   void _logIn() {

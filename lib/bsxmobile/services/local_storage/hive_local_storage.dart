@@ -25,26 +25,34 @@ class HiveLocalStorage extends LocalStorageService {
 
   @override
   Repository getLoggedCloudRepo() {
-    // TODO: implement getLoggedCloudRepo
-    throw UnimplementedError();
+    return HiveLoggedCloudRepo();
   }
 
   @override
   Repository getLoggedUserRepo() {
-    // TODO: implement getLoggedUserRepo
-    throw UnimplementedError();
+    return HiveLoggedUserRepo();
   }
 
   @override
   Repository getRememberedCloudsRepo() {
-    // TODO: implement getRememberedCloudsRepo
-    throw UnimplementedError();
+    return HiveRememberedCloudsRepo();
+//    return HiveRepository(endpoint: HiveStorageBoxes.rememberedClouds.name);
   }
 
 }
 
-class HiveLoggedCloudRepo extends HiveRepository {
-
-  HiveLoggedCloudRepo() : super(endpoint: 'loggedCloud');
-
+class HiveLoggedCloudRepo extends HiveRepository<String> {
+  String key = 'cloudKey';
+  HiveLoggedCloudRepo() : super(endpoint: HiveStorageBoxes.loggedCloud.name);
 }
+
+class HiveLoggedUserRepo extends HiveRepository<Map<String, String>> {
+  String key = 'loggedUser';
+  HiveLoggedUserRepo() : super(endpoint: HiveStorageBoxes.loggedUser.name);
+}
+
+class HiveRememberedCloudsRepo extends HiveRepository<Map<String, String>> {
+  HiveRememberedCloudsRepo() : super(endpoint: HiveStorageBoxes.rememberedClouds.name);
+}
+
+

@@ -5,7 +5,7 @@ class JsonResponse {
   int code;
   String msg;
 
-  JsonResponse({this.json, this.code = 0, this.msg = ''});
+  JsonResponse({this.json, this.code = 1, this.msg = ''});
 
   bool isSuccess() => code > 0;
 
@@ -13,9 +13,11 @@ class JsonResponse {
 }
 
 class ObjResponse<T> extends JsonResponse {
-  T obj;//obj to np List<BsxModel>
+  T? obj;//obj to np List<BsxModel>
 
-  ObjResponse({ required JsonResponse response, required this.obj }) {
+  ObjResponse({ super.code, super.msg,  this.obj });
+
+  ObjResponse.fromJsonResponse({ required JsonResponse response, this.obj }) {
     json = response.json;
     code = response.code;
     msg = response.msg;

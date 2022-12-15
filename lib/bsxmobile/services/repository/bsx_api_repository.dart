@@ -34,7 +34,7 @@ class BsxApiRepository<T extends BsxModel> extends Repository {
   }
 
   @override
-  Future<ObjResponse> get({int id = 0, Map<String, dynamic> params = const {}}) {
+  Future<ObjResponse> get({dynamic id , Map<String, dynamic> params = const {}}) {
     // TODO: implement get
     throw UnimplementedError();
   }
@@ -53,7 +53,7 @@ class BsxApiRepository<T extends BsxModel> extends Repository {
   }
 
   @override
-  Future<ObjResponse> delete({int id = 0, Map<String, dynamic> params = const {}}) {
+  Future<ObjResponse> delete({dynamic id , Map<String, dynamic> params = const {}}) {
     // TODO: implement delete
     throw UnimplementedError();
   }

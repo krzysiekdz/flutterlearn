@@ -2,48 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_page.dart';
-import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
 import 'package:flutterlearn/bsxmobile/widgets/shared/misc.dart';
 
 
-class LoginInitial extends StatefulWidget {
+class LoaderPage extends StatefulWidget {
 
   final Config config;
-  const LoginInitial({Key? key, required this.config}) : super(key: key);
+  const LoaderPage({Key? key, required this.config}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _LoginInitialState();
+  State<StatefulWidget> createState() => _LoaderPageState();
 
 }
 
-class _LoginInitialState extends State<LoginInitial> {
+class _LoaderPageState extends State<LoaderPage> {
 
   @override
   void initState() {
     super.initState();
-    print('LoginInitial : initState()');
-
-    appInit();
-  }
-
-  void appInit() {
-    Future.delayed(const Duration(seconds: 5), () => _gotoLoginToCloud() );
-  }
-
-  void _gotoLoginToCloud() {
-    LoginRouter.of(context).goto(LoginRoute.cloud);
+    print('LoaderPage : initState()');
   }
 
   @override
   void dispose() {
-    print('LoginInitial : dispose()');
+    print('LoaderPage : dispose()');
     super.dispose();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    print('LoginInitial : build()');
+    print('LoaderPage : build()');
 
     return LoginPage(
         child: Column(

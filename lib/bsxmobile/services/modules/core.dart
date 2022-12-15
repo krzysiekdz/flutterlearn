@@ -50,7 +50,7 @@ class CoreRepo extends BsxApiRepository {
     Map<String, String> params = {'key':key};
     JsonResponse r = await bsxApi.post(endpoint: url, params: params);
 
-    return ObjResponse<CloudInfo>(response: r, obj: CloudInfo(data: r.json));
+    return ObjResponse.fromJsonResponse(response: r, obj: CloudInfo(data: r.json));
   }
 
 }

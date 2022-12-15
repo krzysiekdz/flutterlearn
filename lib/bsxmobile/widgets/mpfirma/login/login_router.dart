@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_initial.dart';
@@ -6,9 +7,6 @@ import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_to_user.dart'
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
 import 'package:flutterlearn/bsxmobile/utils/misc.dart';
 
-/*
-* opakowuje operacje zwiazane z logowaniem; zamiast routing stąd wynieść do main, routing z logowaniem obslugujemy tutaj
-* */
 
 class LoginRouter extends StatefulWidget {
 
@@ -84,3 +82,4 @@ class LoginRouterState extends State<LoginRouter> {
 
 }
 
+ */

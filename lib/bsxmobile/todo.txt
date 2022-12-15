@@ -1,3 +1,5 @@
+utworzenie biblioteki, zamiast robienia wszedzie importow, np bsxmobile_library oraz utils_library
+
 
 utworzyc prywatne repo , a publiczne usunac!
 

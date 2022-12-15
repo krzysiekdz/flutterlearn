@@ -7,7 +7,9 @@ import 'package:flutterlearn/bsxmobile/services/local_storage/hive_local_storage
 import 'package:flutterlearn/bsxmobile/services/local_storage/local_storage_service.dart';
 import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
-import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/loader_page.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_to_cloud.dart';
+import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_to_user.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main_scaffold/main_scaffold.dart';
 import 'package:flutterlearn/bsxmobile/utils/misc.dart';
 import 'package:flutterlearn/utils/AppColors.dart';
@@ -33,7 +35,7 @@ class MpFirma extends StatefulWidget {
 }
 
 enum AppRoute {
-  main, loginUser, loginCloud, loginInitial
+  main, loginToUser, loginToCloud, loaderPage
 }
 
 class MpFirmaState extends State<MpFirma> {
@@ -45,37 +47,47 @@ class MpFirmaState extends State<MpFirma> {
   late CoreService coreService;
   late CoreRepo coreRepo;
   late LocalStorageService localStorage;
-  bool _isInitializing = true;
-
   Config get config => widget.config;
+
 
   @override
   void initState() {
     super.initState();
     print('MpFirma: initState()');
 
-    _init();
+    _appInit();
   }
 
-  void setInitializing(bool initializing) {
-    setState(() {
-      _isInitializing = initializing;
-    });
-  }
 
-  //podczas inicjalizacji pokazac ekran ładowania
-  void _init() async {
-    setInitializing(true);
-    await Hive.initFlutter();
-    await HiveLocalStorage.init();
+  /*
+  * inicjalizacja aplikacji - jednorazowo, na starcie (ekran ładowania)
+  * */
+  Future<void> _appInit() async {
+    await Hive.initFlutter(); //jeśli uzywamy hive, to tutaj jednorazowa inicjalizacja
+    await HiveLocalStorage.init(); // inicjalizacja hive storage
+
     if(!mounted) return;
 
+    _newState();
+    _autoLogin();
+  }
+
+  /*
+  * rozpoznanie, czy zalogowany do chmury/uzytkownika - logowanie
+  * */
+  Future<void> _autoLogin() async {
+    //if zapamietany uzytkownik then logowanie do chmury i na uzytkownika; goto main scaffold
+    //else if zapamietany klucz do chmury => logowanie do chmury; goto loginToUser
+    //else
+    goto(AppRoute.loginToCloud);
+  }
+
+  void _newState() {
     session = Session();
     bsxApi = BsxApiService(config: config, session: session, responseHandler: bsxResponseHandler);
     localStorage = HiveLocalStorage();
     coreService = CoreService(session: session, bsxApi: bsxApi, config: config, localStorage: localStorage);
     coreRepo = coreService.coreRepo;
-    setInitializing(false);
   }
 
   @override
@@ -89,36 +101,53 @@ class MpFirmaState extends State<MpFirma> {
         child: Navigator(
           key: _navKey,
           onGenerateRoute: _onGenerateRoute,
-          initialRoute: AppRoute.loginInitial.name,
+          initialRoute: AppRoute.loaderPage.name, //na poczatku wchodzimy na LoaderPage, gdzie nie jest wymagany zaden service, bo aplikacja się dopiero inicjalizuje
         ),
       ),
     );
+  }
+
+  void logoutAndForgetUser() {
+    goto(AppRoute.loaderPage);
+    //wylogowac sie z api
+    _newState();
+    //usunac zapamietanego uzytkownika
+    _autoLogin();
+  }
+
+  void logoutCloud() {
+    goto(AppRoute.loaderPage);
+    //wylogowac z api
+    _newState();
+    //usunac zapamietanego uzytkownika oraz chmure
+    goto(AppRoute.loginToCloud);
   }
 
   void goto(AppRoute route) {
     _navKey.currentState!.pushNamedAndRemoveUntil(route.name,  (route) => false);
   }
 
-  //w app barze zrobic listę akcji - wyloguj z chmury, uzytkownika, zamknij apliakcje
+  //routing aplikacji
   Route _onGenerateRoute(RouteSettings settings) {
     Widget page;
 
     if(settings.name == AppRoute.main.name) {
-      page = MainScaffold(config: widget.config);
+      page = MainScaffold(config: config);
     }
-    else if(settings.name == AppRoute.loginUser.name) {
-      page = LoginRouter(config: widget.config, initialRoute: LoginRoute.user,);
+    else if(settings.name == AppRoute.loginToUser.name) {
+      page = LoginToUser(config: config);
     }
-    else if(settings.name == AppRoute.loginCloud.name) {
-      page = LoginRouter(config: widget.config, initialRoute: LoginRoute.cloud,);
+    else if(settings.name == AppRoute.loginToCloud.name) {
+      page = LoginToCloud(config: config);
     }
     else  {
-      page = LoginRouter(config: widget.config, initialRoute: LoginRoute.initial);
+      page = LoaderPage(config: config);
     }
 
     return slideRoute(page);
   }
 
+  //globalna obsługa bsxApi response
   JsonResponse bsxResponseHandler(JsonResponse res) {
     if(res.isError()) {
       showDialog(context: context, builder: (context) =>
@@ -141,6 +170,7 @@ class MpFirmaState extends State<MpFirma> {
     return res;
   }
 
+  //wyjscie z aplikacji - dialog czy na pewno?
   Future<bool> _canExitApp() async {
       bool result = await showDialog(
           context: context,

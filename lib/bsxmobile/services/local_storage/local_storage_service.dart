@@ -2,7 +2,6 @@
 
 import 'package:flutterlearn/bsxmobile/services/repository/repository.dart';
 
-//podobnie jak bsx module service - tam dane pochoda przewaznie z api, tutaj dane pochodza z local storage
 
 abstract class LocalStorageService {
 

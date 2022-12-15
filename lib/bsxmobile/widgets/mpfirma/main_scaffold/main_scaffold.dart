@@ -98,15 +98,15 @@ class MainScaffoldState extends State<MainScaffold> {
   }
 
   void gotoLoginUser() {
-    MpFirma.of(context).goto(AppRoute.loginUser);
+    MpFirma.of(context).goto(AppRoute.loginToUser);
   }
 
   void gotoLoginCloud() {
-    MpFirma.of(context).goto(AppRoute.loginCloud);
+    MpFirma.of(context).goto(AppRoute.loginToCloud);
   }
 
   void gotoLoginInitial() {
-    MpFirma.of(context).goto(AppRoute.loginInitial);
+    MpFirma.of(context).goto(AppRoute.loaderPage);
   }
 
 }

@@ -4,7 +4,6 @@ import 'package:flutterlearn/bsxmobile/models/config.dart';
 import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_page.dart';
-import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_router.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/main.dart';
 import 'package:flutterlearn/bsxmobile/widgets/shared/loader_button.dart';
 import 'package:flutterlearn/bsxmobile/widgets/shared/misc.dart';
@@ -95,13 +94,13 @@ class _LoginToCloudState extends State<LoginToCloud> {
     btnLoader.setLoading(false);
 
     if(r.isSuccess()) {
-      coreService.loginToCloudFinalize(r.obj);
+      coreService.loginToCloudFinalize(r.obj!);
       _goToLoginUser();
     }
   }
 
   void _goToLoginUser() {
-    LoginRouter.of(context).goto(LoginRoute.user);
+    MpFirma.of(context).goto(AppRoute.loginToUser);
   }
 
   void _keyOnChanged(String key) {
