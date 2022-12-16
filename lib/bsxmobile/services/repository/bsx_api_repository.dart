@@ -28,35 +28,36 @@ class BsxApiRepository<T extends BsxModel> extends Repository {
   });
 
   @override
+  Future<ObjResponse> delete({id, Map<String, dynamic> params = const {}}) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ObjResponse> get({id, Map<String, dynamic> params = const {}}) {
+    // TODO: implement get
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ObjResponse> insert({id, Map<String, dynamic> data = const {}}) {
+    // TODO: implement insert
+    throw UnimplementedError();
+  }
+
+  @override
   Future<ObjResponse<List>> list({int start = 0, int limit = 10, Map<String, dynamic> params = const {}}) {
     // TODO: implement list
     throw UnimplementedError();
   }
 
   @override
-  Future<ObjResponse> get({dynamic id , Map<String, dynamic> params = const {}}) {
-    // TODO: implement get
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<ObjResponse> insert({Map<String, dynamic> params = const {}}) {
-    // TODO: implement insert
-    throw UnimplementedError();
-  }
-
-
-  @override
-  Future<ObjResponse> update({Map<String, dynamic> params = const {}}) {
+  Future<ObjResponse> update({id, Map<String, dynamic> data = const {}}) {
     // TODO: implement update
     throw UnimplementedError();
   }
 
-  @override
-  Future<ObjResponse> delete({dynamic id , Map<String, dynamic> params = const {}}) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
+
 
 
 

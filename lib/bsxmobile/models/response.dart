@@ -1,15 +1,18 @@
 
-
-class JsonResponse {
-  dynamic json;
+abstract class BaseResponse {
   int code;
   String msg;
 
-  JsonResponse({this.json, this.code = 1, this.msg = ''});
+  BaseResponse({this.code = 1, this.msg = ''});
 
   bool isSuccess() => code > 0;
 
   bool isError() => code <= 0;
+}
+
+class JsonResponse extends BaseResponse{
+  dynamic json;
+  JsonResponse({this.json, super.code, super.msg});
 }
 
 class ObjResponse<T> extends JsonResponse {

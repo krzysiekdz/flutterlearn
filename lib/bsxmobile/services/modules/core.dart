@@ -30,7 +30,8 @@ class CoreService extends BsxModuleService {
   void loginToCloudFinalize(CloudInfo cloudInfo) {
     session.cloudInfo = cloudInfo;
 
-    localStorage.getLoggedCloudRepo().insert( params: cloudInfo.data );
+//    localStorage.getLoggedCloudRepo().insert( params: cloudInfo.data );
+
 
     //zapamietac w local storage key chmury - kolejne wejscie powoduje automatyczne logowanie do chmury
     //zapisac klucz do chmury w zapamietanych kluczach - lista kluczy - lista kluczy pojawia sie przy logowaniu do chmury

@@ -3,7 +3,7 @@ import 'package:flutterlearn/bsxmobile/services/repository/repository.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutterlearn/bsxmobile/utils/extensions.dart';
 
-class HiveRepository<T> extends Repository {
+class HiveRepository<T> extends Repository<T> {
 
   Box<T> _box;
 
@@ -28,13 +28,13 @@ class HiveRepository<T> extends Repository {
   }
 
   @override
-  Future<ObjResponse> insert({Map<String, dynamic> params = const {}}) async {
+  Future<ObjResponse> insert({ dynamic id, Map<String, dynamic> data = const {}}) async {
     if( !canInsert ) { return ObjResponse(code: -1, msg: 'Cannot INSERT to this repo'); }
     else {
-      if( !params.containsKey('value') ) return ObjResponse(code: -1, msg: 'No "value" parameter');
-      T v = params['value'];
-      if( params.containsKey('key') ) {
-        await _box.put(params['key'], v);
+      if( !data.containsKey('value') ) return ObjResponse(code: -1, msg: 'No "value" parameter');
+      T v = data['value'];
+      if( data.containsKey('key') ) {
+        await _box.put(data['key'], v);
         return ObjResponse();
       }
       else {
@@ -45,11 +45,11 @@ class HiveRepository<T> extends Repository {
   }
 
   @override
-  Future<ObjResponse> update({Map<String, dynamic> params = const {}}) async {
+  Future<ObjResponse> update({dynamic id, Map<String, dynamic> data = const {}}) async {
     if( !canUpdate ) { return ObjResponse(code: -1, msg: 'Cannot UPDATE to this repo'); }
-    if( !params.containsKey('key') ) return ObjResponse(code: -1, msg: 'No "key" parameter');
-    if( !_box.containsKey( params['key'] ) )  return ObjResponse(code: -1, msg: 'Cannot find object to update');
-    return insert(params: params);
+    if( !data.containsKey('key') ) return ObjResponse(code: -1, msg: 'No "key" parameter');
+    if( !_box.containsKey( data['key'] ) )  return ObjResponse(code: -1, msg: 'Cannot find object to update');
+    return insert(data: data);
   }
 
   @override
@@ -59,5 +59,9 @@ class HiveRepository<T> extends Repository {
     return ObjResponse();
   }
 
+}
 
+
+class HiveMapRepo extends HiveRepository<Map<String, String>> {
+  HiveMapRepo({required super.endpoint});
 }
