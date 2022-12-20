@@ -1,0 +1,3 @@
+przeanalizowac implemntacje Chip; zapoznac sie z InkWell, Material
+ScrollView - przeczytac kod; Slivers
+uzycie widgetu const - co to zmienia?

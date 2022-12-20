@@ -27,7 +27,7 @@ class CoreService extends BsxModuleService {
   @override
   CoreRepo createRepo() => CoreRepo(bsxApi: bsxApi);
 
-  void loginToCloudFinalize(CloudInfo cloudInfo) {
+  void loginToCloudFinalize(Cloud cloudInfo) {
     session.cloudInfo = cloudInfo;
 
 //    localStorage.getLoggedCloudRepo().insert( params: cloudInfo.data );
@@ -46,26 +46,32 @@ class CoreRepo extends BsxApiRepository {
 
   CoreRepo({required super.bsxApi}) : super(endpoint: 'core', canList: false, canGet: false);
 
-  Future<ObjResponse<CloudInfo>> verifyCloudKey({ required String key }) async {
+  Future<ObjResponse<Cloud>> verifyCloudKey({ required String key }) async {
     String url = '$endpoint/verifyCloudKey';
     Map<String, String> params = {'key':key};
     JsonResponse r = await bsxApi.post(endpoint: url, params: params);
 
-    return ObjResponse.fromJsonResponse(response: r, obj: CloudInfo(data: r.json));
+    return ObjResponse.fromJsonR(response: r, obj: Cloud(data: r.json));
   }
 
 }
 
 
 
-class CloudInfo extends BsxModel {
-  CloudInfo({ super.data });
+class Cloud extends BsxModel {
+  Cloud({ super.data });
 
-  String get token => data['token'];
-  String get title => data['title'];
-  String get logourl => data['logourl'];
-  String get key => data['key'];
-  Map<String, dynamic> get services => data['services'];
-  List<String> get modules => data['modules'];
+  String get token => this['token'];
+  String get title => this['title'];
+  String get logourl => this['logourl'];
+  String get key => this['key'];
+  bool get isKey => key != '';
+  Map<String, dynamic> get services => data['services'] ?? {};
+  List<String> get modules => data['modules'] ?? [];
   bool isModule(String m) => modules.contains(m);
+
+  @override
+  String toString() {
+    return "$data";
+  }
 }

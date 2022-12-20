@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bsxmobile/models/response.dart';
 import 'package:flutterlearn/bsxmobile/models/config.dart';
+import 'package:flutterlearn/bsxmobile/services/local_storage/local_storage_service.dart';
 import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
 import 'package:flutterlearn/bsxmobile/styles/styles.dart';
 import 'package:flutterlearn/bsxmobile/widgets/mpfirma/login/login_page.dart';
@@ -24,6 +25,7 @@ class _LoginToCloudState extends State<LoginToCloud> {
   final TextEditingController ckey = TextEditingController();
   late final CoreRepo coreRepo;
   late final CoreService coreService;
+  late final LocalStorageService localStorage;
 
   final _btnLoader = GlobalKey<LoaderButtonState>();
   LoaderButtonState get btnLoader => _btnLoader.currentState!;
@@ -35,6 +37,7 @@ class _LoginToCloudState extends State<LoginToCloud> {
 
     coreRepo = MpFirma.of(context).coreRepo;
     coreService = MpFirma.of(context).coreService;
+    localStorage = MpFirma.of(context).localStorage;
 
     ckey.addListener(() { _keyOnChanged( ckey.text ); });
   }
@@ -87,16 +90,27 @@ class _LoginToCloudState extends State<LoginToCloud> {
   }
 
   void _verifyCloudKey() async {
-    btnLoader.setLoading(true);
-    ObjResponse<CloudInfo> r = await coreRepo.verifyCloudKey(key: ckey.text);
-    if(!mounted) return;
-
-    btnLoader.setLoading(false);
-
-    if(r.isSuccess()) {
-      coreService.loginToCloudFinalize(r.obj!);
-      _goToLoginUser();
+    if(ckey.text.toLowerCase() == 'cl' ) {
+      List<Cloud> clouds = await localStorage.getSavedClouds();
+      print('$clouds');
     }
+    else if(ckey.text.startsWith('CL-') ) {
+      await localStorage.saveCloud(Cloud(data: { 'key': ckey.text }));
+      print('cloud saved');
+    }
+
+
+//     print(ckey.text);
+//    btnLoader.setLoading(true);
+//    ObjResponse<Cloud> r = await coreRepo.verifyCloudKey(key: ckey.text);
+//    if(!mounted) return;
+//
+//    btnLoader.setLoading(false);
+//
+//    if(r.isSuccess()) {
+//      coreService.loginToCloudFinalize(r.obj!);
+//      _goToLoginUser();
+//    }
   }
 
   void _goToLoginUser() {

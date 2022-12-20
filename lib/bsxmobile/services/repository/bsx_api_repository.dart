@@ -5,7 +5,7 @@ import 'package:flutterlearn/bsxmobile/models/response.dart';
 import 'package:flutterlearn/bsxmobile/services/bsx_api_service.dart';
 import 'package:flutterlearn/bsxmobile/services/repository/repository.dart';
 
-class BsxApiRepository<T extends BsxModel> extends Repository {
+class BsxApiRepository<T extends BsxModel> extends Repository<T> {
   BsxApiService bsxApi;
 
   bool canPreview;
@@ -34,28 +34,29 @@ class BsxApiRepository<T extends BsxModel> extends Repository {
   }
 
   @override
-  Future<ObjResponse> get({id, Map<String, dynamic> params = const {}}) {
+  Future<ObjResponse<T>> get({id, Map<String, dynamic> params = const {}}) {
     // TODO: implement get
     throw UnimplementedError();
   }
 
   @override
-  Future<ObjResponse> insert({id, Map<String, dynamic> data = const {}}) {
+  Future<ObjResponse> insert({id, required T data}) {
     // TODO: implement insert
     throw UnimplementedError();
   }
 
   @override
-  Future<ObjResponse<List>> list({int start = 0, int limit = 10, Map<String, dynamic> params = const {}}) {
+  Future<ObjResponse<List<T>>> list({int start = 0, int limit = 10, Map<String, dynamic> params = const {}}) {
     // TODO: implement list
     throw UnimplementedError();
   }
 
   @override
-  Future<ObjResponse> update({id, Map<String, dynamic> data = const {}}) {
+  Future<ObjResponse> update({id, required T data}) {
     // TODO: implement update
     throw UnimplementedError();
   }
+
 
 
 

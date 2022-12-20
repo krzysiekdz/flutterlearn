@@ -7,7 +7,7 @@ class Session {
 
   Session();
 
-  CloudInfo? cloudInfo;
+  Cloud? cloudInfo;
   String get token => cloudInfo?.token ?? '';
   bool isLoggedToCloud() => cloudInfo != null;
 

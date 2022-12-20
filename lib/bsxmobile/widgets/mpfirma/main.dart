@@ -63,9 +63,13 @@ class MpFirmaState extends State<MpFirma> {
   * inicjalizacja aplikacji - jednorazowo, na starcie (ekran ładowania)
   * */
   Future<void> _appInit() async {
+    Stopwatch s = Stopwatch()..start();
     await Hive.initFlutter(); //jeśli uzywamy hive, to tutaj jednorazowa inicjalizacja
     await HiveLocalStorage.init(); // inicjalizacja hive storage
 
+    s.stop();
+    print('MpFirma: init time = ${s.elapsedMilliseconds} [ms]');
+    await Future.delayed( const Duration(seconds: 2) );
     if(!mounted) return;
 
     _newState();

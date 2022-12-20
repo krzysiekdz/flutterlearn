@@ -10,7 +10,7 @@ abstract class BaseResponse {
   bool isError() => code <= 0;
 }
 
-class JsonResponse extends BaseResponse{
+class JsonResponse extends BaseResponse {
   dynamic json;
   JsonResponse({this.json, super.code, super.msg});
 }
@@ -20,7 +20,9 @@ class ObjResponse<T> extends JsonResponse {
 
   ObjResponse({ super.code, super.msg,  this.obj });
 
-  ObjResponse.fromJsonResponse({ required JsonResponse response, this.obj }) {
+  ObjResponse.error([String m = '']) : super( code: -1, msg: m);
+
+  ObjResponse.fromJsonR({ required JsonResponse response, this.obj }) {
     json = response.json;
     code = response.code;
     msg = response.msg;

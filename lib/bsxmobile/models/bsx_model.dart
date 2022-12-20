@@ -8,16 +8,13 @@ class BsxModel {
 
   set data(Map<String, dynamic> d) { _data = d; }
 
-  dynamic get(String key) {
-    if( data.containsKey(key) ) { return data[key]; }
-    else { return null; }
-  }
-
   BsxModel set(String key, dynamic value) {
     data[key] = value;
     return this;
   }
 
-  operator [](String key) { return get(key); }
+  operator [](String key) => data[key] ?? '';
+
+  void operator []=(String key, dynamic v) { data[key] = v; }
 
 }

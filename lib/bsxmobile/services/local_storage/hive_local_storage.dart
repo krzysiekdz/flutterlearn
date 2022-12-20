@@ -1,9 +1,12 @@
 
 import 'package:flutterlearn/bsxmobile/models/response.dart';
 import 'package:flutterlearn/bsxmobile/services/local_storage/local_storage_service.dart';
+import 'package:flutterlearn/bsxmobile/services/modules/core.dart';
+import 'package:flutterlearn/bsxmobile/services/modules/user.dart';
 import 'package:flutterlearn/bsxmobile/services/repository/hive_repository.dart';
 import 'package:flutterlearn/bsxmobile/utils/utils.dart';
 import 'package:hive_flutter/adapters.dart';
+
 
 enum HiveStorageBoxes {
   _loggedData, _savedClouds
@@ -15,8 +18,8 @@ enum LocalStorageKey {
 
 class HiveLocalStorage extends LocalStorageService {
 
-  String keyLoggedCloud = LocalStorageKey._loggedCloud.name;
-  String keyLoggedUser = LocalStorageKey._loggedUser.name;
+  String kLoggedCloud = LocalStorageKey._loggedCloud.name;
+  String kLoggedUser = LocalStorageKey._loggedUser.name;
 
   HiveLocalStorage();
 
@@ -24,10 +27,11 @@ class HiveLocalStorage extends LocalStorageService {
 
   static Future<void> init() async {
     if( !_inited ) {
-      for( var b in HiveStorageBoxes.values ) {
-        print('Hive : openBox( ${b.name} )');
-        await Hive.openBox(b.name);
-      }
+      print('HiveLocalStorage init()');
+
+      await Hive.openBox<MapSS>(HiveStorageBoxes._loggedData.name);
+      await Hive.openBox<MapSS>(HiveStorageBoxes._savedClouds.name);
+
       _inited = true;
     }
   }
@@ -40,41 +44,39 @@ class HiveLocalStorage extends LocalStorageService {
 
 
   @override
-  Future<void> saveLoggedCloudKey(String key) async {
-    await getLoggedDataRepo().insert( id: keyLoggedCloud, data: {'key' : key });
+  Future<void> saveLoggedCloudKey(Cloud cloud) async {
+    await getLoggedDataRepo().insert( id: kLoggedCloud, data: {'key' : cloud.key });
   }
 
   @override
-  Future<String?> getLoggedCloudKey() async {
-    ObjResponse<MapSS> res =  await getLoggedDataRepo().get(id: keyLoggedCloud);
-    if(res.code <= 0 ) return null;
-    MapSS? map = res.obj;
-    if( map == null ) return null;
-    return map['key'];
+  Future<Cloud> getLoggedCloudKey() async {
+    ObjResponse<MapSS> res =  await getLoggedDataRepo().get(id: kLoggedCloud);
+    return Cloud(data: res.obj); //nie trzeba patrzec czy code > 0, bo res.obj bedzie wtedy null wiec i tak cloudInfo.isKey == false
   }
 
 
   @override
-  Future<void> saveLoggedUser(String login, String password) async {
-    await getLoggedDataRepo().insert(id: keyLoggedUser, data: {'login' : login, 'password' : password});
+  Future<void> saveLoggedUser(User user) async {
+    await getLoggedDataRepo().insert(id: kLoggedUser, data: {'login' : user.login, 'password' : user.password});
   }
 
   @override
-  Future<MapSS?> getLoggedUser() async {
-    ObjResponse<MapSS> res =  await getLoggedDataRepo().get(id: keyLoggedUser);
-    if(res.code <= 0 ) return null;
-    MapSS? map = res.obj;
-    if( map == null ) return null;
-    return map;
+  Future<User> getLoggedUser() async {
+    ObjResponse<MapSS> res =  await getLoggedDataRepo().get(id: kLoggedUser);
+    return User(data: res.obj);
   }
 
 
-  Future<void> saveCloudKey(String key, String title) async {
-    await getSavedCloudsRepo().insert(
-      data: {
+  Future<void> saveCloud(Cloud cloud) async {
+    await getSavedCloudsRepo().insert(data: {'key': cloud.key, 'title': cloud.title});
+  }
 
-      }
-    );
+  @override
+  Future<List<Cloud>> getSavedClouds() async {
+    ObjResponse<List<MapSS>> res = await getSavedCloudsRepo().list();
+    List<Cloud> clouds = [];
+    res.obj?.forEach((e) { clouds.add( Cloud( data: e ) ); });
+    return clouds;
   }
 
 }

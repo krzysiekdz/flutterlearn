@@ -1,4 +1,6 @@
-naniosłem poprawki do repository - poprawic hive repository o poprawki oraz hive local storage w oparciu o te poprawki
+Unhandled Exception: type '_InternalLinkedHashMap<dynamic, dynamic>' is not a subtype of type 'Map<String, String>' in type cast
+
+
 
 utworzenie biblioteki, zamiast robienia wszedzie importow, np bsxmobile_library oraz utils_library
 
