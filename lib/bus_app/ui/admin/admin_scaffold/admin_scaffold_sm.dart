@@ -1,14 +1,4 @@
-
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
-
-
-import 'package:flutterlearn/bus_app/models/routing.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
-import 'package:flutterlearn/bus_app/utils/fun.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
-
+part of bus_admin_main;
 
 class AdminScaffold_SM extends StatefulWidget {
 

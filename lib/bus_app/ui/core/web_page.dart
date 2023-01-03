@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/models/routing.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 
 abstract class WebPage extends StatelessWidget {
@@ -11,7 +9,7 @@ abstract class WebPage extends StatelessWidget {
 
   WebPage({super.key, required this.params}):
         screenSize = params!.screenSize,
-        routeUrl = params!.routeUrl;
+        routeUrl = params.routeUrl;
 
   const WebPage.routeOnly({super.key,  required this.routeUrl, this.screenSize = ScreenSize.undefined, this.params});
 

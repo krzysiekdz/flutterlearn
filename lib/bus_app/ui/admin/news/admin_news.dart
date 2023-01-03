@@ -1,25 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 
+class AdminNews extends StatefulWidget {
 
-class AdminNews extends WebPage {
-  AdminNews({required super.params});
+  final ScreenSize screenSize;
 
+  const AdminNews({required this.screenSize, super.key});
 
+  @override
+  State<StatefulWidget> createState() => _AdminNewsState();
 
+}
 
+class _AdminNewsState extends State<AdminNews> {
+
+  @override
+  void initState() {
+    super.initState();
+    print('AdminNews: initState()');
+  }
 
   @override
   Widget build(BuildContext context) {
-//    Widget page;
-//    if(screenSize == ScreenSize.sm) { page = Home_SM(); }
-//    else { page = Home_XL(); }
-//
-//    return page;
+    print('AdminNews: build()');
 
-    return Container(
-      child: Text(routeUrl.url),
-    );
+    Widget page;
+    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text('News small'),); }
+    else { page = Center(child: Text('News LARGE'),); }
+
+    return page;
+
   }
 }

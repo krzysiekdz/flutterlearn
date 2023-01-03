@@ -1,22 +1,11 @@
-
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/app_config.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
-
-import 'package:flutterlearn/bus_app/models/routing.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
-import 'package:flutterlearn/bus_app/utils/fun.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
-import 'package:flutterlearn/utils/widgets.dart';
-import 'package:url_launcher/url_launcher.dart';
+part of page_scaffold;
 
 
-class PageScaffold_SM extends StatelessWidget {
+class PageScaffoldSM extends StatelessWidget {
 
   final RouteUrl route;
 
-  const PageScaffold_SM({Key? key, required this.route}) : super(key: key);
+  const PageScaffoldSM({Key? key, required this.route}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +13,19 @@ class PageScaffold_SM extends StatelessWidget {
 
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: route.routeData.builder( WebPageParams(screenSize: ScreenSize.sm, routeUrl: route) ),
+      body: _buildBody(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: route.routeData.index,
         type: BottomNavigationBarType.fixed,
         onTap: (int i) { _onTapNav(i); },
         items: _buildNavItems(),
       ),
+    );
+  }
+
+  Widget _buildBody() {
+    return SafeArea(
+        child: route.routeData.builder( WebPageParams(screenSize: ScreenSize.sm, routeUrl: route) )
     );
   }
 

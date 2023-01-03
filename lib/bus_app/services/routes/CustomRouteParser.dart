@@ -1,6 +1,5 @@
 
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 import 'package:flutterlearn/bus_app/models/routing.dart';
 import 'package:flutterlearn/bus_app/utils/fun.dart';
 
@@ -36,7 +35,7 @@ class CustomRouteParser  extends RouteInformationParser<RouteUrl> {
     if( routeData.isUnknown ) {
       if( url == UrlNames.admin || url.startsWith( '${UrlNames.admin}/' ) ) {
         routeData = AdminRoutes.home;
-        url = UrlNames.admin; //replacing all starts with admin urls to 'admin'
+        url = UrlNames.admin; //all urls that starts with 'admin' are replacing to 'admin'
       }
       else {
         routeData = not_found;

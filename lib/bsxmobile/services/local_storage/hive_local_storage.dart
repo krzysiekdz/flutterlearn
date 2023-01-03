@@ -28,6 +28,8 @@ class HiveLocalStorage extends LocalStorageService {
   static Future<void> init() async {
     if( !_inited ) {
       print('HiveLocalStorage init()');
+//      await Hive.deleteBoxFromDisk( HiveStorageBoxes._loggedData.name);
+//      await Hive.deleteBoxFromDisk( HiveStorageBoxes._savedClouds.name);
 
       await Hive.openBox<MapSS>(HiveStorageBoxes._loggedData.name);
       await Hive.openBox<MapSS>(HiveStorageBoxes._savedClouds.name);
@@ -44,12 +46,12 @@ class HiveLocalStorage extends LocalStorageService {
 
 
   @override
-  Future<void> saveLoggedCloudKey(Cloud cloud) async {
+  Future<void> saveLoggedCloud(Cloud cloud) async {
     await getLoggedDataRepo().insert( id: kLoggedCloud, data: {'key' : cloud.key });
   }
 
   @override
-  Future<Cloud> getLoggedCloudKey() async {
+  Future<Cloud> getLoggedCloud() async {
     ObjResponse<MapSS> res =  await getLoggedDataRepo().get(id: kLoggedCloud);
     return Cloud(data: res.obj); //nie trzeba patrzec czy code > 0, bo res.obj bedzie wtedy null wiec i tak cloudInfo.isKey == false
   }
@@ -66,7 +68,7 @@ class HiveLocalStorage extends LocalStorageService {
     return User(data: res.obj);
   }
 
-
+  @override
   Future<void> saveCloud(Cloud cloud) async {
     await getSavedCloudsRepo().insert(data: {'key': cloud.key, 'title': cloud.title});
   }

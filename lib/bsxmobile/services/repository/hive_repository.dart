@@ -45,8 +45,10 @@ class HiveRepository<T> extends Repository<T> {
   Future<ObjResponse<List<T>>> list({int start = 0, int limit = 10, Map<String, dynamic> params = const {}}) async {
     if( !canList ) { return ObjResponse.error('Cannot LIST from this repo'); }
     else {
-      Map<dynamic, T> map = _box.toMap();
-      return ObjResponse(obj: map.toList());
+//      Map<dynamic, T> map = _box.toMap().map<dynamic, T>((key, value) =>
+//          MapEntry(key, value as T)
+//      );
+      return ObjResponse(obj: _box.values.toList());
     }
   }
 

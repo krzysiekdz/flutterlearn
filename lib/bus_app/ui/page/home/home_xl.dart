@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
+part of bus_page_home;
 
 
 class Home_XL extends WebPage {

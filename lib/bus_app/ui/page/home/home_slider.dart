@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/app_config.dart';
-import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/utils/widgets.dart';
+part of bus_page_home;
 
 class HomeSlider extends StatelessWidget {
 

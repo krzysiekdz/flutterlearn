@@ -1,31 +1,55 @@
+library bus_admin_main;
 
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/models/routing.dart';
-import 'package:flutterlearn/bus_app/ui/admin/admin_scaffold/admin_scaffold_sm.dart';
-import 'package:flutterlearn/bus_app/ui/admin/admin_scaffold/admin_scaffold_xl.dart';
-import 'package:flutterlearn/bus_app/ui/admin/login/admin_login.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
-import 'package:flutterlearn/bus_app/utils/fun.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
+part 'admin_scaffold_sm.dart';
+part 'admin_scaffold_xl.dart';
 
 
 class AdminMain extends StatefulWidget {
 
-  const AdminMain({Key? key}) : super(key: key);
+  final Config config = DevConfig();
+
+  AdminMain({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _AdminState();
+  State<StatefulWidget> createState() => AdminState();
 
+  static AdminState of(BuildContext context) => context.findAncestorStateOfType<AdminState>()!;
 }
 
-class _AdminState extends State<AdminMain> {
+class AdminState extends State<AdminMain> {
 
-  bool isLogged = true;
+  bool isLoading = true;
+  bool isError = false;
+
+  late ApiService apiService;
+  late Config config;
+  late Session session;
 
   @override
   void initState() {
     super.initState();
     print('AdminMain: initState()');
+    _newState();
+  }
+
+  void setLoading(bool loading) {
+    setState(() {
+      isLoading = loading;
+    });
+  }
+
+  void setError(bool e) {
+    setState(() {
+      isError = e;
+    });
+  }
+
+  Future<void> _newState() async {
+    config = widget.config;
+    apiService = ApiService();
+    session = Session();
   }
 
   @override
@@ -35,15 +59,10 @@ class _AdminState extends State<AdminMain> {
     ScreenSize size = resolveScreenSize(context);
 
     Widget page;
-    if(isLogged) {
-      //uwaga: po przejsciu pomiedzy SM - XL stany wewnętrzne sie wyczyszczą
-      if( size == ScreenSize.sm) { page = AdminScaffold_SM(); }
-      else { page = AdminScaffold_XL(); }
-    }
-    else {
-      page = AdminLogin();
-    }
 
+    page = AdminScaffold_SM();
+//    if( size == ScreenSize.sm) { page = AdminScaffold_SM(); }
+//    else { page = AdminScaffold_XL(); }
 
     return page;
   }

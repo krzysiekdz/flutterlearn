@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
+import 'package:flutterlearn/bus_app/ui/shared/misc.dart';
 
 class Header extends StatelessWidget {
 

@@ -1,4 +1,4 @@
-import 'package:flutterlearn/bus_app/config/routes.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 import '../data/sample/schedule_data.dart';
 
 class ScheduleService {

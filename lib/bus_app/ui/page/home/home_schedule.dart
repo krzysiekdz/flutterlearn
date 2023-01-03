@@ -1,13 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/app_config.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
-import 'package:flutterlearn/bus_app/services/schedule_service.dart';
-import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
-import 'package:flutterlearn/utils/widgets.dart';
+part of bus_page_home;
 
-import 'dart:math' as math;
+
 
 class HomeSchedule extends StatelessWidget {
 

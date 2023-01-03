@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutterlearn/bus_app/config/routes.dart';
-import 'package:flutterlearn/bus_app/models/routing.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
-import 'package:flutterlearn/bus_app/config/app_config.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 ScreenSize resolveScreenSize(BuildContext context) {
   double w = MediaQuery.of(context).size.width;

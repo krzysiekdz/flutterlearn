@@ -1,4 +1,4 @@
-
+//-------- old code
 class Response {
   dynamic data;
   int code;
@@ -10,3 +10,6 @@ class Response {
 
   bool isError() => code <= 0;
 }
+
+
+

@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
+import 'package:flutterlearn/bus_app/ui/shared/misc.dart';
 import '../../../services/schedule_service.dart';
 import 'package:flutterlearn/bus_app/styles/style_utils.dart';
 import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_select.dart';
 import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_table_3.dart';
-import '../../widgets/header.dart';
+import '../../shared/header.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 
 class ScheduleSM extends WebPage {

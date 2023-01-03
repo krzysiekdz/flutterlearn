@@ -1,18 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/header.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
-import 'package:flutterlearn/utils/widgets.dart';
+part of bus_page_home;
 
-class HomeContact extends StatelessWidget {
+
+class HomeContact extends StatelessWidget with PageDataWidget {
+
   @override
   Widget build(BuildContext context) {
+    getPageData(context);
+
     return Container(
-      decoration: const BoxDecoration(
-        color: CustomColors.greyLight,
+      decoration:  BoxDecoration(
+        color:  (firstNews == null) ?  CustomColors.greyLight : Colors.transparent,
       ),
       padding: const EdgeInsets.all(CustomStyles.padding),
       width: double.infinity,
@@ -26,6 +23,7 @@ class HomeContact extends StatelessWidget {
           Text('email: staszek.bus@interia.pl', style:  header4(),),
           gap(),
           link(text: 'Zobacz więcej', action: (){ AppRouter().setUrl(UrlNames.contact); }),
+          gap(),
         ],
       ),
     );

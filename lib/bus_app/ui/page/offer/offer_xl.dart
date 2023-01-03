@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
-import '../../widgets/header.dart';
 
 
 class OfferXL extends WebPage {

@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/services/routes/CustomRouteParser.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 import '../utils/Styles.dart';
-import 'package:flutterlearn/bus_app/config/app_config.dart';
+
 
 
 class BusApp extends StatelessWidget {

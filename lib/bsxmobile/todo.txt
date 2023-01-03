@@ -1,4 +1,8 @@
 Unhandled Exception: type '_InternalLinkedHashMap<dynamic, dynamic>' is not a subtype of type 'Map<String, String>' in type cast
+E/flutter (25330): #0      BoxImpl.toMap (package:hive/src/box/box_impl.dart:102:36)
+
+zrobic zamiast MapSS -> MapDD - byc moze mapa w hive moze byc zapisywana jako dynamic tylko
+poczytac o typach wbudowanych, jak np LinkedHashMap
 
 
 

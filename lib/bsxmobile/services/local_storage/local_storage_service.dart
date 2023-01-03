@@ -11,8 +11,8 @@ abstract class LocalStorageService {
   Repository<MapSS> getLoggedDataRepo(); //zapamietany klucz do chmury / uzytkownik
   Repository<MapSS> getSavedCloudsRepo(); //lista zapamietanych chmur;
 
-  Future<void> saveLoggedCloudKey(Cloud cloud);
-  Future<Cloud> getLoggedCloudKey();
+  Future<void> saveLoggedCloud(Cloud cloud);
+  Future<Cloud> getLoggedCloud();
 
   Future<void> saveLoggedUser(User user);
   Future<User> getLoggedUser();

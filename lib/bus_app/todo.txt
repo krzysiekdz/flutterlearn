@@ -1,3 +1,8 @@
+zaczac od: punkt api ktory przesyla wszystkie dane do aplikacji, np home news - od tego zaczac
+
+ilosc odwiedzin strony?
+ilosc urzadzen jaka odwiedzila strone
+
 ---------------------------
 ETAP 1
 

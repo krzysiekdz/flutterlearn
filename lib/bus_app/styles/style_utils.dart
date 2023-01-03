@@ -6,6 +6,8 @@ class CustomStyles {
   static const double padding = 18;
   static const double fsNormal = 18;
 
+  static const double borderRadius = 12;
+
 
   //kolor jasny
   static final AppColors colorsLight = AppColors(

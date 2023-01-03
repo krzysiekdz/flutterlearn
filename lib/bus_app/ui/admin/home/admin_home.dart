@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/models/home_news.dart';
-import 'package:flutterlearn/bus_app/services/home_news_service.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
+library bus_admin_home;
 
-import '../../../models/response.dart';
-import '../../../services/repo/repo.dart';
-
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 
 class AdminHome extends StatefulWidget {
@@ -19,88 +13,76 @@ class AdminHome extends StatefulWidget {
   State<StatefulWidget> createState() => _AdminHomeState();
 }
 
-//zrobic jako klasa ListController
+
 class _AdminHomeState extends State<AdminHome> {
 
-  late final HomeNewsService service;
-  late final Repo repo;
-  late List<dynamic> data;
-  late Response res;
-  bool isLoading = true;
+  List<Widget> items = [
+    const HomeMenuItem(index: 2, caption: 'Ogłoszenia', iconData: Icons.warning),
+    const HomeMenuItem(index: 3, caption: 'Slajdy', iconData: Icons.image),
+  ];
 
   @override
   void initState() {
     super.initState();
     print('AdminHome: initState()');
-
-    service = HomeNewsService();
-    repo = service.createRepo();
-    fetchData();
-    print('init state end');
-  }
-
-  void fetchData() async {
-    print('fetch data');
-    setState(() {
-      isLoading = true;
-    });
-    res = await repo.list();
-
-    if(!mounted) return;
-
-    data = res.data  ?? [];
-    print('fetch end');
-    setState(() {
-      isLoading = false;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    print('AdminHome: build()');
-
-    Widget page;
-
-    if(isLoading) {
-      //dodac rozroznienie, czy jest isLoading & data.lenth == 0 czy dociagamy kolejne dane
-      page = const Center(child: CircularProgressIndicator(),);
-    }
-    else if(res.isError()) {
-      print('AdminHome error ${res.msg}');
-      page = _showInfo(context, res.msg);
-    }
-    else {
-      if(data.length == 0) {
-        page = _showInfo(context, 'Brak elementów');
-      }
-      else {
-        page = _buildList(context);
-      }
-    }
-    return page;
-
-  }
-
-  Widget _buildList(BuildContext context) {
-    return ListView.builder(
-        itemCount: data.length,
-        itemExtent: 100,
-        itemBuilder: (context, i) {
-          print('ListTile $i');
-          HomeNews item = data[i];
-
-          return Card(
-              child: ListTile(
-                leading: CircleAvatar(child: Text('${item.id}'),),
-                title: Text(item.title),
-                subtitle: Text(item.content),
-              )
-          );
-        }
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(CustomStyles.padding),
+      child: SizedBox(
+        width: double.infinity,
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          runSpacing: 12,
+          spacing: 12,
+          children: items,
+        ),
+      ),
     );
   }
 
-  Widget _showInfo(BuildContext context, String msg) {
-    return Center(child: Text(msg),);
+}
+
+Color _getColor(int i) {
+  int count = 5;
+  if(i % count == 0) { return Colors.orange; }
+  else if(i % count == 1) { return Colors.green; }
+  else if(i % count == 2) { return Colors.blue; }
+  else if(i % count == 3) { return Colors.purpleAccent; }
+  else  { return Colors.yellow; }
+}
+
+class HomeMenuItem extends StatelessWidget {
+
+  final int index;
+  final String caption;
+  final IconData iconData;
+
+  const HomeMenuItem({super.key,  required this.index, required this.caption, required this.iconData });
+
+  @override
+  Widget build(BuildContext context) {
+    return  InkWell(
+      onTap: () { print('$index'); },
+      child: Container(
+        width: 120,
+        height: 120,
+        padding: const EdgeInsets.all(CustomStyles.padding),
+//        decoration: BoxDecoration(
+//          color: _getColor(index),
+//          borderRadius: BorderRadius.circular(CustomStyles.borderRadius),
+//        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(iconData),
+            gap(),
+            Text(caption, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,),
+          ],
+        ),
+      ),
+    );
   }
 }

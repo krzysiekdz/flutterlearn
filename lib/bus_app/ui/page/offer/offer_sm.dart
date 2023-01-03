@@ -3,7 +3,7 @@ import 'package:flutterlearn/bus_app/models/car.dart';
 import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/ui/page/offer/car_card.dart';
 import 'package:flutterlearn/utils/widgets.dart';
-import '../../widgets/header.dart';
+import '../../shared/header.dart';
 
 
 class OfferSM extends WebPage {

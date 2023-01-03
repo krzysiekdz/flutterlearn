@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/config/routes.dart';
-import 'package:flutterlearn/bus_app/models/car.dart';
-import 'package:flutterlearn/bus_app/services/car_service.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/misc.dart';
-import 'package:flutterlearn/bus_app/ui/widgets/slider.dart';
-import 'package:flutterlearn/utils/widgets.dart';
+part of bus_page_home;
 
 class HomeOffer extends StatelessWidget {
 

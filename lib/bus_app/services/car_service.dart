@@ -1,5 +1,5 @@
 
-import 'package:flutterlearn/bus_app/config/app_config.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 import 'package:flutterlearn/bus_app/data/sample/car_data.dart';
 import 'package:flutterlearn/bus_app/models/car.dart';
 

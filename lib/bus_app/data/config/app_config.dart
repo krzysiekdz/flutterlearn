@@ -1,5 +1,7 @@
 
 
+import 'package:flutterlearn/bus_app/models/config.dart';
+
 class AppConfig {
   static const String appName = 'Gołaś';
   static const String phone = '604 281 529';
@@ -20,4 +22,16 @@ class AppConfig {
   static const String a7 = '${path_base}a7.jpg';
 
   static const double WIDTH_SM = 600;
+}
+
+class DevConfig extends Config {
+  @override
+  bool get isDevMode => true;
+
+}
+
+class ProdConfig extends Config {
+  @override
+  bool get isDevMode => false;
+
 }

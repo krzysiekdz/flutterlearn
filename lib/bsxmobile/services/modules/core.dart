@@ -71,7 +71,6 @@ class Cloud extends BsxModel {
   bool isModule(String m) => modules.contains(m);
 
   @override
-  String toString() {
-    return "$data";
-  }
+  String toString() => "$data";
+
 }
