@@ -24,8 +24,8 @@ abstract class Repository<T> {
 
   Future<ObjResponse<List<T>>> list({ int start = 0, int limit = 10, Map<String, dynamic> params = const {} });
   Future<ObjResponse<T>> get({ dynamic id, Map<String, dynamic> params = const {} });
-  Future<ObjResponse> insert({ dynamic id, required T data });
-  Future<ObjResponse> update({ dynamic id, required T data } );
+  Future<ObjResponse> insert({ dynamic id, required Map<String, String> data });
+  Future<ObjResponse> update({ dynamic id, required Map<String, String> data } );
   Future<ObjResponse> delete({ dynamic id, Map<String, dynamic> params = const {} });
 }
 

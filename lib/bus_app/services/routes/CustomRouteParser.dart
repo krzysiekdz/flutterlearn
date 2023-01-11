@@ -1,7 +1,7 @@
 
 import 'package:flutterlearn/bus_app/bus_app.dart';
 import 'package:flutterlearn/bus_app/models/routing.dart';
-import 'package:flutterlearn/bus_app/utils/fun.dart';
+import 'package:flutterlearn/bus_app/utils/misc.dart';
 
 
 class CustomRouteParser  extends RouteInformationParser<RouteUrl> {

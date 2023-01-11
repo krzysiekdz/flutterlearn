@@ -3,6 +3,11 @@ library bus_admin_home;
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
 
+part 'admin_home_menu.dart';
+part 'admin_home_urgent_news.dart';
+part 'admin_home_slider.dart';
+part 'admin_home_urgent_news_form.dart';
+
 class AdminHome extends StatefulWidget {
 
   final ScreenSize screenSize;
@@ -13,76 +18,96 @@ class AdminHome extends StatefulWidget {
   State<StatefulWidget> createState() => _AdminHomeState();
 }
 
+enum _{
+  menu, slider, news, newsForm
+}
 
-class _AdminHomeState extends State<AdminHome> {
 
-  List<Widget> items = [
-    const HomeMenuItem(index: 2, caption: 'Ogłoszenia', iconData: Icons.warning),
-    const HomeMenuItem(index: 3, caption: 'Slajdy', iconData: Icons.image),
-  ];
+
+class _AdminHomeState extends State<AdminHome> with StorageBucketWidget {
+
+  var navKey = GlobalKey<NavigatorState>();
+  late List<Page> _pages;
 
   @override
   void initState() {
     super.initState();
     print('AdminHome: initState()');
+    initBucket(context);
+    initPages();
+  }
+
+  void initPages() {
+    _pages = [ BusPage(name: _.menu.name, child: homeMenu) ];
+
+    if( bucket.readState(context, identifier: newsKey) == true) { _pages.add( BusPage(name: _.news.name, child: homeNews) ); }
+    if( bucket.readState(context, identifier: sliderKey) == true) { _pages.add( BusPage(name: _.slider.name, child: homeSlider) ); }
+    if( bucket.readState(context, identifier: newsFormKey) == true) { _pages.add( BusPage(name: _.newsForm.name, child: homeNewsForm) ); }
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(CustomStyles.padding),
-      child: SizedBox(
-        width: double.infinity,
-        child: Wrap(
-          alignment: WrapAlignment.start,
-          runSpacing: 12,
-          spacing: 12,
-          children: items,
-        ),
-      ),
+    return PopNavigator(
+      onPop: _onPopPage,
+      onPush: _onPushPage,
+      key: navKey,
+      onGenerateRoute: _onGenerateRoute,
+      pages: _pages,
+      onPopPage: (route, result) {
+        _onPopPage(route.settings.name!);
+        return route.didPop(result);
+      },
     );
+  }
+
+  void navTo(String? route) {
+    if( route == null ) { navKey.currentState!.pop(); }
+    else { navKey.currentState!.pushNamed(route); }
+  }
+
+  PageStorageKey<String> get newsKey => const PageStorageKey<String>('AdminHomeUrgentNews');
+  PageStorageKey<String> get sliderKey => const PageStorageKey<String>('AdminHomeSlider');
+  PageStorageKey<String> get menuKey => const PageStorageKey<String>('AdminHomeMenu');
+  PageStorageKey<String> get newsFormKey => const PageStorageKey<String>('AdminHomeUrgentNewsForm');
+
+  Widget get homeNews =>  AdminHomeUrgentNews(navTo: navTo, key: newsKey);
+  Widget get homeSlider =>  AdminHomeSlider(key: sliderKey);
+  Widget get homeMenu => AdminHomeMenu(navTo: navTo, key: menuKey);
+  Widget get homeNewsForm =>  AdminHomeUrgentNewsForm(navTo: navTo, key: newsFormKey);
+
+  Route _onGenerateRoute(RouteSettings settings) {
+    Widget page;
+    if(settings.name == _.news.name) { page = homeNews;  }
+    else if(settings.name == _.slider.name) { page = homeSlider;  }
+    else if(settings.name == _.newsForm.name) { page = homeNewsForm;  }
+    else  { page = homeMenu; }
+
+    return slideRoute( page );
+  }
+
+  void _onPushPage(String routeName) {
+    print('push page $routeName');
+    writeRoute(routeName, true);
+  }
+
+  void _onPopPage(String routeName) {
+    print('pop page $routeName');
+    writeRoute(routeName, null);
+  }
+
+  void writeRoute(String routeName, dynamic value) {
+    if(routeName == _.news.name) { bucket.writeState(context, value, identifier: newsKey); }
+    else if(routeName == _.slider.name) { bucket.writeState(context, value, identifier: sliderKey); }
+    else if(routeName == _.newsForm.name) { bucket.writeState(context, value, identifier: newsFormKey); }
   }
 
 }
 
-Color _getColor(int i) {
-  int count = 5;
-  if(i % count == 0) { return Colors.orange; }
-  else if(i % count == 1) { return Colors.green; }
-  else if(i % count == 2) { return Colors.blue; }
-  else if(i % count == 3) { return Colors.purpleAccent; }
-  else  { return Colors.yellow; }
-}
 
-class HomeMenuItem extends StatelessWidget {
 
-  final int index;
-  final String caption;
-  final IconData iconData;
-
-  const HomeMenuItem({super.key,  required this.index, required this.caption, required this.iconData });
-
-  @override
-  Widget build(BuildContext context) {
-    return  InkWell(
-      onTap: () { print('$index'); },
-      child: Container(
-        width: 120,
-        height: 120,
-        padding: const EdgeInsets.all(CustomStyles.padding),
-//        decoration: BoxDecoration(
-//          color: _getColor(index),
-//          borderRadius: BorderRadius.circular(CustomStyles.borderRadius),
-//        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(iconData),
-            gap(),
-            Text(caption, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,),
-          ],
-        ),
-      ),
-    );
-  }
-}

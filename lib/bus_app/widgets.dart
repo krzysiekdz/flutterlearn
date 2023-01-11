@@ -5,11 +5,13 @@ export 'package:flutterlearn/utils/widgets.dart';
 //bus app / core
 export 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 export 'package:flutterlearn/bus_app/ui/core/page_data_widget.dart';
+export 'package:flutterlearn/bus_app/ui/core/storage_bucket_widget.dart';
 
 //bus app / shared
 export 'package:flutterlearn/bus_app/ui/shared/misc.dart';
 export 'package:flutterlearn/bus_app/ui/shared/slider.dart';
 export 'package:flutterlearn/bus_app/ui/shared/header.dart';
+export 'package:flutterlearn/bus_app/ui/shared/menu_button.dart';
 
 //bus app / page
 export 'package:flutterlearn/bus_app/ui/page/page_scaffold/page_scaffold.dart';

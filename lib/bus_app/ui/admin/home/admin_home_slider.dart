@@ -1,3 +1,37 @@
+part of bus_admin_home;
+
+class AdminHomeSlider extends StatefulWidget {
+  const AdminHomeSlider({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _AdminHomeSliderState();
+}
+
+class _AdminHomeSliderState extends State<AdminHomeSlider>   {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Slajdy'),
+      ),
+      body: const Center(
+        child: Text('Slajdy'),
+      )
+    );
+  }
+}
+
 //
 //class AdminHome extends StatefulWidget {
 //

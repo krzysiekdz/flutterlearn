@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 class CPadding extends StatelessWidget {
   final Widget child;

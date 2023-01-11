@@ -44,6 +44,7 @@ class _AdminSM_State extends State<AdminScaffold_SM> {
         )
     );
   }
+
   //zaczac od - zapisywanie stanu i odczytwanie poprzez read/write w konkretnych widgetach
   //sprawdzci czy zapamietuje sie scroll
   Widget getViewForTab() {

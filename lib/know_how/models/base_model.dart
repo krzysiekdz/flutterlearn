@@ -3,7 +3,7 @@
 class BaseModel {
   Map<String, dynamic> _data;
 
-  BaseModel( { Map<String, dynamic>? data } ) : _data = data ?? const {};
+  BaseModel( { Map<String, dynamic>? data } ) : _data = data ?? {};
 
   Map<String, dynamic> get data => _data;
 
@@ -20,5 +20,7 @@ class BaseModel {
 
   @override
   String toString() => '$data';
+
+  Map<String, String> toMap() { return {}; }
 
 }

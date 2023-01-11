@@ -49,7 +49,7 @@ class PageRoutes {
 class AdminRoutes {
 
   static final RouteData home =
-    RouteData(path: UrlNames.admin, builder: (p) => AdminHome(screenSize: p.screenSize, key: p.key), index: 0, captionShort: 'Pulpit', icon: Icons.home);
+    RouteData(path: UrlNames.admin, builder: (p) => AdminHome(screenSize: p.screenSize, key: p.key), index: 0, captionShort: 'Główna', icon: Icons.home);
   static final RouteData offer =
     RouteData(path: UrlNames.admin + UrlNames.offer, builder: (p) => AdminOffer(screenSize: p.screenSize, key: p.key), index: 2, captionShort: 'Oferta', icon: Icons.bus_alert);
   static final RouteData schedule =
