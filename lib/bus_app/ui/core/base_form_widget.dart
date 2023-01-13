@@ -1,4 +1,4 @@
-part of bus_admin_home;
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
 enum FormType {
   add, edit
@@ -99,12 +99,12 @@ class _AdminHomeUrgentNewsFormState extends State<AdminHomeUrgentNewsForm>  {
 
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text( isAddForm? 'Nowe ogłoszenie' : 'Edycja ogłoszenia'),
-        ),
-        body: _buildBody(),
-      );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text( isAddForm? 'Nowe ogłoszenie' : 'Edycja ogłoszenia'),
+      ),
+      body: _buildBody(),
+    );
   }
 
   void setLoading(bool loading) {
@@ -146,7 +146,7 @@ class _AdminHomeUrgentNewsFormState extends State<AdminHomeUrgentNewsForm>  {
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
-              label: Text('Tytuł')
+                label: Text('Tytuł')
             ),
           ),
 
@@ -171,7 +171,7 @@ class _AdminHomeUrgentNewsFormState extends State<AdminHomeUrgentNewsForm>  {
               onChanged: (value){ setState(() {
                 item.visible = value;
               });  }
-              ),
+          ),
 
           gap(h:24),
 

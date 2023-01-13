@@ -28,8 +28,8 @@ class _AdminContactState extends State<AdminContact> {
     print('AdminContact: build()');
 
     Widget page;
-    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text('Kontakt small'),); }
-    else { page = Center(child: Text('Kontakt LARGE'),); }
+    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text(''),); }
+    else { page = Center(child: Text(''),); }
 
     return page;
 

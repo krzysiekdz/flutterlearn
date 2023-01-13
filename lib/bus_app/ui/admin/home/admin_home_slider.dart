@@ -26,7 +26,7 @@ class _AdminHomeSliderState extends State<AdminHomeSlider>   {
         title: const Text('Slajdy'),
       ),
       body: const Center(
-        child: Text('Slajdy'),
+        child: Text(''),
       )
     );
   }

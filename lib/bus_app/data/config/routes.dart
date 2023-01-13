@@ -1,7 +1,6 @@
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
 import 'package:flutterlearn/bus_app/ui/admin/contact/admin_contact.dart';
-import 'package:flutterlearn/bus_app/ui/admin/home/admin_home.dart';
 import 'package:flutterlearn/bus_app/ui/admin/news/admin_news.dart';
 import 'package:flutterlearn/bus_app/ui/admin/offer/admin_offer.dart';
 import 'package:flutterlearn/bus_app/ui/admin/schedule/admin_schedule.dart';

@@ -22,11 +22,11 @@ abstract class Repository<T> {
     this.canDelete = true,
   });
 
-  Future<ObjResponse<List<T>>> list({ int start = 0, int limit = 10, Map<String, dynamic> params = const {} });
-  Future<ObjResponse<T>> get({ dynamic id, Map<String, dynamic> params = const {} });
+  Future<ObjResponse<List<T>>> list({ int start = 0, int limit = 10, Map<String, String>? params});
+  Future<ObjResponse<T>> get({ dynamic id, Map<String, String>? params});
   Future<ObjResponse> insert({ dynamic id, required Map<String, String> data });
   Future<ObjResponse> update({ dynamic id, required Map<String, String> data } );
-  Future<ObjResponse> delete({ dynamic id, Map<String, dynamic> params = const {} });
+  Future<ObjResponse> delete({ dynamic id, Map<String, String>? params});
 }
 
 

@@ -2,7 +2,7 @@ part of bus_admin_home;
 
 class AdminHomeUrgentNews extends StatefulWidget {
 
-  Function(String?) navTo;
+  NavToFn navTo;
   AdminHomeUrgentNews({super.key, required this.navTo});
 
   @override
@@ -48,6 +48,7 @@ class _AdminHomeUrgentNewsState extends State<AdminHomeUrgentNews>  {
     });
   }
 
+
   @override
   void dispose() {
     super.dispose();
@@ -69,7 +70,30 @@ class _AdminHomeUrgentNewsState extends State<AdminHomeUrgentNews>  {
   }
 
   void _showAddForm() {
-    widget.navTo( _.newsForm.name );
+    widget.navTo( _.newsForm.name, args: FormArgs( refreshParent: loadData ) );
+  }
+
+  void _showEditForm(int id) {
+    widget.navTo( _.newsForm.name, args: FormArgs( type: FormType.edit, refreshParent: loadData, data: id ) );
+  }
+
+
+  void canDeleteItem(int id) {
+    showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        contentPadding: const EdgeInsets.all(CustomStyles.padding),
+        title: Text('Czy usunąć ogłoszenie?'),
+        actions: [
+          SizedBox( width: 100, height: 50, child: ElevatedButton(onPressed: (){ _deleteItem(id); Navigator.of(context).pop(); }, child: Text('Tak'))),
+          SizedBox(width: 100, height: 50, child: OutlinedButton(onPressed: (){ Navigator.of(context).pop(); }, child: Text('Nie'))),
+        ],
+      );
+    });
+  }
+
+  void _deleteItem(int id) async {
+    await repo.delete(id: id);
+    loadData();
   }
 
   Widget _buildBody() {
@@ -94,8 +118,19 @@ class _AdminHomeUrgentNewsState extends State<AdminHomeUrgentNews>  {
     News item = data?[i] as News;
     return Card(
       child: ListTile(
+        onTap: () { _showEditForm(item.id); },
         contentPadding: const EdgeInsets.all(CustomStyles.padding),
-        title: Text(item.title, style: const TextStyle(fontWeight: FontWeight.bold),),
+        title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(item.title, style: const TextStyle(fontWeight: FontWeight.bold),),
+              OutlinedButton(onPressed: (){ canDeleteItem(item.id); }, child: Row(
+                children: const [
+                  Icon(Icons.close),
+                  Text('Usuń'),
+                ],
+              )),
+            ]),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -113,6 +148,7 @@ class _AdminHomeUrgentNewsState extends State<AdminHomeUrgentNews>  {
   }
 
 }
+
 
 
 //

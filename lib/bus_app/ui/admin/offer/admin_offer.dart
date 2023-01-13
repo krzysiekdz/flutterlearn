@@ -28,8 +28,8 @@ class _AdminOfferState extends State<AdminOffer> {
     print('AdminOffer: build()');
 
     Widget page;
-    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text('Oferta small'),); }
-    else { page = Center(child: Text('Oferta LARGE'),); }
+    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text(''),); }
+    else { page = Center(child: Text(''),); }
 
     return page;
 

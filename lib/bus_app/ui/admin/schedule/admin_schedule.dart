@@ -28,8 +28,8 @@ class _AdminScheduleState extends State<AdminSchedule> with AutomaticKeepAliveCl
     print('AdminSchedule: build()');
 
     Widget page;
-    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text('Rozkład small'),); }
-    else { page = Center(child: Text('Rozdkład LARGE'),); }
+    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text(''),); }
+    else { page = Center(child: Text(''),); }
 
     return page;
 

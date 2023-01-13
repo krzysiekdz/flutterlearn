@@ -101,6 +101,11 @@ class CustomTheme {
         color: c.text,
       ),
 
+//      switchTheme: SwitchThemeData(
+//        trackColor: MaterialStateProperty.all( c.primary ),
+//        thumbColor: MaterialStateProperty.all( c.primary ),
+//      ),
+
 
     );
   }
