@@ -15,6 +15,12 @@ abstract class AdminModuleService {
     session = adminState.session;
   }
 
+  AdminModuleService.fromState(AdminState adminState) {
+    apiService = adminState.apiService;
+    config = adminState.config;
+    session = adminState.session;
+  }
+
 
   Repository createRepo();
 }

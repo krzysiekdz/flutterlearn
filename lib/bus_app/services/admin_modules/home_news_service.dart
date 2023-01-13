@@ -4,6 +4,8 @@ import 'package:flutterlearn/bus_app/bus_app.dart';
 
 class HomeNewsService extends AdminModuleService {
 
+  HomeNewsService.fromState(super.adminState) : super.fromState();
+
   HomeNewsService.fromContext(super.context) : super.fromContext();
 
   @override

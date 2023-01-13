@@ -8,100 +8,81 @@ class FormArgs {
   FormType type;
   Function refreshParent;
   dynamic data;
+  AdminState adminState;
 
-  FormArgs({ this.type = FormType.add, required this.refreshParent, this.data });
+  FormArgs({ this.type = FormType.add, required this.refreshParent, this.data, required this.adminState });
 }
 
 
-class AdminHomeUrgentNewsForm extends StatefulWidget {
-  NavToFn navTo;
+abstract class BaseFormWidget extends StatefulWidget {
   FormArgs formArgs;
-  AdminHomeUrgentNewsForm({super.key, required this.navTo, required this.formArgs});
-
-  @override
-  State<StatefulWidget> createState() => _AdminHomeUrgentNewsFormState();
+  final String addTitle;
+  final String editTitle;
+  BaseFormWidget({super.key, required this.formArgs, this.addTitle = 'Nowy', this.editTitle = 'Edycja'});
 }
 
-class _AdminHomeUrgentNewsFormState extends State<AdminHomeUrgentNewsForm>  {
+abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel> extends State<T>  {
 
   bool isLoading = false;
   bool isError = false;
 
-  late HomeNewsService service;
-  late HomeNewsRepo repo;
+  late AdminModuleService service;
+  late Repository repo;
 
-  final TextEditingController title = TextEditingController();
-  final TextEditingController content = TextEditingController();
-  final TextEditingController order = TextEditingController();
-
-  late News item;
+  late E item;
   late Map<String, String> model;
 
   bool get isAddForm => widget.formArgs.type == FormType.add;
   bool get isEditForm => widget.formArgs.type == FormType.edit;
   int get id => widget.formArgs.data;
   Function get refreshParent => widget.formArgs.refreshParent;
+  AdminState get adminState => widget.formArgs.adminState;
 
   @override
   void initState() {
     super.initState();
-    service = HomeNewsService.fromContext(context);
+    service = createService();
     repo = service.createRepo();
     model = {};
-    item = News(data: model);
+    item = createItem(model);
 
     if(isAddForm) {
       initAddModel();
-      initFields();
+      initFormFields();
     }
-    else {
-      getItem();
-    }
+    else { getItem(); }
 
   }
 
-  void initAddModel() {
-    item.visible = true;
-    item.order = 0;
-  }
 
-  void initEditModel(News obj) {
-    item.id = id;
-    item.title = obj.title;
-    item.content = obj.content;
-    item.order = obj.order;
-    item.visible = obj.visible;
-  }
+
+  AdminModuleService createService();
+
+  E createItem(Map<String, String> m);
+
+  void initAddModel();
+
+  void initEditModel(E obj);
 
 
   Future<void> getItem() async {
     setLoading(true);
-    ObjResponse<News> r = await repo.get(id: id);
+    ObjResponse<E> r = await repo.get(id: id) as ObjResponse<E>;
     if(!mounted) return;
     setLoading(false);
     if(r.obj == null) return;
+    item['id'] = id;
     initEditModel(r.obj!);
-    initFields();
+    initFormFields();
   }
 
-  void initFields() {
-    title.text = item.title;
-    content.text = item.content;
-    order.text = '${item.order}';
-
-    title.addListener(() { item.title = title.text; });
-    content.addListener(() { item.content = content.text; });
-    order.addListener(() {
-      try {item.order = int.parse(order.text);}
-      catch (e) { item.order = 0; }
-    });
-  }
+  void initFormFields();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( isAddForm? 'Nowe ogłoszenie' : 'Edycja ogłoszenia'),
+        title: Text( isAddForm? widget.addTitle : widget.editTitle ),
       ),
       body: _buildBody(),
     );
@@ -125,85 +106,27 @@ class _AdminHomeUrgentNewsFormState extends State<AdminHomeUrgentNewsForm>  {
       page = const Center(child: CircularProgressIndicator(),);
     }
     else {
-      page = _buildForm();
+      page = buildForm();
     }
 
     return SafeArea(child: page);
   }
 
 
-  Widget _buildForm() {
-    return Padding(
-      padding: const EdgeInsets.all(CustomStyles.padding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-
-          gap(h:24),
-
-          TextField(
-            controller: title,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-                label: Text('Tytuł')
-            ),
-          ),
-
-          gap(h:24),
-
-          TextField(
-            controller: content,
-            minLines: 10,
-            maxLines: 100,
-            keyboardType: TextInputType.multiline,
-            textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-                label: Text('Treść')
-            ),
-          ),
-
-          gap(h:24),
-
-          const Text('Widoczność'),
-          Switch(
-              value: item.visible,
-              onChanged: (value){ setState(() {
-                item.visible = value;
-              });  }
-          ),
-
-          gap(h:24),
-
-          SizedBox(
-            width: 150,
-            child: TextField(
-              controller: order,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                  label: Text('Kolejność')
-              ),
-            ),
-          ),
-
-          gap(h: 36),
-          SizedBox( width: double.infinity, height: 50, child: ElevatedButton(onPressed: (){ _action(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' )))
+  Widget buildForm();
 
 
-        ],
-      ),
-    );
-  }
-
-
-  Future<void> _action() async {
+  Future<void> submit() async {
     setLoading(true);
     if(isAddForm) { await repo.insert(data: model); }
     else { await repo.update(data: model); }
     if(!mounted) return;
+
+    afterSubmit();
+  }
+
+  void afterSubmit() {
     refreshParent();
-    widget.navTo(null);
   }
 
 }

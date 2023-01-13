@@ -1,5 +1,8 @@
+library bus_admin_news;
+
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
+part 'admin_news_form.dart';
 
 class AdminNews extends BaseListWidget {
 
@@ -26,12 +29,12 @@ class _AdminNewsState extends BaseListWidgetState<AdminNews> {
 
   @override
   void showAddForm() {
-//    Navigator.of(context).push( slideRoute( ) );
+    Navigator.of(context).push( slideRoute(AdminNewsForm(formArgs: addFormArgs  ))  );
   }
 
   @override
   void showEditForm(int id) {
-    print('edit');
+    Navigator.of(context).push( slideRoute( AdminNewsForm(formArgs: editFormArgs(id) ) ) );
   }
 
   @override

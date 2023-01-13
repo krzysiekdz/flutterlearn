@@ -47,6 +47,11 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
     });
   }
 
+  FormArgs get addFormArgs => FormArgs( refreshParent: loadData , adminState: adminState);
+  FormArgs editFormArgs(int id) => FormArgs( refreshParent: loadData , data: id, type: FormType.edit, adminState: adminState );
+
+
+  AdminState get adminState => context.findAncestorStateOfType<AdminState>()!;
 
   @override
   void dispose() {

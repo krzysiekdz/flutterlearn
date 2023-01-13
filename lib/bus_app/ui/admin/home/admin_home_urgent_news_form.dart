@@ -1,17 +1,5 @@
 part of bus_admin_home;
 
-enum FormType {
-  add, edit
-}
-
-class FormArgs {
-  FormType type;
-  Function refreshParent;
-  dynamic data;
-
-  FormArgs({ this.type = FormType.add, required this.refreshParent, this.data });
-}
-
 
 class AdminHomeUrgentNewsForm extends StatefulWidget {
   NavToFn navTo;

@@ -70,12 +70,14 @@ class _AdminHomeUrgentNewsState extends State<AdminHomeUrgentNews>  {
   }
 
   void _showAddForm() {
-    widget.navTo( _.newsForm.name, args: FormArgs( refreshParent: loadData ) );
+    widget.navTo( _.newsForm.name, args: FormArgs( refreshParent: loadData, adminState: adminState ) );
   }
 
   void _showEditForm(int id) {
-    widget.navTo( _.newsForm.name, args: FormArgs( type: FormType.edit, refreshParent: loadData, data: id ) );
+    widget.navTo( _.newsForm.name, args: FormArgs( type: FormType.edit, refreshParent: loadData, data: id, adminState: adminState ) );
   }
+
+  AdminState get adminState => context.findAncestorStateOfType<AdminState>()!;
 
 
   void canDeleteItem(int id) {
