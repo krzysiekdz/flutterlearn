@@ -20,7 +20,7 @@ class _AdminNewsFormState extends BaseFormWidgetState<AdminNewsForm, News>  {
   News createItem(Map<String, String> m) => News(data: m);
 
   @override
-  AdminModuleService createService() => HomeNewsService.fromState(adminState);
+  AdminModuleService createService() => NewsService.fromState(adminState);
 
   void initAddModel() {
     item.visible = true;
@@ -48,67 +48,70 @@ class _AdminNewsFormState extends BaseFormWidgetState<AdminNewsForm, News>  {
     });
   }
 
+  @override
+  void afterSubmit() {
+    super.afterSubmit();
+    Navigator.of(context).pop();
+  }
+
   Widget buildForm() {
-    return Padding(
-      padding: const EdgeInsets.all(CustomStyles.padding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
 
-          gap(h:24),
+        gap(h:24),
 
-          TextField(
-            controller: title,
-            keyboardType: TextInputType.text,
+        TextField(
+          controller: title,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+              label: Text('Tytuł')
+          ),
+        ),
+
+        gap(h:24),
+
+        TextField(
+          controller: content,
+          minLines: 10,
+          maxLines: 100,
+          keyboardType: TextInputType.multiline,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+              label: Text('Treść')
+          ),
+        ),
+
+        gap(h:24),
+
+        const Text('Widoczność'),
+        Switch(
+            value: item.visible,
+            onChanged: (value){ setState(() {
+              item.visible = value;
+            });  }
+        ),
+
+        gap(h:24),
+
+        SizedBox(
+          width: 150,
+          child: TextField(
+            controller: order,
+            keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
-                label: Text('Tytuł')
+                label: Text('Kolejność')
             ),
           ),
+        ),
 
-          gap(h:24),
-
-          TextField(
-            controller: content,
-            minLines: 10,
-            maxLines: 100,
-            keyboardType: TextInputType.multiline,
-            textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-                label: Text('Treść')
-            ),
-          ),
-
-          gap(h:24),
-
-          const Text('Widoczność'),
-          Switch(
-              value: item.visible,
-              onChanged: (value){ setState(() {
-                item.visible = value;
-              });  }
-          ),
-
-          gap(h:24),
-
-          SizedBox(
-            width: 150,
-            child: TextField(
-              controller: order,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                  label: Text('Kolejność')
-              ),
-            ),
-          ),
-
-          gap(h: 36),
-          SizedBox( width: double.infinity, height: 50, child: ElevatedButton(onPressed: (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' )))
+        gap(h: 36),
+        SizedBox( width: double.infinity, height: 50, child: ElevatedButton(onPressed: (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' )))
 
 
-        ],
-      ),
+      ],
     );
   }
 

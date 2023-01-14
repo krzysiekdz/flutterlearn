@@ -1,4 +1,7 @@
-zaczac od: punkt api ktory przesyla wszystkie dane do aplikacji, np home news - od tego zaczac
+
+admin - kontakt - mozliwosc ustawienia
+admin - rozklady - mozliwosc ustawienia i dodawania
+oferta - na razie bez zdjec
 
 ilosc odwiedzin strony?
 ilosc urzadzen jaka odwiedzila strone

@@ -5,6 +5,7 @@ import 'package:flutterlearn/bus_app/bus_app.dart';
 class NewsService extends AdminModuleService {
 
   NewsService.fromContext(super.context) : super.fromContext();
+  NewsService.fromState(super.adminState) : super.fromState();
 
   @override
   NewsRepo createRepo() => NewsRepo(apiService: apiService);

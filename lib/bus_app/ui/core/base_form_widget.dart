@@ -54,8 +54,6 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
 
   }
 
-
-
   AdminModuleService createService();
 
   E createItem(Map<String, String> m);
@@ -71,7 +69,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
     if(!mounted) return;
     setLoading(false);
     if(r.obj == null) return;
-    item['id'] = id;
+    item['id'] = '$id';
     initEditModel(r.obj!);
     initFormFields();
   }
@@ -106,10 +104,16 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
       page = const Center(child: CircularProgressIndicator(),);
     }
     else {
-      page = buildForm();
+      page = SingleChildScrollView(
+          padding: const EdgeInsets.all(CustomStyles.padding),
+          child: buildForm(),
+      );
+
     }
 
-    return SafeArea(child: page);
+    return SafeArea(
+        child: page,
+    );
   }
 
 

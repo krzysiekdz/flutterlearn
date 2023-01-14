@@ -80,16 +80,16 @@ class _AdminHomeState extends State<AdminHome> with StorageBucketWidget {
   PageStorageKey<String> get menuKey => const PageStorageKey<String>('AdminHomeMenu');
   PageStorageKey<String> get newsFormKey => const PageStorageKey<String>('AdminHomeUrgentNewsForm');
 
-  Widget get homeNews =>  AdminHomeUrgentNews(navTo: navTo, key: newsKey);
+  Widget get homeNews =>  AdminHomeUrgentNews(key: newsKey);
   Widget get homeSlider =>  AdminHomeSlider(key: sliderKey);
   Widget get homeMenu => AdminHomeMenu(navTo: navTo, key: menuKey);
-  Widget homeNewsForm({dynamic arguments}) =>  AdminHomeUrgentNewsForm(formArgs: arguments, navTo: navTo, key: newsFormKey);
+//  Widget homeNewsForm({dynamic arguments}) =>  AdminHomeUrgentNewsForm(formArgs: arguments, navTo: navTo, key: newsFormKey);
 
   Route _onGenerateRoute(RouteSettings settings) {
     Widget page;
     if(settings.name == _.news.name) { page = homeNews;  }
     else if(settings.name == _.slider.name) { page = homeSlider;  }
-    else if(settings.name == _.newsForm.name) { page = homeNewsForm(arguments: settings.arguments);  }
+//    else if(settings.name == _.newsForm.name) { page = homeNewsForm(arguments: settings.arguments);  }
     else  { page = homeMenu; }
 
     return slideRoute( page );

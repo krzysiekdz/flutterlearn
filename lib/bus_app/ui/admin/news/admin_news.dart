@@ -19,12 +19,6 @@ class AdminNews extends BaseListWidget {
 class _AdminNewsState extends BaseListWidgetState<AdminNews> {
 
   @override
-  void initState() {
-    super.initState();
-    print('AdminNews: initState()');
-  }
-
-  @override
   AdminModuleService createService() => NewsService.fromContext(context);
 
   @override
