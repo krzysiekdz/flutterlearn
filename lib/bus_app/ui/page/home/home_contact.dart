@@ -5,7 +5,7 @@ class HomeContact extends StatelessWidget with PageDataWidget {
 
   @override
   Widget build(BuildContext context) {
-    getPageData(context);
+    init(context);
 
     return Container(
       decoration:  BoxDecoration(

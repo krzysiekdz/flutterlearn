@@ -1,7 +1,6 @@
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
 import 'package:flutterlearn/bus_app/ui/admin/contact/admin_contact.dart';
-import 'package:flutterlearn/bus_app/ui/admin/news/admin_news.dart';
 import 'package:flutterlearn/bus_app/ui/admin/offer/admin_offer.dart';
 import 'package:flutterlearn/bus_app/ui/admin/schedule/admin_schedule.dart';
 
@@ -34,7 +33,7 @@ class PageRoutes {
   static final RouteData offer =
     RouteData(path: UrlNames.offer, builder: (p) => Offer(params: p), index: 2, captionShort: 'Oferta', icon: Icons.bus_alert);
   static final RouteData schedule =
-    RouteData(path: UrlNames.schedule, builder: (p)=> Schedule(params: p), index: 1, captionShort: 'Rozkład', icon: Icons.schedule);
+    RouteData(path: UrlNames.schedule, builder: (p)=> SchedulePage(params: p), index: 1, captionShort: 'Rozkład', icon: Icons.schedule);
   static final RouteData news =
     RouteData(path: UrlNames.news, builder: (p) => NewsPage(params: p), index: 3, captionShort: 'Aktualności', icon: Icons.newspaper);
   static final RouteData contact =

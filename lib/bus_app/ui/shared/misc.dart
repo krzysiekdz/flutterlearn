@@ -58,3 +58,4 @@ Widget lineThin({double margin = 12, double width = 100}) {
     decoration: const BoxDecoration(color: CustomColors.greyLight2,),
   );
 }
+

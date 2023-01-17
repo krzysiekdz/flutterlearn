@@ -1,0 +1,71 @@
+{
+  "news": [
+    {
+      "id": "4",
+      "title": "Bilety miesięczne.",
+      "content": "W tym miesiącu (styczeń) sprzedaż biletów miesięcznych w dniach 29-30 styczeń."
+    },
+    {
+      "id": "5",
+      "title": "Nowy Rok",
+      "content": "Jeździmy normalnie"
+    },
+    {
+      "id": "3",
+      "title": "O stronie.",
+      "content": "Na stronie znajdziesz rozkład jazdy oraz bieżące informacje. Aplikacja na komórkę dostępna już wkrótce. "
+    }
+  ],
+  "home": {
+    "news": [
+      {
+        "id": "18",
+        "title": "Dla seniorów ",
+        "content": "bilety miesięczne 80  procent"
+      }
+    ]
+  },
+  "schedules": [
+    {
+      "id": "1",
+      "title": "Spychowo-Szczytno!",
+      "title_rev": "Szczyno-Spychowo",
+      "cities": "Spychowo;Kolonia;Świętajno;Świętajno(Skrzyż.);Chochół;Jeruty;Olszyny;Sczytno;",
+      "hours": "7:00;7:09;7:14;7:18;7:20;7:22;7:27;7:30;",
+      "c_dir": "0"
+    },
+    {
+      "id": "1",
+      "title": "Spychowo-Szczytno!",
+      "title_rev": "Szczyno-Spychowo",
+      "cities": "Spychowo;Kolonia;Świętajno;Świętajno(Skrzyż.);Chochół;Jeruty;Olszyny;Sczytno;",
+      "hours": "8:50;8:59;9:04;9:08;9:10;9:12;9:17;9:20;",
+      "c_dir": "0"
+    },
+    {
+      "id": "1",
+      "title": "Spychowo-Szczytno!",
+      "title_rev": "Szczyno-Spychowo",
+      "cities": "Spychowo;Kolonia;Świętajno;Świętajno(Skrzyż.);Chochół;Jeruty;Olszyny;Sczytno;",
+      "hours": "9:40;9:50;9:55;9:57;9:59;10:03;10:07;10:10;",
+      "c_dir": "1"
+    },
+    {
+      "id": "3",
+      "title": "Szczytno-Olsztyn",
+      "title_rev": "Olsztyn-Szczytno",
+      "cities": "Szczytno;Pasym;Olsztyn;",
+      "hours": "10:00;10:05;10:10;",
+      "c_dir": "0"
+    },
+    {
+      "id": "3",
+      "title": "Szczytno-Olsztyn",
+      "title_rev": "Olsztyn-Szczytno",
+      "cities": "Szczytno;Pasym;Olsztyn;",
+      "hours": "10:30;10:35;10:40;",
+      "c_dir": "1"
+    }
+  ],
+  "code": 1
+}

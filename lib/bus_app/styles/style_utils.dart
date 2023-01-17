@@ -106,4 +106,8 @@ BoxDecoration boxDecoration() {
   );
 }
 
+BoxDecoration border({Color color = Colors.black}) {
+  return BoxDecoration(border: Border.all(color: color, width: 1));
+}
+
 

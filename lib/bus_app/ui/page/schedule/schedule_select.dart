@@ -1,19 +1,13 @@
+part of bus_page_schedule;
 
-import 'package:flutterlearn/bus_app/bus_app.dart';
-import 'package:flutterlearn/bus_app/services/routes/AppRouter.dart';
-import 'package:flutterlearn/bus_app/styles/custom_colors.dart';
-import 'package:flutterlearn/bus_app/ui/shared/misc.dart';
-import '../../../services/schedule_service.dart';
-import 'package:flutterlearn/bus_app/styles/style_utils.dart';
-import 'package:flutterlearn/utils/widgets.dart';
 
-import '../../core/web_page.dart';
-
-class ScheduleSelect extends WebPage {
-  const ScheduleSelect.route({required super.routeUrl}) : super.routeOnly();
+class ScheduleSelect extends WebPage with PageDataWidget {
+  ScheduleSelect.route({required super.routeUrl}) : super.routeOnly();
 
   @override
   Widget build(BuildContext context) {
+    init(context);
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -21,12 +15,16 @@ class ScheduleSelect extends WebPage {
         children:   [
           gap(h:18),
           Text('Wybierz kurs', style: header3()),
-          gap(h:4),
-          renderTextSelected(),
           gap(),
-          renderLinkSpySzcz(),
-          gap(),
-          renderLinkSzczSpy()
+
+          ...renderLinks(),
+
+//          gap(h:4),
+//          renderTextSelected(),
+//          gap(),
+//          renderLinkSpySzcz(),
+//          gap(),
+//          renderLinkSzczSpy()
         ],
       ),
     );
@@ -44,30 +42,22 @@ class ScheduleSelect extends WebPage {
     }
   }
 
-  Widget renderLinkSpySzcz() {
-    if(routeUrl.url == UrlNames.schedule || routeUrl.url == UrlNames.scheduleSpySzcz) {
-      return selectedLink(text: ScheduleService.nameSpySzcz, action: () {
-        AppRouter().setUrl(UrlNames.scheduleSpySzcz);
-      });
+
+  List<Widget> renderLinks() {
+    List<Widget> items = [];
+    for(int i = 0; i < schedules.length; i++) {
+      Schedule e = schedules[i];
+      items.add( renderLink(e.title, e.url) );
+      items.add( gap() );
+      items.add( renderLink(e.title_rev, e.url_rev) );
+      items.add( gap() );
     }
-    else {
-      return buttonLink(text: ScheduleService.nameSpySzcz, action: () {
-        AppRouter().setUrl(UrlNames.scheduleSpySzcz);
-      });
-    }
+    return items;
   }
 
-  Widget renderLinkSzczSpy() {
-    if (routeUrl.url == UrlNames.scheduleSzczSpy) {
-      return selectedLink(text: ScheduleService.nameSzczSpy, action: () {
-        AppRouter().setUrl(UrlNames.scheduleSzczSpy);
-      });
-    }
-    else {
-      return buttonLink(text: ScheduleService.nameSzczSpy, action: () {
-        AppRouter().setUrl(UrlNames.scheduleSzczSpy);
-      });
-    }
-
+  Widget renderLink(String text, String url) {
+    String fullUrl = '${UrlNames.schedule}/$url';
+    if (routeUrl.url == fullUrl) { return SelectedLink(text: text,   url: fullUrl ); }
+    else { return ButtonLink(text: text, url: fullUrl ); }
   }
 }

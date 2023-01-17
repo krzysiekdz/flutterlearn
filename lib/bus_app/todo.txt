@@ -58,3 +58,7 @@ usprawnienie ładowania - na poczatku aplikacji zaladowac wszystkie dane do stro
     jak aktualizowac? co kazde przejscie na stronie, ładuje to co jest, ale dodatkowo wyslam zapytanie o zmiany - jesli zmiany sa
     pojawi sie podswietlenie przy danej pozycji menu - ze sa nowe dane
     dodatkowo, aplikacja co 2 min robi ping - czy sa zmiany
+
+
+
+

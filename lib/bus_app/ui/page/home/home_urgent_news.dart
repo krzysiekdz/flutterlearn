@@ -6,7 +6,7 @@ class HomeUrgentNews extends StatelessWidget with PageDataWidget {
 
   @override
   Widget build(BuildContext context) {
-    getPageData(context);
+    init(context);
 
     return Container(
       width: double.infinity,

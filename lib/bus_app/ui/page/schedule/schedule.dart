@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
-import 'package:flutterlearn/bus_app/ui/page/schedule/schedule_xl.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
+library bus_page_schedule;
 
-import 'schedule_sm.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
-class Schedule extends WebPage {
-  Schedule({required super.params});
+part 'schedule_sm.dart';
+part 'schedule_select.dart';
+part 'schedule_table_3.dart';
+
+
+class SchedulePage extends WebPage {
+  SchedulePage({required super.params});
 
   @override
   Widget build(BuildContext context) {

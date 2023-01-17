@@ -50,4 +50,22 @@ class PageData extends BaseModel {
       return news.map((e) => News(data: e)).toList();
     }
   }
+
+  List<Schedule> get schedules {
+    if( data['schedules'] == null || data['schedules']['schedules'] == null ) { return []; }
+    else {
+      if( data['schedules']['schedules'] is! List ) {  return []; }
+      List items = data['schedules']['schedules'] as List;
+      return items.map((e) => Schedule(data: e)).toList();
+    }
+  }
+
+  List<Schedule> get hours {
+    if( data['schedules'] == null || data['schedules']['hours'] == null ) { return []; }
+    else {
+      if( data['schedules']['hours'] is! List ) {  return []; }
+      List items = data['schedules']['hours'] as List;
+      return items.map((e) => Schedule(data: e)).toList();
+    }
+  }
 }

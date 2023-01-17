@@ -7,7 +7,7 @@ class Home_SM extends WebPage with PageDataWidget {
 
   @override
   Widget build(BuildContext context) {
-    getPageData(context);
+    init(context);
 
     return SingleChildScrollView(
       child: Column(
