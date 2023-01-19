@@ -102,7 +102,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
             title: Text( isAddForm? widget.addTitle : widget.editTitle ),
             bottom: buildTabBar(),
           ),
-          body: tabCount < 2 ? _wrapForm( buildForm() ) : _buildTabBarView(),
+          body: tabCount < 2 ? wrapForm( buildForm() ) : _buildTabBarView(),
           bottomNavigationBar: buildBottomNav(),
         ),
       ),
@@ -136,7 +136,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
     });
   }
 
-  Widget _wrapForm(Widget form) {
+  Widget wrapForm(Widget form, { bool wrapToScrollView = true }) {
     Widget page;
     if (isError) {
       page =  Center(child: Text(errMsg , style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),));
@@ -144,13 +144,13 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
     else if(isLoading) {
       page = const Center(child: CircularProgressIndicator(),);
     }
-    else {
+    else if(wrapToScrollView) {
       page = SingleChildScrollView(
           padding: const EdgeInsets.all(CustomStyles.padding),
           child: form,
       );
-
     }
+    else { page = form; }
 
     return SafeArea(
         child: page,
@@ -158,12 +158,12 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
   }
 
   Widget _buildTabBarView() {
-    return TabBarView(children: buildForms().map((e) => _wrapForm(e)).toList());
+    return TabBarView(children: buildForms());
   }
 
   List<Widget> buildForms() { return []; }
 
-  Widget buildForm();
+  Widget buildForm() { return Container(); }
 
   Widget buildBottomNav() {
     return Padding(
@@ -181,6 +181,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
 
     setLoading(true);
     ObjResponse response;
+    beforeSubmit();
     if(isAddForm) { response = await repo.insert(data: model); }
     else { response = await repo.update(data: model); }
     if(!mounted) return;
@@ -189,6 +190,8 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
 
     afterSubmit(response);
   }
+
+  void beforeSubmit() {}
 
   void afterSubmit(ObjResponse response) {
     if(response.code < 0) {

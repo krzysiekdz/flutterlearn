@@ -3,6 +3,7 @@ library bus_admin_schedule;
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
 part 'admin_schedule_form.dart';
+part 'admin_schedule_form_cities.dart';
 
 class AdminSchedule extends BaseListWidget {
 

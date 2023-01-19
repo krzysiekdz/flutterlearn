@@ -15,27 +15,16 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
   final TextEditingController title_rev = TextEditingController();
   final TextEditingController url = TextEditingController();
   final TextEditingController url_rev = TextEditingController();
-  final TextEditingController cities = TextEditingController();
   final TextEditingController order = TextEditingController();
 
-  @override
-  int get tabCount => 3;
-
-  @override
-  List<Tab> createTabs() {
-    return const [
-      Tab(child: Text('Podstawowe'),),
-      Tab(child: Text('Przystanki'),),
-      Tab(child: Text('Godziny'),),
-    ];
-  }
+  final citiesState = GlobalKey<_AdminScheduleFormCitiesState>();
+  List<String>? get cities => citiesState.currentState?.cities;
 
   void initFormFields() {
     title.addListener(() { item.title = title.text; });
     title_rev.addListener(() { item.title_rev = title_rev.text; });
     url.addListener(() { item.url = url.text; });
     url_rev.addListener(() { item.url_rev = url_rev.text; });
-    cities.addListener(() { item.cities = cities.text; });
     order.addListener(() {
       try {item.order = int.parse(order.text);}
       catch (e) { item.order = 0; }
@@ -48,7 +37,6 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
     title_rev.dispose();
     url.dispose();
     url_rev.dispose();
-    cities.dispose();
     order.dispose();
   }
 
@@ -79,21 +67,39 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
     title_rev.text = item.title_rev ;
     url.text = item.url ;
     url_rev.text = item.url_rev ;
-    cities.text = item.cities ;
     order.text = '${item.order}';
+  }
+
+  @override
+  void beforeSubmit() {
+    if(cities != null) {
+      item.cities = '${cities!.join(';')};';
+    }
+  }
+
+  @override
+  int get tabCount => 3;
+
+  @override
+  List<Tab> createTabs() {
+    return const [
+      Tab(child: Text('Podstawowe'),),
+      Tab(child: Text('Przystanki'),),
+      Tab(child: Text('Godziny'),),
+    ];
   }
 
   @override
   List<Widget> buildForms() {
     return [
-      buildForm(),
-      buildForm2(),
-      Center(child: Text('tab 3'),),
+      wrapForm(buildForm1()),
+      wrapForm(buildForm2(), wrapToScrollView: false),
+      wrapForm(buildForm3(), wrapToScrollView: false),
     ];
   }
 
-  @override
-  Widget buildForm() {
+
+  Widget buildForm1() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -169,31 +175,13 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
 
 
   Widget buildForm2() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-
-        gap(h:24),
-
-
-        TextField(
-          controller: cities,
-          minLines: 3,
-          maxLines: 10,
-          keyboardType: TextInputType.multiline,
-          textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(
-              label: Text('Przystanki')
-          ),
-        ),
-        gap(h:24),
-
-
-      ],
-    );
+    return AdminScheduleFormCities(cities: item.cities.split(';')..removeLast(), key: citiesState);
   }
 
 
+  Widget buildForm3() {
+    return Container();
+  }
 
 
 }

@@ -6,8 +6,8 @@ export 'package:flutterlearn/utils/widgets.dart';
 export 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 export 'package:flutterlearn/bus_app/ui/core/page_data_widget.dart';
 export 'package:flutterlearn/bus_app/ui/core/storage_bucket_widget.dart';
-export 'package:flutterlearn/bus_app/ui/core/base_list_widget.dart';
-export 'package:flutterlearn/bus_app/ui/core/base_form_widget.dart';
+export 'package:flutterlearn/bus_app/ui/core/base_list_api_widget.dart';
+export 'package:flutterlearn/bus_app/ui/core/base_form_api_widget.dart';
 
 //bus app / shared
 export 'package:flutterlearn/bus_app/ui/shared/misc.dart';
