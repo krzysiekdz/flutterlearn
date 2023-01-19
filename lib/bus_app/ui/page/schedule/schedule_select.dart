@@ -30,17 +30,17 @@ class ScheduleSelect extends WebPage with PageDataWidget {
     );
   }
 
-  Widget renderTextSelected() {
-    if(routeUrl.url == UrlNames.schedule || routeUrl.url == UrlNames.scheduleSpySzcz) {
-      return const Text('Wybrano: ${ScheduleService.nameSpySzcz}', style: TextStyle(color: CustomColors.primary));
-    }
-    else if (routeUrl.url == UrlNames.scheduleSzczSpy) {
-      return const Text('Wybrano: ${ScheduleService.nameSzczSpy}', style: TextStyle(color: CustomColors.primary));
-    }
-    else {
-      return const SizedBox();
-    }
-  }
+//  Widget renderTextSelected() {
+//    if(routeUrl.url == UrlNames.schedule || routeUrl.url == UrlNames.scheduleSpySzcz) {
+//      return const Text('Wybrano: ${ScheduleService.nameSpySzcz}', style: TextStyle(color: CustomColors.primary));
+//    }
+//    else if (routeUrl.url == UrlNames.scheduleSzczSpy) {
+//      return const Text('Wybrano: ${ScheduleService.nameSzczSpy}', style: TextStyle(color: CustomColors.primary));
+//    }
+//    else {
+//      return const SizedBox();
+//    }
+//  }
 
 
   List<Widget> renderLinks() {

@@ -2,13 +2,11 @@ import 'package:flutterlearn/bus_app/bus_app.dart';
 
 import 'package:flutterlearn/bus_app/ui/admin/contact/admin_contact.dart';
 import 'package:flutterlearn/bus_app/ui/admin/offer/admin_offer.dart';
-import 'package:flutterlearn/bus_app/ui/admin/schedule/admin_schedule.dart';
-
 import 'package:flutterlearn/bus_app/ui/notfound/not_found.dart';
 
 import 'package:flutterlearn/bus_app/ui/page/contact/Contact.dart';
 import 'package:flutterlearn/bus_app/ui/page/offer/offer.dart';
-import 'package:flutterlearn/bus_app/ui/page/schedule/schedule.dart';
+
 
 class UrlNames {
   static const String home = '/';

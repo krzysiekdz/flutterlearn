@@ -48,11 +48,15 @@ class ApiService {
       return JsonResponse(code: -r.statusCode, msg: 'Wystąpił błąd ( ${r.statusCode} )');
     }
 
-    JsonResponse res = JsonResponse(code: data['code'] ?? -1);
-    if(res.isSuccess()) {
-      res.json = data;
-    } else {
-      res.msg = data['msg'] ?? 'Wystąpił błąd (! ${data['code'] ?? -1})' ;
+    dynamic code = data['code'] ?? -1;
+    dynamic msg = data['msg'] ?? '';
+
+    if(code is String) code = int.parse(code);
+    JsonResponse res = JsonResponse(code: code);
+
+    res.json = data;
+    if(res.isError()) {
+      res.msg = msg == '' ? 'Wystąpił błąd ( $code )' : msg ;
     }
 
 //    return  responseHandler(res);

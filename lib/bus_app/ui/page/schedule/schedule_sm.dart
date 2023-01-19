@@ -14,13 +14,13 @@ class ScheduleSM extends WebPage with PageDataWidget {
          const Header(title: 'Rozkłady jazdy'),
          ScheduleSelect.route(routeUrl: routeUrl),
 //         if( ScheduleService.notFound(routeUrl.url) ) CPadding(child: Text('Nie znaleziono kursu', style: header2(),)),
-         if( isMatchedSchedule(routeUrl.url) || routeUrl.url == UrlNames.schedule) ScheduleTable3(data: scheduleData(routeUrl.url), title: title(),), //sprawdzic jeszcze resolveWith
+         if( isMatchedSchedule(routeUrl.url) || routeUrl.url == UrlNames.schedule) ScheduleTable3(data: scheduleData(routeUrl.url), title: 'TODO',), //sprawdzic jeszcze resolveWith
       ],
     );
   }
 
-  String title() {
-    return ScheduleService.getTitle(routeUrl.url);
-  }
+//  String title() {
+//    return ScheduleService.getTitle(routeUrl.url);
+//  }
 
 }

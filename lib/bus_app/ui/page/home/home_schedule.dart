@@ -28,9 +28,9 @@ class HomeSchedule extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Link(text:'Kurs ${ScheduleService.nameSpySzcz}', url: UrlNames.scheduleSpySzcz),
-                      gap(),
-                      Link(text:'Kurs ${ScheduleService.nameSzczSpy}', url: UrlNames.scheduleSzczSpy),
+//                      Link(text:'Kurs ${ScheduleService.nameSpySzcz}', url: UrlNames.scheduleSpySzcz),
+//                      gap(),
+//                      Link(text:'Kurs ${ScheduleService.nameSzczSpy}', url: UrlNames.scheduleSzczSpy),
                     ],
                   ),
                 ),

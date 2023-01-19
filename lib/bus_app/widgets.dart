@@ -19,11 +19,13 @@ export 'package:flutterlearn/bus_app/ui/shared/menu_button.dart';
 export 'package:flutterlearn/bus_app/ui/page/page_scaffold/page_scaffold.dart';
 export 'package:flutterlearn/bus_app/ui/page/home/home.dart';
 export 'package:flutterlearn/bus_app/ui/page/news/news.dart';
+export 'package:flutterlearn/bus_app/ui/page/schedule/schedule.dart';
 
 //bus app / admin
 export 'package:flutterlearn/bus_app/ui/admin/admin_scaffold/admin_main.dart';
 export 'package:flutterlearn/bus_app/ui/admin/login/admin_login.dart';
 export 'package:flutterlearn/bus_app/ui/admin/home/admin_home.dart';
 export 'package:flutterlearn/bus_app/ui/admin/news/admin_news.dart';
+export 'package:flutterlearn/bus_app/ui/admin/schedule/admin_schedule.dart';
 
 

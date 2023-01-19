@@ -15,13 +15,11 @@ class _AdminHomeUrgentNewsState extends BaseListWidgetState<AdminHomeUrgentNews>
   AdminModuleService createService() => HomeNewsService.fromContext(context);
 
   void showAddForm() {
-//    widget.navTo( _.newsForm.name, args: addFormArgs );
     Navigator.of(context, rootNavigator: true).push(
         slideRoute( AdminHomeUrgentNewsForm( formArgs: addFormArgs) ) );
   }
 
   void showEditForm(int id) {
-//    widget.navTo( _.newsForm.name, args: editFormArgs(id) );
     Navigator.of(context, rootNavigator: true).push(
         slideRoute( AdminHomeUrgentNewsForm( formArgs: editFormArgs(id)) ) );
   }

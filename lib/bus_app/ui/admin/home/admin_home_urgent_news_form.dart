@@ -18,6 +18,24 @@ class _AdminHomeUrgentNewsFormState extends BaseFormWidgetState<AdminHomeUrgentN
 
 
   @override
+  void initFormFields() {
+    title.addListener(() { item.title = title.text; });
+    content.addListener(() { item.content = content.text; });
+    order.addListener(() {
+      try {item.order = int.parse(order.text);}
+      catch (e) { item.order = 0; }
+    });
+  }
+
+  @override
+  void disposeFormFields() {
+    title.dispose();
+    content.dispose();
+    order.dispose();
+  }
+
+
+  @override
   News createItem(Map<String, String> m) => News(data: m);
 
   @override
@@ -39,26 +57,17 @@ class _AdminHomeUrgentNewsFormState extends BaseFormWidgetState<AdminHomeUrgentN
   }
 
   @override
-  void initFormFields() {
-    title.text = item.title;
-    content.text = item.content;
+  void copyModelToFields() {
+    title.text = item.title ;
+    content.text = item.content ;
     order.text = '${item.order}';
-
-    title.addListener(() { item.title = title.text; });
-    content.addListener(() { item.content = content.text; });
-    order.addListener(() {
-      try {item.order = int.parse(order.text);}
-      catch (e) { item.order = 0; }
-    });
   }
+
 
   @override
-  void afterSubmit() {
-    super.afterSubmit();
+  void exitForm() {
     Navigator.of(context, rootNavigator: true).pop();
-//    widget.navTo(null);
   }
-
 
   Widget buildForm() {
     return Column(
@@ -112,10 +121,6 @@ class _AdminHomeUrgentNewsFormState extends BaseFormWidgetState<AdminHomeUrgentN
             ),
           ),
         ),
-
-        gap(h: 36),
-        SizedBox( width: double.infinity, height: 50, child: ElevatedButton(onPressed: (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' )))
-
 
       ],
     );

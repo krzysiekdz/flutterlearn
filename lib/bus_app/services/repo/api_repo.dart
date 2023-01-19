@@ -26,7 +26,7 @@ abstract class ApiRepo<T extends BaseModel> extends Repository<T> {
       if(!params.containsKey('id') && id != null ) { params['id'] = '$id'; }
       JsonResponse r = await apiService.post(endpoint: '$endpoint/get', params: params);
       T? item;
-      if( r.json['row'] is Map) {
+      if(  r.isSuccess() &&  r.json['row'] is Map) {
          item = mapObj( r.json['row'] );
       }
       return ObjResponse.fromJsonR(response: r, obj: item);
@@ -52,7 +52,7 @@ abstract class ApiRepo<T extends BaseModel> extends Repository<T> {
 
       JsonResponse r = await apiService.post(endpoint: '$endpoint/list', params: params);
       List<T> data = [];
-      if( r.json['rows'] is List ) {
+      if( r.isSuccess() && r.json['rows'] is List ) {
         List rows = r.json['rows'];
         data = rows.map((e) => mapObj(e)).toList();
       }

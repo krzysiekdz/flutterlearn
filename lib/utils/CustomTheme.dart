@@ -101,6 +101,12 @@ class CustomTheme {
         color: c.text,
       ),
 
+      tabBarTheme: const TabBarTheme(
+        labelColor: Colors.black,
+        labelStyle: TextStyle(fontSize: 20)
+      ),
+
+
 //      switchTheme: SwitchThemeData(
 //        trackColor: MaterialStateProperty.all( c.primary ),
 //        thumbColor: MaterialStateProperty.all( c.primary ),

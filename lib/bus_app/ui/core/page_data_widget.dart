@@ -39,10 +39,9 @@ mixin PageDataWidget {
     if(url == '${UrlNames.schedule}/${s.url_rev}') { dir = 1; }
 
     List<Schedule> hlist = [];
-    for(int i = 0; i < hours.length; i++) {
-      Schedule h = hours[i];
-      if( dir == h.dir && h.sid == s.id ) { hlist.add( h ); }
-    }
+    hours.forEach((h) {
+      if( dir == h.dir && h.sid == s!.id ) { hlist.add( h ); }
+    });
 
     return mapHoursList(hlist);
   }
@@ -50,19 +49,13 @@ mixin PageDataWidget {
   List<List<String>> mapHoursList(List<Schedule> hlist) {
     if( hlist.isEmpty ) return [];
     List<List<String>> res = [];
-    List<String> cities = hlist[0].cities.split(';');
-    cities.removeLast();
-    int dir = hlist[0].dir;
-    if(dir == 1) { cities = cities.reversed.toList(); }
+    List<String> cities = hlist[0].cities.split(';')..removeLast();
+    if(hlist[0].dir == 1) { cities = cities.reversed.toList(); }
     cities.forEach((e) {  res.add( [ e ] ); });
-    for(int i = 0; i < hlist.length; i++) {
-      Schedule hs = hlist[i];
-      List<String> h = hs.hours.split(';');
-      h.removeLast();
-      for(int j = 0; j < h.length; j++) {
-        res[j].add( h[j] );
-      }
-    }
+    hlist.forEach((e) {
+      List<String> h = e.hours.split(';')..removeLast();
+      for(int j = 0; j < h.length; j++) { res[j].add( h[j] ); }
+    });
     return res;
   }
 

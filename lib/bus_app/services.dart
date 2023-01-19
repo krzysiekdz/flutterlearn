@@ -15,8 +15,10 @@ export 'package:flutterlearn/bus_app/services/page_modules/page_service.dart';
 export 'package:flutterlearn/bus_app/services/admin_modules/admin_module.dart';
 export 'package:flutterlearn/bus_app/services/admin_modules/home_news_service.dart';
 export 'package:flutterlearn/bus_app/services/admin_modules/news_service.dart';
+export 'package:flutterlearn/bus_app/services/admin_modules/schedule_service.dart';
+export 'package:flutterlearn/bus_app/services/admin_modules/schedule_hours_service.dart';
 
 // deprecated
 export 'package:flutterlearn/bus_app/services/car_service.dart';
-export 'package:flutterlearn/bus_app/services/schedule_service.dart';
+//export 'package:flutterlearn/bus_app/services/schedule_service.dart';
 
