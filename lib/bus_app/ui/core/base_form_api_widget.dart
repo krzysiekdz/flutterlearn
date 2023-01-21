@@ -1,31 +1,19 @@
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
-enum FormType {
-  add, edit
-}
-
-class FormArgs {
-  FormType type;
+class FormApiArgs extends FormArgs {
   Function refreshParent;
-  dynamic data;
   AdminState adminState;
 
-  FormArgs({ this.type = FormType.add, required this.refreshParent, this.data, required this.adminState });
+  FormApiArgs({ super.type, required this.refreshParent, super.data, required this.adminState });
 }
 
-
-abstract class BaseFormWidget extends StatefulWidget {
-  FormArgs formArgs;
-  final String addTitle;
-  final String editTitle;
-  BaseFormWidget({super.key, required this.formArgs, this.addTitle = 'Nowy', this.editTitle = 'Edycja'});
+abstract class BaseFormApiWidget extends BaseFormWidget {
+  final FormApiArgs formApiArgs;
+  BaseFormApiWidget({super.key, required this.formApiArgs, super.addTitle = 'Nowy', super.editTitle = 'Edycja', }) :
+    super(  formArgs: formApiArgs);
 }
 
-abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel> extends State<T>  {
-
-  bool isLoading = false;
-  bool isError = false;
-  String errMsg = '';
+abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends BaseModel> extends BaseFormWidgetState<T>  {
 
   late AdminModuleService service;
   late Repository repo;
@@ -33,13 +21,9 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
   late E item;
   late Map<String, String> model;
 
-  int get tabCount => 1;
 
-  bool get isAddForm => widget.formArgs.type == FormType.add;
-  bool get isEditForm => widget.formArgs.type == FormType.edit;
-  int get id => widget.formArgs.data;
-  Function get refreshParent => widget.formArgs.refreshParent;
-  AdminState get adminState => widget.formArgs.adminState;
+  Function get refreshParent => widget.formApiArgs.refreshParent;
+  AdminState get adminState => widget.formApiArgs.adminState;
 
   @override
   void initState() {
@@ -90,92 +74,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
     copyModelToFields();
   }
 
-
   @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _canExitForm,
-      child: DefaultTabController(
-        length: tabCount,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text( isAddForm? widget.addTitle : widget.editTitle ),
-            bottom: buildTabBar(),
-          ),
-          body: tabCount < 2 ? wrapForm( buildForm() ) : _buildTabBarView(),
-          bottomNavigationBar: buildBottomNav(),
-        ),
-      ),
-    );
-  }
-
-  TabBar? buildTabBar() {
-    if(tabCount <= 1) return null;
-    else {
-      return TabBar(
-        isScrollable: true,
-        tabs: [
-          ...createTabs()
-        ]
-      );
-    }
-  }
-
-  List<Tab> createTabs() { return []; }
-
-  void setLoading(bool loading) {
-    setState(() {
-      isLoading = loading;
-    });
-  }
-
-  void setError(bool e, String msg) {
-    setState(() {
-      isError = e;
-      errMsg = msg == '' ? 'Wystąpił błąd' : msg;
-    });
-  }
-
-  Widget wrapForm(Widget form, { bool wrapToScrollView = true }) {
-    Widget page;
-    if (isError) {
-      page =  Center(child: Text(errMsg , style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),));
-    }
-    else if(isLoading) {
-      page = const Center(child: CircularProgressIndicator(),);
-    }
-    else if(wrapToScrollView) {
-      page = SingleChildScrollView(
-          padding: const EdgeInsets.all(CustomStyles.padding),
-          child: form,
-      );
-    }
-    else { page = form; }
-
-    return SafeArea(
-        child: page,
-    );
-  }
-
-  Widget _buildTabBarView() {
-    return TabBarView(children: buildForms());
-  }
-
-  List<Widget> buildForms() { return []; }
-
-  Widget buildForm() { return Container(); }
-
-  Widget buildBottomNav() {
-    return Padding(
-      padding: const EdgeInsets.all(CustomStyles.padding),
-      child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: ElevatedButton(onPressed:  isError? null : (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' ))),
-    );
-  }
-
-
   Future<void> submit() async {
     if(isError) return;
 
@@ -186,8 +85,6 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
     else { response = await repo.update(data: model); }
     if(!mounted) return;
 
-    setLoading(false);
-
     afterSubmit(response);
   }
 
@@ -195,6 +92,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
 
   void afterSubmit(ObjResponse response) {
     if(response.code < 0) {
+      setLoading(false);
       showDialog(context: context, builder: (context) =>
           AlertDialog(
             contentPadding: const EdgeInsets.all(CustomStyles.padding),
@@ -210,33 +108,6 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget, E extends BaseModel
       refreshParent();
       exitForm();
     }
-  }
-
-  void exitForm() {
-    Navigator.of(context).pop();
-  }
-
-  Future<bool> _canExitForm() async {
-    bool result = await showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('Czy na pewno wyjść?'),
-            content: const Text('Zmiany nie zostały zapisane.'),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(width: 120, height: 50, child: OutlinedButton(onPressed: (){ Navigator.of(context).pop(false); }, child: const Text('Nie wychodź'))),
-                  SizedBox(width: 120, height: 50, child: ElevatedButton(onPressed: (){ Navigator.of(context).pop(true); }, child: const Text('Wyjdź'))),
-                ],
-              )
-            ],
-          );
-        }
-    );
-
-    return result;
   }
 
 

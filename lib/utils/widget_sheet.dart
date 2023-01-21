@@ -21,3 +21,15 @@ class Base extends StatelessWidget {
     );
   }
 }
+
+class A extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _AState();
+}
+
+class _AState extends State<A> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

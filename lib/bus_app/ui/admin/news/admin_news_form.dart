@@ -1,15 +1,15 @@
 part of bus_admin_news;
 
 
-class AdminNewsForm extends BaseFormWidget {
-  AdminNewsForm({super.key, required super.formArgs}) :
+class AdminNewsForm extends BaseFormApiWidget {
+  AdminNewsForm({super.key, required super.formApiArgs}) :
     super(addTitle: 'Nowy artykuł', editTitle: 'Edycja artykułu');
 
   @override
   State<StatefulWidget> createState() => _AdminNewsFormState();
 }
 
-class _AdminNewsFormState extends BaseFormWidgetState<AdminNewsForm, News>  {
+class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
 
   final TextEditingController title = TextEditingController();
   final TextEditingController content = TextEditingController();

@@ -3,14 +3,16 @@ library bus_admin_schedule;
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
 part 'admin_schedule_form.dart';
-part 'admin_schedule_form_cities.dart';
+part 'admin_cities_list.dart';
+part 'admin_cities_form.dart';
+part 'admin_hours_list.dart';
 
 class AdminSchedule extends BaseListWidget {
 
   final ScreenSize screenSize;
 
   AdminSchedule({ required this.screenSize, super.key }) :
-    super(title: 'Rozkłady', deleteConfirm: 'Czy usunąć rozkład?') ;
+    super(title: 'Rozkłady', deleteConfirm: 'Czy usunąć rozkład?', heroTag: 'AdminSchedule') ;
 
   @override
   State<StatefulWidget> createState() => _AdminScheduleState();
@@ -24,12 +26,12 @@ class _AdminScheduleState extends BaseListWidgetState<AdminSchedule> {
 
   @override
   void showAddForm() {
-    Navigator.of(context).push( slideRoute(AdminScheduleForm(formArgs: addFormArgs  ))  );
+    Navigator.of(context).push( slideRoute(AdminScheduleForm(formApiArgs: addFormArgs  ))  );
   }
 
   @override
   void showEditForm(int id) {
-    Navigator.of(context).push( slideRoute( AdminScheduleForm(formArgs: editFormArgs(id) ) ) );
+    Navigator.of(context).push( slideRoute( AdminScheduleForm(formApiArgs: editFormArgs(id) ) ) );
   }
 
   @override

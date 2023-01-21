@@ -16,12 +16,12 @@ class _AdminHomeUrgentNewsState extends BaseListWidgetState<AdminHomeUrgentNews>
 
   void showAddForm() {
     Navigator.of(context, rootNavigator: true).push(
-        slideRoute( AdminHomeUrgentNewsForm( formArgs: addFormArgs) ) );
+        slideRoute( AdminHomeUrgentNewsForm( formApiArgs: addFormArgs) ) );
   }
 
   void showEditForm(int id) {
     Navigator.of(context, rootNavigator: true).push(
-        slideRoute( AdminHomeUrgentNewsForm( formArgs: editFormArgs(id)) ) );
+        slideRoute( AdminHomeUrgentNewsForm( formApiArgs: editFormArgs(id)) ) );
   }
 
   Widget buildListItem(BuildContext context, int i) {

@@ -1,15 +1,15 @@
 part of bus_admin_schedule;
 
 
-class AdminScheduleForm extends BaseFormWidget {
-  AdminScheduleForm({super.key, required super.formArgs}) :
+class AdminScheduleForm extends BaseFormApiWidget {
+  AdminScheduleForm({super.key, required super.formApiArgs}) :
     super(addTitle: 'Nowy rozkład', editTitle: 'Edycja rozkładu');
 
   @override
   State<StatefulWidget> createState() => _AdminScheduleFormState();
 }
 
-class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Schedule>  {
+class _AdminScheduleFormState extends BaseFormApiWidgetState<AdminScheduleForm, Schedule>  {
 
   final TextEditingController title = TextEditingController();
   final TextEditingController title_rev = TextEditingController();
@@ -17,7 +17,7 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
   final TextEditingController url_rev = TextEditingController();
   final TextEditingController order = TextEditingController();
 
-  final citiesState = GlobalKey<_AdminScheduleFormCitiesState>();
+  final citiesState = GlobalKey<_AdminCitiesListState>();
   List<String>? get cities => citiesState.currentState?.cities;
 
   void initFormFields() {
@@ -93,8 +93,8 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
   List<Widget> buildForms() {
     return [
       wrapForm(buildForm1()),
-      wrapForm(buildForm2(), wrapToScrollView: false),
-      wrapForm(buildForm3(), wrapToScrollView: false),
+      wrapForm(buildForm2(), wrapInScrollView: false),
+      wrapForm(buildForm3(), wrapInScrollView: false),
     ];
   }
 
@@ -175,12 +175,12 @@ class _AdminScheduleFormState extends BaseFormWidgetState<AdminScheduleForm, Sch
 
 
   Widget buildForm2() {
-    return AdminScheduleFormCities(cities: item.cities.split(';')..removeLast(), key: citiesState);
+    return AdminCitiesList(cities: item.cities.split(';')..removeLast(), key: citiesState);
   }
 
 
   Widget buildForm3() {
-    return Container();
+    return AdminHoursList(adminState: adminState, id: item.id,);
   }
 
 

@@ -107,7 +107,9 @@ class CustomTheme {
       ),
 
 
-
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: c.primary,
+      ),
 
 //      switchTheme: SwitchThemeData(
 //        trackColor: MaterialStateProperty.all( c.primary ),

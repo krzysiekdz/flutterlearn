@@ -23,12 +23,12 @@ class _AdminNewsState extends BaseListWidgetState<AdminNews> {
 
   @override
   void showAddForm() {
-    Navigator.of(context).push( slideRoute(AdminNewsForm(formArgs: addFormArgs  ))  );
+    Navigator.of(context).push( slideRoute(AdminNewsForm(formApiArgs: addFormArgs  ))  );
   }
 
   @override
   void showEditForm(int id) {
-    Navigator.of(context).push( slideRoute( AdminNewsForm(formArgs: editFormArgs(id) ) ) );
+    Navigator.of(context).push( slideRoute( AdminNewsForm(formApiArgs: editFormArgs(id) ) ) );
   }
 
   @override

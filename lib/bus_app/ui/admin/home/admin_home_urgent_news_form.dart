@@ -1,16 +1,16 @@
 part of bus_admin_home;
 
 
-class AdminHomeUrgentNewsForm extends BaseFormWidget {
+class AdminHomeUrgentNewsForm extends BaseFormApiWidget {
 
-  AdminHomeUrgentNewsForm({super.key, required super.formArgs}) :
+  AdminHomeUrgentNewsForm({super.key, required super.formApiArgs}) :
     super(addTitle: 'Nowe ogłoszenie', editTitle: 'Edycja ogłoszenia');
 
   @override
   State<StatefulWidget> createState() => _AdminHomeUrgentNewsFormState();
 }
 
-class _AdminHomeUrgentNewsFormState extends BaseFormWidgetState<AdminHomeUrgentNewsForm, News>  {
+class _AdminHomeUrgentNewsFormState extends BaseFormApiWidgetState<AdminHomeUrgentNewsForm, News>  {
 
   final TextEditingController title = TextEditingController();
   final TextEditingController content = TextEditingController();

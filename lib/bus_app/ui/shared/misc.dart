@@ -59,3 +59,20 @@ Widget lineThin({double margin = 12, double width = 100}) {
   );
 }
 
+
+Widget ListTitleAndDelete(String title, { required VoidCallback actionDelete, Color? color }) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(title, style: TextStyle(fontWeight: FontWeight.bold, color: color),),
+        OutlinedButton(onPressed: (){ actionDelete(); }, child: Row(
+          children: const [
+            Icon(Icons.close),
+            Text('Usuń'),
+          ],
+        )),
+      ]);
+}
+
+
+

@@ -1,9 +1,10 @@
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
 abstract class BaseListWidget extends StatefulWidget {
-  String title;
+  String? title;
   String deleteConfirm;
-  BaseListWidget({super.key, this.title = 'Title', this.deleteConfirm = 'Czy usunąć?'});
+  String heroTag;
+  BaseListWidget({super.key, this.title, this.deleteConfirm = 'Czy usunąć?', this.heroTag = 'heroTag'});
 }
 
 abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
@@ -25,10 +26,12 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
 
   AdminModuleService createService();
 
+  Map<String, String> getListParams() { return {}; }
+
   Future<void> loadData() async {
     setLoading(true);
 
-    ObjResponse<List> res = await repo.list();
+    ObjResponse<List> res = await repo.list( params: getListParams() );
     if(!mounted) return;
     data = res.obj;
 
@@ -47,8 +50,8 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
     });
   }
 
-  FormArgs get addFormArgs => FormArgs( refreshParent: loadData , adminState: adminState);
-  FormArgs editFormArgs(int id) => FormArgs( refreshParent: loadData , data: id, type: FormType.edit, adminState: adminState );
+  FormApiArgs get addFormArgs => FormApiArgs( refreshParent: loadData , adminState: adminState);
+  FormApiArgs editFormArgs(int id) => FormApiArgs( refreshParent: loadData , data: id, type: FormType.edit, adminState: adminState );
 
 
   AdminState get adminState => context.findAncestorStateOfType<AdminState>()!;
@@ -61,11 +64,12 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: widget.title != null ?  AppBar(
+        title: Text(widget.title!) ,
+      ) : null,
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
+        heroTag: widget.heroTag,
         onPressed: (){  showAddForm(); },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),
