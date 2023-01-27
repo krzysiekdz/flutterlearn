@@ -44,12 +44,12 @@ class AppRouter extends RouterDelegate<RouteUrl>
     ),
   ];
 
-  List<Page> get adminStack =>  [
-    MaterialPage(
-      name: url,
-      child: AdminMain(),
-    ),
-  ];
+//  List<Page> get adminStack =>  [
+//    MaterialPage(
+//      name: url,
+//      child: AdminMain(),
+//    ),
+//  ];
 
 
   @override
@@ -73,7 +73,7 @@ class AppRouter extends RouterDelegate<RouteUrl>
 
   List<Page> resolveStack() {
     if( PageRoutes.all.contains( routeUrl.routeData ) ) { return pageStack; }
-    else if( AdminRoutes.all.contains( routeUrl.routeData ) ) { return adminStack; }
+//    else if( AdminRoutes.all.contains( routeUrl.routeData ) ) { return adminStack; }
     else { return notFound; }
   }
 

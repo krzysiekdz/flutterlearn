@@ -46,11 +46,13 @@ class _AdminScheduleFormState extends BaseFormApiWidgetState<AdminScheduleForm, 
   @override
   AdminModuleService createService() => ScheduleService.fromState(adminState);
 
-  void initAddModel() {
+  @override
+  void initAddModel([Schedule? obj]) {
     item.visible = true;
     item.order = 0;
   }
 
+  @override
   void initEditModel(Schedule obj) {
     item.title = obj.title;
     item.title_rev = obj.title_rev;
@@ -180,7 +182,7 @@ class _AdminScheduleFormState extends BaseFormApiWidgetState<AdminScheduleForm, 
 
 
   Widget buildForm3() {
-    return AdminHoursList(adminState: adminState, id: item.id,);
+    return AdminHoursList(adminState: adminState, id: item.id);
   }
 
 

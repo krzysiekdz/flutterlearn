@@ -25,6 +25,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
   String errMsg = '';
 
   int get tabCount => 1;
+  bool get wrapInScrollView => true;
 
   bool get isAddForm => widget.formArgs.type == FormType.add;
   bool get isEditForm => widget.formArgs.type == FormType.edit;
@@ -53,7 +54,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
             title: Text( isAddForm? widget.addTitle : widget.editTitle ),
             bottom: buildTabBar(),
           ),
-          body: tabCount < 2 ? wrapForm( buildForm() ) : _buildTabBarView(),
+          body: tabCount < 2 ? wrapForm( buildForm(), wrapInScrollView: wrapInScrollView ) : _buildTabBarView(),
           bottomNavigationBar: buildBottomNav(),
         ),
       ),

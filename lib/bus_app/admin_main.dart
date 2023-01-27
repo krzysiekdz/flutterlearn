@@ -3,23 +3,22 @@ import 'package:flutterlearn/bus_app/bus_app.dart';
 import '../utils/Styles.dart';
 
 
-
-class BusApp extends StatelessWidget {
+class BusAppAdmin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
 
-    print('BusApp : build()');
+    print('BusAppAdmin : build()');
 
-    return MaterialApp.router(
-      title: AppConfig.appName,
+    return MaterialApp(
+      title: 'AutobusyAdmin',
       debugShowCheckedModeBanner: false,
       theme: Styles.getTheme(context, CustomStyles.colorsLight),
       darkTheme: Styles.getTheme(context, CustomStyles.colorsDark),
-      routeInformationParser: CustomRouteParser(),
-      routerDelegate: AppRouter(),
+      home: AdminMain(),
     );
-
   }
+
+
 
 }

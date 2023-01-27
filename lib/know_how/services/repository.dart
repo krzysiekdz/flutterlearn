@@ -24,6 +24,7 @@ abstract class Repository<T> {
 
   Future<ObjResponse<List<T>>> list({ int start = 0, int limit = 10, Map<String, String>? params});
   Future<ObjResponse<T>> get({ dynamic id, Map<String, String>? params});
+//  Future<ObjResponse> beforeInsert({ required Map<String, String> params }) async { return ObjResponse.error('TODO'); }
   Future<ObjResponse> insert({ dynamic id, required Map<String, String> data });
   Future<ObjResponse> update({ dynamic id, required Map<String, String> data } );
   Future<ObjResponse> delete({ dynamic id, Map<String, String>? params});

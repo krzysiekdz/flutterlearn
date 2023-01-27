@@ -1,17 +1,24 @@
-menu: główna, rozklady, autobusy, kontakt
 
-home:
-    home_news
-    ?home_slider : img, text
 
-rozklady
-    linia/kurs
-    kazda linia ma reguly kiedy kursuje oraz kiedy nie kursuje - dla nie kursuje mozna wybrac wybiorcze dni
+rozklady:
+    dodawanie - nie pokazywac zakladki "godziny"
+edycja/dodawanie godzin - jako popup
+    pobierac tyle godzin, co przystankow, reszte usuwac
+    klikniecie w liste - wybor godziny
+    godziny - dodanie oznaczenia
+rozklady - przystanki
+    zamiast formularza - popup do wypelnienia
+rozklady - legenda- w app barze dodac przycisk - legenda
+    wejscie w formularz legendy - dodanie oznaczenia oraz opisu oznaczenia
+    lista , formularze
 
-autobusy
 
-kontakt
+zakladka - adresy email, jakie zapisaly sie na powiadomienia
+zakdladka - ile wejsc na strone, i kiedy kto wchodzil
+mozliwosc wlaczanie/wylaczania sekcji, np aktualnosci, oferta , sekcje na stronie glownej
 
+strona - zapisy na powiadomienia
+na koncu aplikacja z powiadomieniami - sprawdzenie, jak przerobic strone na aplikacje - ciekawa rzecz
 
 
 -----------------------
@@ -41,9 +48,6 @@ aplikacja admin -
 apliakacja page - pobieranie danych , cykliczne odswiezanie
 
 
-rozkłady
-autobusy
-kontakt
 glowna - slider, sekcje - kolejnosc oraz tresc
 
 wynik:
@@ -57,5 +61,8 @@ koniec - wtedy kolejny projekt! :)
 ? mpfirma / b2b -
 ? znajdowanie projektow do zrobienia w internecie
 ? aplikacja do liczenia punktow vabanque
+
+aplikacja do powiadomien - zapisanie sie na dany kanał powiadomien
+mozna by tutaj tez zamieszczac swoje rozklady (to dla przewoznikow)
 
 tworzenie swojego portfolio na bazie zrobionych projektow

@@ -43,7 +43,7 @@ class _AdminHomeUrgentNewsFormState extends BaseFormApiWidgetState<AdminHomeUrge
 
 
   @override
-  void initAddModel() {
+  void initAddModel([News? obj]) {
     item.visible = true;
     item.order = 0;
   }

@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutterlearn/bus_app/admin_main.dart';
 //import 'package:flutterlearn/bsxmobile/main.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'bus_app/main.dart';
+//import 'bus_app/main.dart';
 //import 'organizer_app/main.dart';
 
 
@@ -13,7 +14,8 @@ void main() {
   setPathUrlStrategy();
 
   runApp(
-    BusApp()
+    BusAppAdmin()
+//    BusApp()
 //    BsxApp()
   );
 }

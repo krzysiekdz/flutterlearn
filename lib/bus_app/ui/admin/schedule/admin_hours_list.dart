@@ -7,24 +7,31 @@ class AdminHoursList extends BaseListWidget {
   AdminHoursList({ super.key , required this.adminState, required this.id}) :
     super( deleteConfirm: 'Czy usunąć godziny?', heroTag: 'AdminHoursList') ;
 
-@override
-State<StatefulWidget> createState() => _AdminHoursListState();
+  @override
+  State<StatefulWidget> createState() => _AdminHoursListState();
 
 }
 
 class _AdminHoursListState extends BaseListWidgetState<AdminHoursList> {
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   AdminModuleService createService() => ScheduleHoursService.fromState(widget.adminState);
 
   @override
   void showAddForm() {
-//    Navigator.of(context).push( slideRoute(AdminScheduleForm(formApiArgs: addFormArgs  ))  );
+    Navigator.of(context).push( slideRoute(
+        AdminHoursForm( sid: widget.id, formApiArgs: FormApiArgs( adminState: widget.adminState, refreshParent: loadData )))  );
   }
 
   @override
   void showEditForm(int id) {
-//    Navigator.of(context).push( slideRoute( AdminScheduleForm(formApiArgs: editFormArgs(id) ) ) );
+    Navigator.of(context).push( slideRoute(
+        AdminHoursForm( formApiArgs: FormApiArgs( type: FormType.edit, data: id, adminState: widget.adminState, refreshParent: loadData )))  );
   }
 
   @override
@@ -34,7 +41,6 @@ class _AdminHoursListState extends BaseListWidgetState<AdminHoursList> {
   Widget buildListItem(BuildContext context, int i) {
     Schedule item = data?[i] as Schedule;
 
-    List<String> cities = item.cities.split(';')..removeLast();
     List<String> hours = item.hours.split(';')..removeLast();
 
     String hfirst = hours[0];
@@ -42,7 +48,6 @@ class _AdminHoursListState extends BaseListWidgetState<AdminHoursList> {
 
     String title = '${item.title} ( $hfirst - $hlast ) ';
     if( item.dir == 1 ) { title = '${item.title_rev} ( $hfirst - $hlast )'; }
-
 
     return Card(
       child: ListTile(

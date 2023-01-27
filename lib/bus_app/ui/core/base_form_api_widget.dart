@@ -21,6 +21,8 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
   late E item;
   late Map<String, String> model;
 
+  bool get isInitAddFromApi => false;
+  Map<String, String> get initAddParams => {};
 
   Function get refreshParent => widget.formApiArgs.refreshParent;
   AdminState get adminState => widget.formApiArgs.adminState;
@@ -36,8 +38,11 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
     initFormFields();
 
     if(isAddForm) {
-      initAddModel();
-      copyModelToFields();
+      if( isInitAddFromApi ) { getItem(getItemForAdd: true); }
+      else {
+        initAddModel();
+        copyModelToFields();
+      }
     }
     else { getItem(); }
 
@@ -47,7 +52,7 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
 
   E createItem(Map<String, String> m);
 
-  void initAddModel();
+  void initAddModel([E obj]);
 
   void initEditModel(E obj);
 
@@ -58,9 +63,11 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
   void disposeFormFields();
 
 
-  Future<void> getItem() async {
+  Future<void> getItem({bool getItemForAdd = false}) async {
     setLoading(true);
-    ObjResponse<E> r = await repo.get(id: id) as ObjResponse<E>;
+    ObjResponse<E> r ;
+    if( getItemForAdd ) { r = await repo.get( params: initAddParams ) as ObjResponse<E>; }
+    else { r = await repo.get(id: id) as ObjResponse<E>; }
     if(!mounted) return;
 
     if(r.code < 0 || r.obj == null) {
@@ -69,8 +76,13 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
     }
 
     setLoading(false);
-    item['id'] = '$id';
-    initEditModel(r.obj!);
+    if( getItemForAdd ) {
+      initAddModel(r.obj!);
+    } else {
+      item['id'] = '$id';
+      initEditModel(r.obj!);
+    }
+
     copyModelToFields();
   }
 

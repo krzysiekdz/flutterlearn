@@ -15,6 +15,7 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
   final TextEditingController content = TextEditingController();
   final TextEditingController order = TextEditingController();
 
+  @override
   void initFormFields() {
     title.addListener(() { item.title = title.text; });
     content.addListener(() { item.content = content.text; });
@@ -37,11 +38,13 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
   @override
   AdminModuleService createService() => NewsService.fromState(adminState);
 
-  void initAddModel() {
+  @override
+  void initAddModel([News? obj]) {
     item.visible = true;
     item.order = 0;
   }
 
+  @override
   void initEditModel(News obj) {
     item.title = obj.title;
     item.content = obj.content;
@@ -58,6 +61,7 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
   }
 
 
+  @override
   Widget buildForm() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

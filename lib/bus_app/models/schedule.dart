@@ -5,6 +5,7 @@ class Schedule extends BaseModel {
 
   int get id => int.parse(data['id'] ?? '0');
   int get sid => int.parse(data['sid'] ?? '0');
+  int get sched_id => int.parse(data['c_schedule_id'] ?? '0');
   String get title => this['title'];
   String get title_rev => this['title_rev'];
   String get cities => this['cities'];
@@ -17,6 +18,7 @@ class Schedule extends BaseModel {
 
 
   set id(int v) { data['id'] = '$v'; }
+  set sched_id(int v) { data['c_schedule_id'] = '$v'; }
   set title(String v) { data['title'] = v; }
   set title_rev(String v) { data['title_rev'] = v; }
   set url(String v) { data['url'] = v; }

@@ -33,14 +33,16 @@ class CustomRouteParser  extends RouteInformationParser<RouteUrl> {
   static RouteUrl parseUrl(String url) {
     RouteData routeData = getRouteData(url, PageRoutes.all);
     if( routeData.isUnknown ) {
-      if( url == UrlNames.admin || url.startsWith( '${UrlNames.admin}/' ) ) {
-        routeData = AdminRoutes.home;
-        url = UrlNames.admin; //all urls that starts with 'admin' are replacing to 'admin'
-      }
-      else {
-        routeData = not_found;
-      }
-      //routeData = getRouteData(url, AdminRoutes.all);
+
+      routeData = not_found;
+
+//      if( url == UrlNames.admin || url.startsWith( '${UrlNames.admin}/' ) ) {
+//        routeData = AdminRoutes.home;
+//        url = UrlNames.admin; //all urls that starts with 'admin' are replacing to 'admin'
+//      }
+//      else {
+//        routeData = not_found;
+//      }
     }
     return RouteUrl(url: url, routeData: routeData );
   }

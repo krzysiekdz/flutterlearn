@@ -6,6 +6,8 @@ part 'admin_schedule_form.dart';
 part 'admin_cities_list.dart';
 part 'admin_cities_form.dart';
 part 'admin_hours_list.dart';
+part 'admin_hours_form.dart';
+part 'admin_hours_form_list.dart';
 
 class AdminSchedule extends BaseListWidget {
 
