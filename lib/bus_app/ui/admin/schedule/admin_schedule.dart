@@ -8,6 +8,8 @@ part 'admin_cities_form.dart';
 part 'admin_hours_list.dart';
 part 'admin_hours_form.dart';
 part 'admin_hours_form_list.dart';
+part 'dialog_city.dart';
+part 'legend_list.dart';
 
 class AdminSchedule extends BaseListWidget {
 
@@ -35,6 +37,25 @@ class _AdminScheduleState extends BaseListWidgetState<AdminSchedule> {
   void showEditForm(int id) {
     Navigator.of(context).push( slideRoute( AdminScheduleForm(formApiArgs: editFormArgs(id) ) ) );
   }
+
+  void showLegendList() {
+    Navigator.of(context).push( slideRoute(AdminLegendList( adminState:  adminState,))  );
+  }
+
+  @override
+  List<Widget>? get actions => [
+    TextButton(onPressed: (){ showLegendList(); }, child: const Text('LEGENDA', style: TextStyle(color: Colors.white),)),
+//    PopupMenuButton<int>(
+//        icon: const Icon(Icons.more_vert),
+//        onSelected: (value) {
+//          print('selected = $value');
+//        },
+//        itemBuilder: (context) => const [
+//          PopupMenuItem(value: 0, child: Text('Legenda'), ),
+////          PopupMenuDivider(),
+//        ],
+//    ),
+  ];
 
   @override
   Widget buildListItem(BuildContext context, int i) {

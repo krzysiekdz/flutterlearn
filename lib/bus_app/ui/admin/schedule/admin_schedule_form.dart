@@ -80,14 +80,14 @@ class _AdminScheduleFormState extends BaseFormApiWidgetState<AdminScheduleForm, 
   }
 
   @override
-  int get tabCount => 3;
+  int get tabCount => isAddForm ? 2 : 3;
 
   @override
   List<Tab> createTabs() {
-    return const [
-      Tab(child: Text('Podstawowe'),),
-      Tab(child: Text('Przystanki'),),
-      Tab(child: Text('Godziny'),),
+    return  [
+      const Tab(child: Text('Podstawowe'),),
+      const Tab(child: Text('Przystanki'),),
+      if(isEditForm) const Tab(child: Text('Godziny'),),
     ];
   }
 
@@ -96,7 +96,7 @@ class _AdminScheduleFormState extends BaseFormApiWidgetState<AdminScheduleForm, 
     return [
       wrapForm(buildForm1()),
       wrapForm(buildForm2(), wrapInScrollView: false),
-      wrapForm(buildForm3(), wrapInScrollView: false),
+      if(isEditForm) wrapForm(buildForm3(), wrapInScrollView: false),
     ];
   }
 

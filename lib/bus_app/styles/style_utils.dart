@@ -5,6 +5,7 @@ import 'package:flutterlearn/utils/AppColors.dart';
 class CustomStyles {
   static const double padding = 18;
   static const double fsNormal = 18;
+  static const double buttonHeight = 40;
 
   static const double borderRadius = 12;
 
@@ -25,6 +26,26 @@ class CustomStyles {
     hint: Colors.grey,
     surface: Colors.white,
     bar: Colors.white,
+  );
+
+  //kolor jasny - admin
+  static final AppColors adminColorsLight = AppColors(
+    primary: CustomColors.primary,
+    text: Colors.black,
+    textAlt: Colors.white,
+    hint: Colors.grey,
+    surface: Colors.white,
+    bar: CustomColors.primary,
+    bottomNav: Colors.white,
+  );
+
+  //kolor ciemny - admin
+  static final AppColors adminColorsDark = AppColors(
+    primary: CustomColors.primary,
+    text: Colors.white,
+    hint: Colors.grey,
+    surface: CustomColors.dark,
+    bar: CustomColors.primary,
   );
 
 //  static final AppColors colorsDark = AppColors(

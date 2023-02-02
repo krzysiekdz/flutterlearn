@@ -100,7 +100,9 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
     afterSubmit(response);
   }
 
-  void beforeSubmit() {}
+  void beforeSubmit() {
+
+  }
 
   void afterSubmit(ObjResponse response) {
     if(response.code < 0) {

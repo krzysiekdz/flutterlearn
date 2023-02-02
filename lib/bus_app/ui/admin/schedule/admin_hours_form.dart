@@ -15,7 +15,6 @@ class _AdminHoursFormState extends BaseFormApiWidgetState<AdminHoursForm, Schedu
   final hoursState = GlobalKey<_AdminHoursFormListState>();
   List<String>? get hours => hoursState.currentState?.hours;
 
-  //LateInitializationError: Field '_cities' has not been initialized.
   String _cities = '';
 
   @override
@@ -117,6 +116,7 @@ class _AdminHoursFormState extends BaseFormApiWidgetState<AdminHoursForm, Schedu
 
           Expanded(
               child: AdminHoursFormList(
+                key: hoursState,
                 cities: cities,
                 hours: item.hours.split(';')..removeLast(),
               )

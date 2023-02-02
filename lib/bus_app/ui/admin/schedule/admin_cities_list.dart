@@ -21,6 +21,7 @@ class _AdminCitiesListState extends State<AdminCitiesList> with AutomaticKeepAli
   void initState() {
     super.initState();
     _cities = List.from(widget.cities);
+    print('cities = $_cities');
   }
 
   List<String> get cities => _cities;
@@ -32,7 +33,11 @@ class _AdminCitiesListState extends State<AdminCitiesList> with AutomaticKeepAli
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
+            child: _cities.isEmpty ?
+            const Center(
+              child: Text('Dodaj przystanki dla tego kursu'),
+            ) :
+            ListView.builder(
               itemCount: _cities.length,
               itemBuilder: buildListItem,
               itemExtent: 100,
@@ -74,9 +79,13 @@ class _AdminCitiesListState extends State<AdminCitiesList> with AutomaticKeepAli
   }
 
   void actionAdd() async {
-    dynamic res = await Navigator.of(context).push(
-        slideRoute( AdminCitiesForm(formArgs: FormArgs() ) )
-    );
+//    dynamic res = await Navigator.of(context).push(
+//        slideRoute( AdminCitiesForm(formArgs: FormArgs() ) )
+//    );
+
+    dynamic res = await showDialog(context: context, builder: (context){
+      return DialogCity( formArgs: FormArgs() );
+    });
 
     if(res is String) {
       setState(() {
@@ -86,9 +95,13 @@ class _AdminCitiesListState extends State<AdminCitiesList> with AutomaticKeepAli
   }
 
   void actionEdit(int i) async {
-    dynamic res = await Navigator.of(context).push(
-        slideRoute( AdminCitiesForm(formArgs: FormArgs(type: FormType.edit) , city: _cities[i] ) )
-    );
+//    dynamic res = await Navigator.of(context).push(
+//        slideRoute( AdminCitiesForm(formArgs: FormArgs(type: FormType.edit) , city: _cities[i] ) )
+//    );
+
+    dynamic res = await showDialog(context: context, builder: (context){
+      return DialogCity(formArgs: FormArgs(type: FormType.edit), city: _cities[i]);
+    });
 
     if(res is String) {
       setState(() {

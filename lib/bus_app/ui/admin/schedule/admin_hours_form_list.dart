@@ -34,14 +34,21 @@ class _AdminHoursFormListState extends State<AdminHoursFormList>  {
       print('hours == cities');
     }
 
-
     print('cities = ${widget.cities}, hours = $hours');
   }
 
   List<String> get hours => _hours;
 
+
+  @override
+  void didUpdateWidget(covariant AdminHoursFormList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('updated widget ${widget.cities}');
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('AdminHoursFormList : build()');
     return ListView.builder(
       itemCount: widget.cities.length,
       itemBuilder: buildListItem,
@@ -56,7 +63,7 @@ class _AdminHoursFormListState extends State<AdminHoursFormList>  {
           onTap: () { actionEdit(i); },
           contentPadding: const EdgeInsets.all(8),
           leading: CircleAvatar( backgroundColor: Colors.green, foregroundColor: Colors.white, child: Text('${i+1}')),
-          title: Text(hour == '' ? '?' : hour),
+          title: Text(hour == '' ? '?' : hour, style: const TextStyle(fontWeight: FontWeight.bold),),
           subtitle: Text(city),
       ),
     );
@@ -65,6 +72,9 @@ class _AdminHoursFormListState extends State<AdminHoursFormList>  {
 
   void actionEdit(int i) async {
     String hour = _hours[i];
+    if(hour.trim() == '') {
+      hour = _hours.lastWhere((e) => e != '', orElse: () => '');
+    }
     RegExp re = RegExp(r'([\d]+)[\s]{0,}:[\s]{0,}([\d]+)');
     RegExpMatch? m = re.firstMatch(hour);
     TimeOfDay initialTime;

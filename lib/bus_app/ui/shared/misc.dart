@@ -74,5 +74,21 @@ Widget ListTitleAndDelete(String title, { required VoidCallback actionDelete, Co
       ]);
 }
 
+Widget dialogActions(BuildContext context, {VoidCallback? btnOkAction, VoidCallback? btnCancelAction,
+    Widget btnOk = const Text('OK'), Widget btnCancel = const Text('Anuluj')}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [
+      SizedBox(width: 120, height: 50, child: ElevatedButton(onPressed: (){ btnOkAction?.call(); }, child:  btnOk)),
+      SizedBox(width: 120, height: 50, child: OutlinedButton(onPressed: (){
+        if( btnCancelAction == null ) { Navigator.of(context).pop(); }
+        else { btnCancelAction(); }
+        },
+          child: btnCancel)),
+
+    ],
+  );
+}
+
 
 

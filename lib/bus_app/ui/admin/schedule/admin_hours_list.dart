@@ -5,7 +5,7 @@ class AdminHoursList extends BaseListWidget {
   final AdminState adminState;
   final int id;
   AdminHoursList({ super.key , required this.adminState, required this.id}) :
-    super( deleteConfirm: 'Czy usunąć godziny?', heroTag: 'AdminHoursList') ;
+    super( deleteConfirm: 'Czy usunąć godziny?', heroTag: 'AdminHoursList', emptyLabel: 'Tutaj dodasz godziny dla kursu') ;
 
   @override
   State<StatefulWidget> createState() => _AdminHoursListState();

@@ -7,8 +7,8 @@ void showDialogYesNo(BuildContext context, {Widget? title, Widget? content, Widg
       title: title,
       content: content,
       actions: [
-        SizedBox( width: 100, height: 50, child: OutlinedButton(onPressed: (){ Navigator.of(context).pop(); }, child: btnNo ?? const Text('Nie'))),
         SizedBox( width: 100, height: 50, child: ElevatedButton(onPressed: (){ if( actionYes != null ) { actionYes(); } Navigator.of(context).pop(); }, child: btnYes ?? const Text('Tak'))),
+        SizedBox( width: 100, height: 50, child: OutlinedButton(onPressed: (){ Navigator.of(context).pop(); }, child: btnNo ?? const Text('Nie'))),
       ],
     );
   });

@@ -1,6 +1,5 @@
 import 'package:flutterlearn/bus_app/bus_app.dart';
-
-import '../utils/Styles.dart';
+import 'package:flutterlearn/bus_app/styles/admin_theme.dart';
 
 
 class BusAppAdmin extends StatelessWidget {
@@ -13,8 +12,8 @@ class BusAppAdmin extends StatelessWidget {
     return MaterialApp(
       title: 'AutobusyAdmin',
       debugShowCheckedModeBanner: false,
-      theme: Styles.getTheme(context, CustomStyles.colorsLight),
-      darkTheme: Styles.getTheme(context, CustomStyles.colorsDark),
+      theme: AdminTheme.getTheme(context, CustomStyles.adminColorsLight),
+      darkTheme: AdminTheme.getTheme(context, CustomStyles.adminColorsDark),
       home: AdminMain(),
     );
   }

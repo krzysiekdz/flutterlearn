@@ -145,8 +145,8 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SizedBox(width: 120, height: 50, child: OutlinedButton(onPressed: (){ Navigator.of(context).pop(false); }, child: const Text('Nie wychodź'))),
                   SizedBox(width: 120, height: 50, child: ElevatedButton(onPressed: (){ Navigator.of(context).pop(true); }, child: const Text('Wyjdź'))),
+                  SizedBox(width: 120, height: 50, child: OutlinedButton(onPressed: (){ Navigator.of(context).pop(false); }, child: const Text('Nie wychodź'))),
                 ],
               )
             ],

@@ -3,8 +3,10 @@ import 'package:flutterlearn/bus_app/bus_app.dart';
 abstract class BaseListWidget extends StatefulWidget {
   String? title;
   String deleteConfirm;
+  String emptyLabel;
   String heroTag;
-  BaseListWidget({super.key, this.title, this.deleteConfirm = 'Czy usunąć?', this.heroTag = 'heroTag'});
+  BaseListWidget({super.key, this.title, this.deleteConfirm = 'Czy usunąć?', this.heroTag = 'heroTag',
+    this.emptyLabel = 'Brak elementów'});
 }
 
 abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
@@ -61,11 +63,14 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
     super.dispose();
   }
 
+  List<Widget>? get actions { return []; }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: widget.title != null ?  AppBar(
         title: Text(widget.title!) ,
+        actions: actions,
       ) : null,
       body: _buildBody(),
       floatingActionButton: FloatingActionButton(
@@ -106,6 +111,11 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
     if(isLoading) {
       page = const Center(
         child: CircularProgressIndicator(),
+      );
+    }
+    else if (data?.isEmpty ?? false) {
+      page = Center(
+        child: Text(widget.emptyLabel),
       );
     }
     else {
