@@ -79,12 +79,26 @@ Widget dialogActions(BuildContext context, {VoidCallback? btnOkAction, VoidCallb
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-      SizedBox(width: 120, height: 50, child: ElevatedButton(onPressed: (){ btnOkAction?.call(); }, child:  btnOk)),
-      SizedBox(width: 120, height: 50, child: OutlinedButton(onPressed: (){
-        if( btnCancelAction == null ) { Navigator.of(context).pop(); }
-        else { btnCancelAction(); }
-        },
-          child: btnCancel)),
+      SizedBox(
+          width: 120,
+          height: 50,
+          child: ElevatedButton(
+              onPressed: btnOkAction == null ? null: (){ btnOkAction!.call(); },
+              child:  btnOk
+          )
+      ),
+
+      SizedBox(
+          width: 120,
+          height: 50,
+          child: OutlinedButton(
+              onPressed: (){
+                if( btnCancelAction == null ) { Navigator.of(context).pop(); }
+                else { btnCancelAction(); }
+              },
+          child: btnCancel
+          )
+      ),
 
     ],
   );

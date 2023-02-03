@@ -18,15 +18,19 @@ class _AdminLegendListState extends BaseListWidgetState<AdminLegendList> {
   AdminModuleService createService() => ScheduleLegendService.fromState(widget.adminState);
 
   @override
-  void showAddForm() {
-//    Navigator.of(context).push( slideRoute(
-//        AdminHoursForm( sid: widget.id, formApiArgs: FormApiArgs( adminState: widget.adminState, refreshParent: loadData )))  );
+  Future<void> showAddForm() async {
+    showDialog(
+        context: context,
+        builder: (context) => DialogLegend( formApiArgs: FormApiArgs( adminState: widget.adminState, refreshParent: loadData ))
+    );
   }
 
   @override
   void showEditForm(int id) {
-//    Navigator.of(context).push( slideRoute(
-//        AdminHoursForm( formApiArgs: FormApiArgs( type: FormType.edit, data: id, adminState: widget.adminState, refreshParent: loadData )))  );
+    showDialog(
+        context: context,
+        builder: (context) => DialogLegend( formApiArgs: FormApiArgs( type: FormType.edit, data: id, adminState: widget.adminState, refreshParent: loadData ))
+    );
   }
 
   @override

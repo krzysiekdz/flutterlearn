@@ -1,64 +1,40 @@
-dodanie pola w bazie dla godzin - pole mark, np: e;f;
-lista godzin - dodatkowo wyswietlenie oznaczenia
-na formularzu od godzin widget stateful, podobnie jak lista godzin, ktory zarzadza oznaczeniami
-
 legenda
-    oznaczenie, opis; dany kurs godzinowy moze miec kilka oznaczen po sredniku
+    formularz godzin dodaj/edycja: oznaczenie (legende) - checkbox-y
+        widget stateful, podobnie jak lista godzin, ktory zarzadza oznaczeniami
+    lista godzin - wyswietlenie oznaczenia
 kontakt
 oferta
-wysylanie zdjec
+załaczniki
 
-strona - screen XL , pobieranie zdjec
+strona - pobieranie danych, screen XL , pobieranie zdjec
 cykliczne odswiezanie zawartosci; odswiezanie zawartosci gdy zmieniamy zakladki
 
-kompletny cms - przygotowanie tresci strony - J
-domena pod strone, wrzucenie strony
+gdy kompletny cms -> przygotowanie tresci strony przez admin J
+domena pod strone -> wrzucenie strony
 
-zapisy zrobic juz na spokojnie, gdy strona bedzie wrzucona, jako dodatkowy ficzer
-dodanie zapisu na powiadomienia mailowe
+zapisy na powiadomienia mailowe
+    - zrobic juz na spokojnie, gdy strona bedzie wrzucona, jako dodatkowy ficzer
+    zakladka - adresy email, jakie zapisaly sie na powiadomienia
 
-zakladka - adresy email, jakie zapisaly sie na powiadomienia
+na pozniej:
+zapis na powiadomienie sms?
+
 zakdladka - ile wejsc na strone, i kiedy kto wchodzil
-mozliwosc waria 21 stycznia wlaczanie/wylaczania sekcji, np aktualnosci, oferta , sekcje na stronie glownej
+wlaczanie/wylaczania sekcji, np aktualnosci, oferta , sekcje na stronie glownej
 
-strona - zapisy na powiadomienia
-na koncu aplikacja z powiadomieniami - sprawdzenie, jak przerobic strone na aplikacje - ciekawa rzecz
+logowanie do aplikacji
+api - admin - dostep tylko dla zalogowanego uzytkownika
 
+? na koncu aplikacja z powiadomieniami - sprawdzenie, jak przerobic strone na aplikacje - ciekawa rzecz
 
+lista:
+paginacja - dociaganie elementow - loading ma nie zatrzymywac aplikacji
+wyszukiwanie, filtrowanie
+zmiana kolejnosci
+prztrzymanie - wejscie w opcje - zaznacz wiele: usun
 -----------------------
 
-lista
-    dodawanie elementow
-    edycja elementow
-    usuwanie elementow
-    widok elementu na liscie - potestowac rozne
-    paginacja - dociaganie elementow - loading ma nie zatrzymywac aplikacji
-
-    zeby sie nie odswiezala zawsze gdy przechodze po zakladakch - ma sie zapamietac i wczytac
-    wyszukiwanie
-    filtrowanie
-    zmiana kolejnosci
-    dodatkowe opcje: ukryj/wlacz
-    zaznaczanie wielu elementow
-
-home: news / galeria / slider
-
-//utworzneie tabel: user, session, home_news; dodanie pola type do user
-//przygotowanie api : logowanie, list/get/add/update/delete dla home_news
-//zaczac od przypominania: page scaffold
-aplikacja admin -
-    logowanie,
-    home_news -  list/get/add/update/delete
-apliakacja page - pobieranie danych , cykliczne odswiezanie
-
-
-glowna - slider, sekcje - kolejnosc oraz tresc
-
-wynik:
-aplikacja: admin, page - powinno sie czyms roznic od www
-strona www: admin, page
-
-koniec - wtedy kolejny projekt! :)
+inne projekty?
 
 ? aplikacja dla fryzjera
 ? organizer - dla przeciwczenia pewnych kwestii oraz portfolio; cwiczenie - db - api - frontend; dowolnosc tworzenia (projekty dla kogos ogranicznaja, ale daja $)

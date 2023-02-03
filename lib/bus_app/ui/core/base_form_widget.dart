@@ -123,7 +123,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
       child: SizedBox(
           width: double.infinity,
           height: 50,
-          child: ElevatedButton(onPressed:  isError? null : (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' ))),
+          child: ElevatedButton(onPressed:  isError||isLoading ? null : (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' ))),
     );
   }
 

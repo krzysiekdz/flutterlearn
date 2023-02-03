@@ -8,8 +8,9 @@ part 'admin_cities_form.dart';
 part 'admin_hours_list.dart';
 part 'admin_hours_form.dart';
 part 'admin_hours_form_list.dart';
-part 'dialog_city.dart';
+part 'city_dialog.dart';
 part 'legend_list.dart';
+part 'legend_dialog.dart';
 
 class AdminSchedule extends BaseListWidget {
 
