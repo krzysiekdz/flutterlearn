@@ -14,6 +14,8 @@ class _AdminSM_State extends State<AdminScaffold_SM> {
   int selectedTab = 0;
   final PageStorageBucket _bucket = PageStorageBucket();
 
+  AdminState get adminState => context.findAncestorStateOfType<AdminState>()!;
+
   @override
   void initState() {
     super.initState();
@@ -53,6 +55,7 @@ class _AdminSM_State extends State<AdminScaffold_SM> {
         screenSize: ScreenSize.sm,
         routeUrl: RouteUrl(url: UrlNames.admin, routeData: AdminRoutes.home),//nieistotne
         key: PageStorageKey<int>(selectedTab),
+        adminState: adminState,
     ));
   }
 

@@ -6,8 +6,8 @@ import 'package:flutterlearn/utils/widgets.dart';
 import '../../shared/header.dart';
 
 
-class Contact extends WebPage {
-  Contact({required super.params});
+class ContactPage extends WebPage {
+  ContactPage({required super.params});
 
   @override
   Widget build(BuildContext context) {

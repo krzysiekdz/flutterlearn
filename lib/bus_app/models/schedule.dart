@@ -12,6 +12,14 @@ class Schedule extends AdminModel {
   String get url => this['url'];
   String get url_rev => this['url_rev'];
   int get dir => int.parse( data['c_dir'] ?? '0' );
+  List<ScheduleLegend> get legend {
+    if( data['legend'] is List ) {
+      return (data['legend'] as List).map((e) => ScheduleLegend(data: e)).toList();
+    }
+    return [];
+  }
+  String get mark => this['mark'];
+  List<String> get markAsList => mark.split(';')..removeLast();
 
 
   set sched_id(int v) { data['c_schedule_id'] = '$v'; }
@@ -22,5 +30,7 @@ class Schedule extends AdminModel {
   set cities(String v) { data['cities'] = v; }
   set hours(String v) { data['hours'] = v; }
   set dir(int v) { data['c_dir'] = '$v'; }
+  set mark(String v) { data['mark'] = v; }
+  set legend(dynamic v) { data['legend'] = v; }
 
 }

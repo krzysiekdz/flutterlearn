@@ -1,6 +1,5 @@
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
-import 'package:flutterlearn/bus_app/ui/admin/contact/admin_contact.dart';
 import 'package:flutterlearn/bus_app/ui/admin/offer/admin_offer.dart';
 import 'package:flutterlearn/bus_app/ui/notfound/not_found.dart';
 
@@ -35,7 +34,7 @@ class PageRoutes {
   static final RouteData news =
     RouteData(path: UrlNames.news, builder: (p) => NewsPage(params: p), index: 3, captionShort: 'Aktualności', icon: Icons.newspaper);
   static final RouteData contact =
-    RouteData(path: UrlNames.contact, builder: (p) => Contact(params: p), index: 4, captionShort: 'Kontakt', icon: Icons.contact_phone);
+    RouteData(path: UrlNames.contact, builder: (p) => ContactPage(params: p), index: 4, captionShort: 'Kontakt', icon: Icons.contact_phone);
 
   static final List<RouteData> all = [ home, contact, news, offer, schedule ]
     ..sort( (a, b) => (a.index > b.index) ? 1 : -1 );
@@ -53,7 +52,7 @@ class AdminRoutes {
   static final RouteData news =
     RouteData(path: UrlNames.admin + UrlNames.news, builder: (p) => AdminNews(screenSize: p.screenSize, key: p.key), index: 3, captionShort: 'Aktualności', icon: Icons.newspaper);
   static final RouteData contact =
-    RouteData(path: UrlNames.admin + UrlNames.contact, builder: (p) => AdminContact(screenSize: p.screenSize, key: p.key), index: 4, captionShort: 'Kontakt', icon: Icons.contact_phone);
+    RouteData(path: UrlNames.admin + UrlNames.contact, builder: (p) => AdminContactForm(adminState: p.adminState!, screenSize: p.screenSize, key: p.key), index: 4, captionShort: 'Kontakt', icon: Icons.contact_phone);
 
 
   static final List<RouteData> all = [ home, contact, offer, schedule, news ]

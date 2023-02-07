@@ -49,6 +49,8 @@ class _AdminHoursListState extends BaseListWidgetState<AdminHoursList> {
     String title = '${item.title} ( $hfirst - $hlast ) ';
     if( item.dir == 1 ) { title = '${item.title_rev} ( $hfirst - $hlast )'; }
 
+    if(item.mark.isNotEmpty) { title = '$title [ ${item.markAsList.join()} ]'; }
+
     return Card(
       child: ListTile(
         onTap: () { showEditForm(item.id); },

@@ -13,3 +13,22 @@ void showDialogYesNo(BuildContext context, {Widget? title, Widget? content, Widg
     );
   });
 }
+
+void showInfoDialog(BuildContext context, {Widget? title, Widget? content} ) {
+  showDialog(context: context, builder: (context) =>
+      AlertDialog(
+          contentPadding: const EdgeInsets.all(CustomStyles.padding),
+          title: title,
+          content: content,
+          actions: [
+            SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: OutlinedButton(
+                    onPressed: (){ Navigator.of(context).pop(); },
+                    child: const Text('OK'))
+            ),
+          ]
+      )
+  );
+}

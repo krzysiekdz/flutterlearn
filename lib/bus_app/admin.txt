@@ -1,7 +1,4 @@
-legenda
-    formularz godzin dodaj/edycja: oznaczenie (legende) - checkbox-y
-        widget stateful, podobnie jak lista godzin, ktory zarzadza oznaczeniami
-    lista godzin - wyswietlenie oznaczenia
+
 kontakt
 oferta
 załaczniki

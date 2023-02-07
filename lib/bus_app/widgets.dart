@@ -17,6 +17,7 @@ export 'package:flutterlearn/bus_app/ui/shared/slider.dart';
 export 'package:flutterlearn/bus_app/ui/shared/header.dart';
 export 'package:flutterlearn/bus_app/ui/shared/menu_button.dart';
 export 'package:flutterlearn/bus_app/ui/shared/alert_dialogs.dart';
+export 'package:flutterlearn/bus_app/ui/shared/selector_checkbox_dialog.dart';
 
 //bus app / page
 export 'package:flutterlearn/bus_app/ui/page/page_scaffold/page_scaffold.dart';
@@ -29,6 +30,7 @@ export 'package:flutterlearn/bus_app/ui/admin/admin_scaffold/admin_main.dart';
 export 'package:flutterlearn/bus_app/ui/admin/login/admin_login.dart';
 export 'package:flutterlearn/bus_app/ui/admin/home/admin_home.dart';
 export 'package:flutterlearn/bus_app/ui/admin/news/admin_news.dart';
-export 'package:flutterlearn/bus_app/ui/admin/schedule/admin_schedule.dart';
+export 'package:flutterlearn/bus_app/ui/admin/schedule/main.dart';
+export 'package:flutterlearn/bus_app/ui/admin/contact/admin_contact.dart';
 
 

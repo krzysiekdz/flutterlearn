@@ -28,6 +28,7 @@ class WebPageParams {
   final ScreenSize screenSize;
   final RouteUrl routeUrl;
   final Key? key;
+  final AdminState? adminState;
 
-  const WebPageParams({ required this.screenSize, required this.routeUrl, this.key });
+  const WebPageParams({ required this.screenSize, required this.routeUrl, this.key, this.adminState });
 }
