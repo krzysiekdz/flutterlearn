@@ -12,6 +12,7 @@ export 'package:flutterlearn/bus_app/models/news.dart';
 export 'package:flutterlearn/bus_app/models/schedule.dart';
 export 'package:flutterlearn/bus_app/models/schedule_legend.dart';
 export 'package:flutterlearn/bus_app/models/contact.dart';
+export 'package:flutterlearn/bus_app/models/attachment.dart';
 
 //deprecated
 export 'package:flutterlearn/bus_app/models/car.dart';

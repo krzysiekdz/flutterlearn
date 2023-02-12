@@ -46,7 +46,7 @@ class AdminRoutes {
   static final RouteData home =
     RouteData(path: UrlNames.admin, builder: (p) => AdminHome(screenSize: p.screenSize, key: p.key), index: 0, captionShort: 'Główna', icon: Icons.home);
   static final RouteData offer =
-    RouteData(path: UrlNames.admin + UrlNames.offer, builder: (p) => AdminOffer(screenSize: p.screenSize, key: p.key), index: 2, captionShort: 'Oferta', icon: Icons.bus_alert);
+    RouteData(path: UrlNames.admin + UrlNames.offer, builder: (p) => AdminContactForm(adminState: p.adminState!, screenSize: p.screenSize, key: p.key), index: 2, captionShort: 'Oferta', icon: Icons.bus_alert);
   static final RouteData schedule =
     RouteData(path: UrlNames.admin + UrlNames.schedule, builder: (p)=> AdminSchedule(screenSize: p.screenSize, key: p.key), index: 1, captionShort: 'Rozkład', icon: Icons.schedule);
   static final RouteData news =

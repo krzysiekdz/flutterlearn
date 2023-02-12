@@ -42,10 +42,12 @@ class CustomStyles {
   //kolor ciemny - admin
   static final AppColors adminColorsDark = AppColors(
     primary: CustomColors.primary,
-    text: Colors.white,
+    text: Colors.black,
+    textAlt: Colors.white,
     hint: Colors.grey,
-    surface: CustomColors.dark,
+    surface: Colors.white,
     bar: CustomColors.primary,
+    bottomNav: Colors.white,
   );
 
 //  static final AppColors colorsDark = AppColors(

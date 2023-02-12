@@ -18,6 +18,7 @@ export 'package:flutterlearn/bus_app/ui/shared/header.dart';
 export 'package:flutterlearn/bus_app/ui/shared/menu_button.dart';
 export 'package:flutterlearn/bus_app/ui/shared/alert_dialogs.dart';
 export 'package:flutterlearn/bus_app/ui/shared/selector_checkbox_dialog.dart';
+export 'package:flutterlearn/bus_app/ui/shared/attach.dart';
 
 //bus app / page
 export 'package:flutterlearn/bus_app/ui/page/page_scaffold/page_scaffold.dart';

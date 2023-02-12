@@ -26,7 +26,7 @@ enum _{
 
 
 
-class _AdminHomeState extends State<AdminHome> with StorageBucketWidget {
+class _AdminHomeState extends State<AdminHome>  with AutomaticKeepAliveClientMixin{
 
   var navKey = GlobalKey<NavigatorState>();
 //  late List<Page> _pages;
@@ -35,7 +35,7 @@ class _AdminHomeState extends State<AdminHome> with StorageBucketWidget {
   void initState() {
     super.initState();
     print('AdminHome: initState()');
-    initBucket(context);
+//    initBucket(context);
 //    initPages();
   }
 
@@ -55,6 +55,7 @@ class _AdminHomeState extends State<AdminHome> with StorageBucketWidget {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Navigator(
 //      onPop: _onPopPage,
 //      onPush: _onPushPage,
@@ -94,6 +95,9 @@ class _AdminHomeState extends State<AdminHome> with StorageBucketWidget {
 
     return slideRoute( page );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
 //  void _onPushPage(String routeName) {
 //    print('push page $routeName');

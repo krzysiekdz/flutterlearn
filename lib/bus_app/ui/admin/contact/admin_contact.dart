@@ -111,9 +111,9 @@ class _AdminContactFormState extends BaseFormApiWidgetState<AdminContactForm, Co
   @override
   List<Tab> createTabs() {
     return  [
-      const Tab(child: Text('Firma'),),
-      const Tab(child: Text('Adres'),),
-      const Tab(child: Text('Kontakt'),),
+      const Tab(key: PageStorageKey('Firma'), child: Text('Firma'),),
+      const Tab(key: PageStorageKey('Adres'), child: Text('Adres'),),
+      const Tab(key: PageStorageKey('Kontakt'), child: Text('Kontakt'),),
     ];
   }
 

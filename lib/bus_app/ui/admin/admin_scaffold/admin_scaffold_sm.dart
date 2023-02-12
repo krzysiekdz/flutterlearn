@@ -12,7 +12,9 @@ class AdminScaffold_SM extends StatefulWidget {
 class _AdminSM_State extends State<AdminScaffold_SM> {
 
   int selectedTab = 0;
-  final PageStorageBucket _bucket = PageStorageBucket();
+//  final PageStorageBucket _bucket = PageStorageBucket();
+
+  final PageController pageController = PageController();
 
   AdminState get adminState => context.findAncestorStateOfType<AdminState>()!;
 
@@ -25,6 +27,7 @@ class _AdminSM_State extends State<AdminScaffold_SM> {
   void setTab(int i) {
     setState(() {
       selectedTab = i;
+      if(i != pageController.page)  { pageController.jumpToPage(i); }
     });
   }
 
@@ -38,23 +41,33 @@ class _AdminSM_State extends State<AdminScaffold_SM> {
     );
   }
 
+//  Widget _buildBody() {
+//    return SafeArea(
+//        child: PageStorage(
+//            bucket: _bucket,
+//            child: getViewForTab()
+//        )
+//    );
+//  }
+
   Widget _buildBody() {
+    int len = AdminRoutes.all.length;
     return SafeArea(
-        child: PageStorage(
-            bucket: _bucket,
-            child: getViewForTab()
+        child: PageView(
+          controller: pageController,
+          physics: const NeverScrollableScrollPhysics(),
+//          onPageChanged: (i){ setTab(i); },
+          children: [ for(int i = 0; i < len; i++) getViewForTab(i),  ]
         )
     );
   }
 
-  //zaczac od - zapisywanie stanu i odczytwanie poprzez read/write w konkretnych widgetach
-  //sprawdzci czy zapamietuje sie scroll
-  Widget getViewForTab() {
-    RouteData newRoute = getRouteDataByIndex(selectedTab, AdminRoutes.all);
+  Widget getViewForTab(int i) {
+    RouteData newRoute = getRouteDataByIndex(i, AdminRoutes.all);
     return newRoute.builder(WebPageParams(
         screenSize: ScreenSize.sm,
         routeUrl: RouteUrl(url: UrlNames.admin, routeData: AdminRoutes.home),//nieistotne
-        key: PageStorageKey<int>(selectedTab),
+//        key: PageStorageKey<int>(selectedTab),
         adminState: adminState,
     ));
   }

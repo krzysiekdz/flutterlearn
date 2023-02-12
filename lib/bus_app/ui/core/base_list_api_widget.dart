@@ -9,7 +9,12 @@ abstract class BaseListWidget extends StatefulWidget {
     this.emptyLabel = 'Brak elementów'});
 }
 
-abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
+abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> with AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => true;
+
+  bool get selfBuild => false;
 
   bool isLoading = true;
   bool isError = false;
@@ -67,6 +72,9 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T>  {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    if( selfBuild ) return Container();
+
     return Scaffold(
       appBar: widget.title != null ?  AppBar(
         title: Text(widget.title!) ,

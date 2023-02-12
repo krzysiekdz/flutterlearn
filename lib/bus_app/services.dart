@@ -19,6 +19,7 @@ export 'package:flutterlearn/bus_app/services/admin_modules/schedule_service.dar
 export 'package:flutterlearn/bus_app/services/admin_modules/schedule_hours_service.dart';
 export 'package:flutterlearn/bus_app/services/admin_modules/schedule_legend_service.dart';
 export 'package:flutterlearn/bus_app/services/admin_modules/contact_service.dart';
+export 'package:flutterlearn/bus_app/services/admin_modules/attachments_service.dart';
 
 // deprecated
 export 'package:flutterlearn/bus_app/services/car_service.dart';

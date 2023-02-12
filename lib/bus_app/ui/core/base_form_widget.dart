@@ -18,7 +18,10 @@ abstract class BaseFormWidget extends StatefulWidget {
   BaseFormWidget({super.key, required this.formArgs, this.addTitle = 'Nowy', this.editTitle = 'Edycja'});
 }
 
-abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
+abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => true;
 
   bool isLoading = false;
   bool isError = false;
@@ -31,47 +34,96 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
   bool get isEditForm => widget.formArgs.type == FormType.edit;
   int get id => widget.formArgs.data;
 
+  late TabController _tabController;
+
 
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: tabCount, vsync: this);
   }
 
   @override
   void dispose() {
+    _tabController.dispose();
     super.dispose();
   }
+
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return WillPopScope(
+//      onWillPop: _canExitForm,
+//      child: DefaultTabController(
+//        length: tabCount,
+//        initialIndex: tabBarIndex, //odpowiada za wybrany Tab w TabBar, nie za TabBarView
+//        child: Scaffold(
+//          appBar: AppBar(
+//            title: Text( isAddForm? widget.addTitle : widget.editTitle ),
+//            bottom: buildTabBar(),
+//          ),
+//          body: tabCount < 2 ? wrapForm( buildForm(), wrapInScrollView: wrapInScrollView ) : _buildTabBarView(),
+//          bottomNavigationBar: buildBottomNav(),
+//        ),
+//      ),
+//    );
+//  }
 
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return WillPopScope(
       onWillPop: _canExitForm,
-      child: DefaultTabController(
-        length: tabCount,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text( isAddForm? widget.addTitle : widget.editTitle ),
-            bottom: buildTabBar(),
-          ),
-          body: tabCount < 2 ? wrapForm( buildForm(), wrapInScrollView: wrapInScrollView ) : _buildTabBarView(),
-          bottomNavigationBar: buildBottomNav(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text( isAddForm? widget.addTitle : widget.editTitle ),
+          bottom: buildTabBar(),
         ),
+        body: tabCount < 2 ? wrapForm( buildForm(), wrapInScrollView: wrapInScrollView ) : _buildTabBarView(),
+        bottomNavigationBar: buildBottomNav(),
       ),
     );
   }
 
   TabBar? buildTabBar() {
-    if(tabCount <= 1) return null;
+    if(tabCount <= 1) { return null; }
     else {
       return TabBar(
+          controller: _tabController,
           isScrollable: true,
-          tabs: [
-            ...createTabs()
-          ]
+//          onTap: (i) { _saveTabBar(i); },
+          tabs: createTabs(),
       );
     }
   }
+
+  /*
+  void _saveTabBar(int i) {
+    final bucket = PageStorage.of(context);
+    if(bucket == null) return;
+
+//    bucket.writeState(context, i, identifier: uniq('TabBar'));
+    bucket.writeState(context, i.toDouble() );
+  }*/
+
+  /*
+  int get tabBarIndex {
+    final bucket = PageStorage.of(context);
+    if(bucket == null) return 0;
+
+//    int? i = bucket.readState(context, identifier: uniq('TabBar'));
+    double? i = bucket.readState(context);
+    if(i == null) return 0;
+    return i.toInt();
+  }*/
+
+  /*
+  String uniq(String id) {
+    PageStorageKey<int>? key = widget.key as PageStorageKey<int>?;
+    if(key == null) return id;
+    return '${key.value}::$id';
+  }*/
 
   List<Tab> createTabs() { return []; }
 
@@ -110,7 +162,10 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T>  {
   }
 
   Widget _buildTabBarView() {
-    return TabBarView(children: buildForms());
+    return TabBarView(
+        controller: _tabController,
+        children: buildForms()
+    );
   }
 
   List<Widget> buildForms() { return []; }

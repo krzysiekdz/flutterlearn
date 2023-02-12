@@ -115,6 +115,9 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
           ),
         ),
 
+        gap(h:24),
+        Attachments(adminState: adminState, table: 't_news', itemId: item.id),
+
       ],
     );
   }
