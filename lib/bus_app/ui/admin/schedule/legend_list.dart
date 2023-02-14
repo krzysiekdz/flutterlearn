@@ -34,7 +34,7 @@ class _AdminLegendListState extends BaseListWidgetState<AdminLegendList> {
   }
 
   @override
-  Widget buildListItem(BuildContext context, int i) {
+  Widget buildItem(BuildContext context, int i) {
     ScheduleLegend item = data?[i] as ScheduleLegend;
 
     return Card(

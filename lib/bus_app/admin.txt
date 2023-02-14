@@ -1,5 +1,8 @@
+dodawanie załącznika ! :)
+
 załaczniki
 oferta
+aktualnosci - mozliwosc umieszcenia prostego htmla
 
 artykuly (t_news) - mozliwosc podania html oraz osadzenia załączników (takze linków - po prostu html)
 strona - pobieranie danych, screen XL , pobieranie zdjec

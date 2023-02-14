@@ -1,5 +1,8 @@
-import 'package:flutterlearn/bus_app/bus_app.dart';
+import 'dart:html';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 
 class Attachments extends BaseListWidget {
 
@@ -26,9 +29,18 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
   @override
   AdminModuleService createService() => AttachmentsService.fromState(adminState);
 
+  List<Image> images = [];
+
   @override
-  void showAddForm() {
+  void showAddForm() async {
 //    Navigator.of(context).push( slideRoute(AdminScheduleForm(formApiArgs: addFormArgs  ))  );
+    File? img = await ImagePickerWeb.getImageAsFile();
+    if(img != null) {
+//      print('got image');
+//      setState(() {
+//        images.add(img);
+//      });
+    }
   }
 
   @override
@@ -45,46 +57,69 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(CustomStyles.padding),
-        child: _buildBody(),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(widget.title!,
+                  style: const TextStyle(fontSize: 18),
+                ),
+                TextButton.icon(onPressed: (){ showAddForm(); }, icon: const Icon(Icons.add), label: const Text(''), ),
+              ],
+            ),
+
+            gap(),
+
+            buildBody(
+              child: SizedBox(
+                width: double.infinity,
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: 12,
+                  runSpacing: 12,
+                  children: [
+                    for( int i = 0; i < (data?.length ?? 0); i++ ) buildItem(context, i),
+                    ...(images.map((e) =>  SizedBox(width: 160, height: 160, child: e,)).toList()),
+                  ],
+                ),
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildBody() {
-    Widget page;
-
-    if(isLoading) {
-      page = const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    else if (data?.isEmpty ?? false) {
-      page = Center(
-        child: Text(widget.emptyLabel),
-      );
-    }
-    else {
-      page = Column(
-        children: [
-          for( int i = 0; i < (data?.length ?? 0); i++ ) buildListItem(context, i),
-        ],
-      );
-    }
-
-    return page;
-
-  }
-
   @override
-  Widget buildListItem(BuildContext context, int i) {
+  Widget buildItem(BuildContext context, int i) {
     Attachment item = data?[i] as Attachment;
-    return Card(
-      child: ListTile(
-        onTap: () { showEditForm(item.id); },
-        contentPadding: const EdgeInsets.all(CustomStyles.padding),
-        title: ListTitleAndDelete(item.name, actionDelete: (){ canDeleteItem(item.id); }),
-        subtitle: Text(item.url),
-        leading: Image.network(item.url),
+    return SizedBox(
+      width: 160,
+      height: 248,
+      child: Card(
+        child: ListTile(
+          onTap: () { showEditForm(item.id); },
+          contentPadding: const EdgeInsets.all(4),
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(height: 20, child: Text('${item.name}.${item.ext}', style: const TextStyle(fontSize: 12),)),
+
+              SizedBox(
+                width: double.infinity,
+                height: 160,
+                child: CachedNetworkImage(
+                    imageUrl: item.url,
+                    placeholder: (context, url) =>  const SizedBox( width: 50, child: CircularProgressIndicator())
+                ),
+              ),
+
+              SizedBox( height: 40, child: TextButton.icon(onPressed: (){ canDeleteItem(item.id); }, icon: const Icon(Icons.delete_outline), label: const Text(''))),
+            ],
+          ),
+        ),
       ),
     );
   }

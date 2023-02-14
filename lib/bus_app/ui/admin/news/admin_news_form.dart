@@ -69,6 +69,10 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
 
         gap(h:24),
 
+        Attachments(adminState: adminState, table: 't_news', itemId: item.id),
+
+        gap(h:24),
+
         TextField(
           controller: title,
           keyboardType: TextInputType.text,
@@ -116,7 +120,7 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
         ),
 
         gap(h:24),
-        Attachments(adminState: adminState, table: 't_news', itemId: item.id),
+//        Attachments(adminState: adminState, table: 't_news', itemId: item.id),
 
       ],
     );

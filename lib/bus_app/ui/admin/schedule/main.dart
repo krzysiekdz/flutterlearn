@@ -59,7 +59,7 @@ class _AdminScheduleState extends BaseListWidgetState<AdminSchedule> {
   ];
 
   @override
-  Widget buildListItem(BuildContext context, int i) {
+  Widget buildItem(BuildContext context, int i) {
     Schedule item = data?[i] as Schedule;
     List<String> cities = item.cities.split(';')..removeLast();
     return Card(

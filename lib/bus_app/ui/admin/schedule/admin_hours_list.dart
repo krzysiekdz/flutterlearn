@@ -38,7 +38,7 @@ class _AdminHoursListState extends BaseListWidgetState<AdminHoursList> {
   Map<String, String> getListParams() => { 'sid' : '${widget.id}' };
 
   @override
-  Widget buildListItem(BuildContext context, int i) {
+  Widget buildItem(BuildContext context, int i) {
     Schedule item = data?[i] as Schedule;
 
     List<String> hours = item.hours.split(';')..removeLast();

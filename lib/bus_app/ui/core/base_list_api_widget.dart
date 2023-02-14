@@ -21,7 +21,7 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
 
   late AdminModuleService service;
   late Repository repo;
-  late List? data;
+  List? data = [];
 
   @override
   void initState() {
@@ -73,14 +73,21 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    if( selfBuild ) return Container();
+    if( selfBuild ) return Container();//jesli w klasie dziedziczacej implementujemy wlasny build, ale potrzebujemy wywolac super.build
 
     return Scaffold(
       appBar: widget.title != null ?  AppBar(
         title: Text(widget.title!) ,
         actions: actions,
       ) : null,
-      body: _buildBody(),
+      body: SafeArea(
+        child: buildBody(
+          child: ListView.builder(
+            itemCount: data?.length,
+            itemBuilder: buildItem,
+          )
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         heroTag: widget.heroTag,
         onPressed: (){  showAddForm(); },
@@ -113,9 +120,8 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
     loadData();
   }
 
-  Widget _buildBody() {
+  Widget buildBody({required Widget child}) {
     Widget page;
-
     if(isLoading) {
       page = const Center(
         child: CircularProgressIndicator(),
@@ -127,16 +133,13 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
       );
     }
     else {
-      page = ListView.builder(
-        itemCount: data?.length,
-        itemBuilder: buildListItem,
-      );
+      page = child;
     }
 
     return page;
   }
 
-  Widget buildListItem(BuildContext context, int i);
+  Widget buildItem(BuildContext context, int i);
 
 }
 

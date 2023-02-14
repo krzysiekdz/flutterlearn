@@ -32,7 +32,7 @@ class _AdminNewsState extends BaseListWidgetState<AdminNews> {
   }
 
   @override
-  Widget buildListItem(BuildContext context, int i) {
+  Widget buildItem(BuildContext context, int i) {
     News item = data?[i] as News;
     return Card(
       child: ListTile(

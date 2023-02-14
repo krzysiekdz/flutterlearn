@@ -64,5 +64,10 @@ class ApiService {
   }
 
 
+  void sendFile() async {
+    Uri uri = Uri.https(host, '$mode/attachments/upload');
+    http.MultipartRequest('POST', uri);
+  }
+
 
 }
