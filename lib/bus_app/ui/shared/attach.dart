@@ -1,8 +1,9 @@
-import 'dart:html';
+
+import 'dart:convert';
+import 'dart:html' as html;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutterlearn/bus_app/bus_app.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 
 class Attachments extends BaseListWidget {
 
@@ -20,6 +21,8 @@ class Attachments extends BaseListWidget {
 
 class _AttachmentsState extends BaseListWidgetState<Attachments> {
 
+  String tmpName = '';
+
   @override
   AdminState get adminState => widget.adminState;
 
@@ -29,18 +32,61 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
   @override
   AdminModuleService createService() => AttachmentsService.fromState(adminState);
 
-  List<Image> images = [];
 
   @override
-  void showAddForm() async {
-//    Navigator.of(context).push( slideRoute(AdminScheduleForm(formApiArgs: addFormArgs  ))  );
-    File? img = await ImagePickerWeb.getImageAsFile();
-    if(img != null) {
-//      print('got image');
-//      setState(() {
-//        images.add(img);
-//      });
+  void showAddForm() {
+      showAddHtml();
+  }
+
+  //wybieranie zdjecia - wersja na przegladarke
+  void showAddHtml() {
+    String inputId = 'attach';
+    var el = html.querySelector('#$inputId');
+    if(el != null) {
+      el.remove();
     }
+
+    var input = html.window.document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('id', inputId);
+    html.document.body?.append(input);
+    input.onChange.listen((e) {
+      var el = e.currentTarget as html.InputElement;
+      html.File? f = el.files?[0];
+      if(f == null) return;
+      _getHtmlFileContent(f, (fileData) async {
+          fileData.fileName = f.name;
+          setLoading(true);
+          JsonResponse res = await service.apiService.sendFile(fileData);
+          setLoading(false);
+          if(!mounted) return;
+          if(res.isSuccess()) {
+            tmpName = res.json['tmp_name'];
+            print('tmp name = $tmpName');
+            //kolejne zapytanie do api aby zapisac zalacznik
+            //dodanie zdjecia do listy data[] - wyswietlenie widgetu - albo po prostu odswiezenie? - na latwizne
+            //czyli najpierw zapisanie a potem odswiezenie
+            //dodac set loading pzy wczytywaniu get html file content
+          } else {
+            showInfoDialog(context, title: const Text('Nie udało się'));
+          }
+      });
+    });
+    input.click();
+  }
+
+  //html: pobranie zawartosci pliku jako bajty
+  void _getHtmlFileContent(html.File blob, Function(FileData fileData) callback) {
+    html.FileReader reader = html.FileReader();
+    reader.readAsDataUrl(blob);
+    reader.onLoadEnd.listen((e) {
+      String res = reader.result.toString();//np: "data:application/pdf;base64,JVBERi0xLjQN..."
+      FileData fileData = FileData(
+          mimeType: res.split(';')?[0].split(':')?[1] ?? 'text/plain',
+          bytes: const Base64Decoder().convert(res.split(',')?[1] ?? ''),
+      );
+      callback(fileData);
+    });
   }
 
   @override
@@ -65,7 +111,11 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
                 Text(widget.title!,
                   style: const TextStyle(fontSize: 18),
                 ),
-                TextButton.icon(onPressed: (){ showAddForm(); }, icon: const Icon(Icons.add), label: const Text(''), ),
+                TextButton.icon(
+                  onPressed: isLoading? null: (){ showAddForm(); },
+                  icon: const Icon(Icons.add),
+                  label: const Text(''),
+                ),
               ],
             ),
 
@@ -80,7 +130,6 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
                   runSpacing: 12,
                   children: [
                     for( int i = 0; i < (data?.length ?? 0); i++ ) buildItem(context, i),
-                    ...(images.map((e) =>  SizedBox(width: 160, height: 160, child: e,)).toList()),
                   ],
                 ),
               ),
@@ -112,7 +161,10 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
                 height: 160,
                 child: CachedNetworkImage(
                     imageUrl: item.url,
-                    placeholder: (context, url) =>  const SizedBox( width: 50, child: CircularProgressIndicator())
+                    placeholder: (context, url) =>    Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+                        child: const CircularProgressIndicator()
+                    ),
                 ),
               ),
 

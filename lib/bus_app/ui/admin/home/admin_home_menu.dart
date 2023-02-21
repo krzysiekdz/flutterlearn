@@ -32,7 +32,6 @@ class _AdminHomeMenuState extends State<AdminHomeMenu> {
 
   @override
   Widget build(BuildContext context) {
-    ListView list;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(CustomStyles.padding),
       child: SizedBox(

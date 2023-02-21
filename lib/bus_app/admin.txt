@@ -1,5 +1,18 @@
 dodawanie załącznika ! :)
 
+result = filesArray
+(
+    [att] => Array
+        (
+            [name] => aku.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phph8AgC8
+            [error] => 0
+            [size] => 4051
+        )
+
+)
+
 załaczniki
 oferta
 aktualnosci - mozliwosc umieszcenia prostego htmla
