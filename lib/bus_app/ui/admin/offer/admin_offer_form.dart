@@ -1,24 +1,47 @@
-part of bus_admin_news;
+part of bus_admin_offer;
 
 
-class AdminNewsForm extends BaseFormApiWidget {
-  AdminNewsForm({super.key, required super.formApiArgs}) :
-    super(addTitle: 'Nowy artykuł', editTitle: 'Edycja artykułu');
+class AdminOfferForm extends BaseFormApiWidget {
+  AdminOfferForm({super.key, required super.formApiArgs}) :
+    super(addTitle: 'Nowa oferta', editTitle: 'Edycja oferty');
 
   @override
-  State<StatefulWidget> createState() => _AdminNewsFormState();
+  State<StatefulWidget> createState() => _AdminOfferFormState();
 }
 
-class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
+class _AdminOfferFormState extends BaseFormApiWidgetState<AdminOfferForm, Offer>  {
+
+  @override
+  Offer createItem(Map<String, String> m) => Offer(data: m);
+
+  @override
+  AdminModuleService createService() => OfferService.fromState(adminState);
+
+  @override
+  void initAddModel([Offer? obj]) {
+    item.visible = true;
+    item.order = 0;
+  }
+
+  @override
+  void initEditModel(Offer obj) {
+    item.title = obj.title;
+    item.subtitle = obj.subtitle;
+    item.descr = obj.descr;
+    item.order = obj.order;
+    item.visible = obj.visible;
+  }
 
   final TextEditingController title = TextEditingController();
-  final TextEditingController content = TextEditingController();
+  final TextEditingController subtitle = TextEditingController();
+  final TextEditingController descr = TextEditingController();
   final TextEditingController order = TextEditingController();
 
   @override
   void initFormFields() {
     title.addListener(() { item.title = title.text; });
-    content.addListener(() { item.content = content.text; });
+    subtitle.addListener(() { item.subtitle = subtitle.text; });
+    descr.addListener(() { item.descr = descr.text; });
     order.addListener(() {
       try {item.order = int.parse(order.text);}
       catch (e) { item.order = 0; }
@@ -28,35 +51,16 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
   @override
   void disposeFormFields() {
     title.dispose();
-    content.dispose();
+    subtitle.dispose();
+    descr.dispose();
     order.dispose();
   }
 
   @override
-  News createItem(Map<String, String> m) => News(data: m);
-
-  @override
-  AdminModuleService createService() => NewsService.fromState(adminState);
-
-  @override
-  void initAddModel([News? obj]) {
-    item.visible = true;
-    item.order = 0;
-  }
-
-  @override
-  void initEditModel(News obj) {
-    item.title = obj.title;
-    item.content = obj.content;
-    item.order = obj.order;
-    item.visible = obj.visible;
-  }
-
-
-  @override
   void copyModelToFields() {
     title.text = item.title ;
-    content.text = item.content ;
+    subtitle.text = item.subtitle ;
+    descr.text = item.descr ;
     order.text = '${item.order}';
   }
 
@@ -66,7 +70,6 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
 
         gap(h:24),
 
@@ -78,20 +81,28 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
               label: Text('Tytuł')
           ),
         ),
-
         gap(h:24),
 
         TextField(
-          controller: content,
+          controller: subtitle,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+              label: Text('Podtytuł')
+          ),
+        ),
+        gap(h:24),
+
+        TextField(
+          controller: descr,
           minLines: 10,
           maxLines: 100,
           keyboardType: TextInputType.multiline,
           textInputAction: TextInputAction.next,
           decoration: const InputDecoration(
-              label: Text('Treść')
+              label: Text('Opis')
           ),
         ),
-
         gap(h:24),
 
         const Text('Widoczność'),
@@ -101,7 +112,6 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
               item.visible = value;
             });  }
         ),
-
         gap(h:24),
 
         SizedBox(
@@ -115,9 +125,9 @@ class _AdminNewsFormState extends BaseFormApiWidgetState<AdminNewsForm, News>  {
             ),
           ),
         ),
-
         gap(h:24),
-        if(isEditForm) Attachments(adminState: adminState, table: 't_news', itemId: item.id),
+
+        if(isEditForm) Attachments(adminState: adminState, table: 't_offer', itemId: item.id),
 
       ],
     );

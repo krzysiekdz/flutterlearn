@@ -5,8 +5,8 @@ import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
 import 'package:flutterlearn/bus_app/ui/page/offer/offer_sm.dart';
 
 
-class Offer extends WebPage {
-  Offer({required super.params});
+class OfferPage extends WebPage {
+  OfferPage({required super.params});
 
   @override
   Widget build(BuildContext context) => _Offer(params: params!);

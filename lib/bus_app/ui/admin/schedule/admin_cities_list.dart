@@ -60,7 +60,7 @@ class _AdminCitiesListState extends State<AdminCitiesList> with AutomaticKeepAli
         onTap: () { actionEdit(i); },
         contentPadding: const EdgeInsets.all(CustomStyles.padding),
         leading: CircleAvatar( backgroundColor: Colors.green, foregroundColor: Colors.white, child: Text('${i+1}')),
-        title: ListTitleAndDelete(item, actionDelete: () { canDeleteItem(i); })
+        title: listTitleAndDelete(item, actionDelete: () { canDeleteItem(i); })
       ),
     );
   }

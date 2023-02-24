@@ -33,5 +33,6 @@ export 'package:flutterlearn/bus_app/ui/admin/home/admin_home.dart';
 export 'package:flutterlearn/bus_app/ui/admin/news/admin_news.dart';
 export 'package:flutterlearn/bus_app/ui/admin/schedule/main.dart';
 export 'package:flutterlearn/bus_app/ui/admin/contact/admin_contact.dart';
+export 'package:flutterlearn/bus_app/ui/admin/offer/admin_offer.dart';
 
 

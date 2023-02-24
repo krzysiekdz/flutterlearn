@@ -1,31 +1,23 @@
-dodawanie załącznika ! :)
+przycisk odswiez
+jesli zmieniono zalaczniki - prycisk odswiez nieaktywny a lista sie odswieza - dac opcje, czy po modyfikacji zalacznikow lista
+ma sie odswiezac - wtedy na cofnieciu lista powinna sie odswiezac
+mechanizm w formularzu - jesli zmieniono jakies pola to dopiero wtedy przycisk zapisz mozna wcisnac
+    oraz pojawia sie komunikat "czy na pewno?"
 
-result = filesArray
-(
-    [att] => Array
-        (
-            [name] => aku.jpg
-            [type] => image/jpeg
-            [tmp_name] => /tmp/phph8AgC8
-            [error] => 0
-            [size] => 4051
-        )
+usuwanie artykulu/oferty - musi usuwac zalaczniki
 
-)
-
-załaczniki
-oferta
-aktualnosci - mozliwosc umieszcenia prostego htmla
-
-artykuly (t_news) - mozliwosc podania html oraz osadzenia załączników (takze linków - po prostu html)
-strona - pobieranie danych, screen XL , pobieranie zdjec
+strona -
+    pobieranie danych,
+    screen XL ,
 cykliczne odswiezanie zawartosci; odswiezanie zawartosci gdy zmieniamy zakladki
+?artykuly (t_news) - mozliwosc podania html oraz osadzenia załączników (takze linków - po prostu html)
+aktualnosci - mozliwosc umieszcenia prostego htmla
 
 gdy kompletny cms -> przygotowanie tresci strony przez admin J
 domena pod strone -> wrzucenie strony
 
+na potem:
 zapisy na powiadomienia mailowe
-    - zrobic juz na spokojnie, gdy strona bedzie wrzucona, jako dodatkowy ficzer
     zakladka - adresy email, jakie zapisaly sie na powiadomienia
 
 na pozniej:
@@ -40,6 +32,7 @@ api - admin - dostep tylko dla zalogowanego uzytkownika
 ? na koncu aplikacja z powiadomieniami - sprawdzenie, jak przerobic strone na aplikacje - ciekawa rzecz
 
 lista:
+lista odswiezanie poprzez gest
 paginacja - dociaganie elementow - loading ma nie zatrzymywac aplikacji
 wyszukiwanie, filtrowanie
 zmiana kolejnosci
@@ -49,12 +42,8 @@ prztrzymanie - wejscie w opcje - zaznacz wiele: usun
 inne projekty?
 
 ? aplikacja dla fryzjera
-? organizer - dla przeciwczenia pewnych kwestii oraz portfolio; cwiczenie - db - api - frontend; dowolnosc tworzenia (projekty dla kogos ogranicznaja, ale daja $)
-? mpfirma / b2b -
-? znajdowanie projektow do zrobienia w internecie
-? aplikacja do liczenia punktow vabanque
+? organizer -
+? osp strazak
 
 aplikacja do powiadomien - zapisanie sie na dany kanał powiadomien
 mozna by tutaj tez zamieszczac swoje rozklady (to dla przewoznikow)
-
-tworzenie swojego portfolio na bazie zrobionych projektow

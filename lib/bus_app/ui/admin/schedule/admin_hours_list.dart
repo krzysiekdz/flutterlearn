@@ -55,7 +55,7 @@ class _AdminHoursListState extends BaseListWidgetState<AdminHoursList> {
       child: ListTile(
         onTap: () { showEditForm(item.id); },
         contentPadding: const EdgeInsets.all(CustomStyles.padding),
-        title: ListTitleAndDelete(title, color: item.dir == 1 ? Colors.blue : null,  actionDelete: (){ canDeleteItem(item.id); }),
+        title: listTitleAndDelete(title, color: item.dir == 1 ? Colors.blue : null,  actionDelete: (){ canDeleteItem(item.id); }),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

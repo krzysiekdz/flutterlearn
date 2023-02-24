@@ -60,7 +60,7 @@ Widget lineThin({double margin = 12, double width = 100}) {
 }
 
 
-Widget ListTitleAndDelete(String title, { required VoidCallback actionDelete, Color? color }) {
+Widget listTitleAndDelete(String title, { required VoidCallback actionDelete, Color? color }) {
   return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -101,6 +101,15 @@ Widget dialogActions(BuildContext context, {VoidCallback? btnOkAction, VoidCallb
       ),
 
     ],
+  );
+}
+
+Widget chipVisible(bool visible) {
+  return Chip(
+    label: Text( visible ? 'Widoczny' : 'Niewidoczny',
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    ),
+    backgroundColor: visible ?  Colors.green : Colors.grey,
   );
 }
 

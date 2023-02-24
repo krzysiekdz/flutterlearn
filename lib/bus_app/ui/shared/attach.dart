@@ -1,7 +1,6 @@
 
 import 'dart:convert';
 import 'dart:html' as html;
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutterlearn/bus_app/bus_app.dart';
 
@@ -20,8 +19,6 @@ class Attachments extends BaseListWidget {
 }
 
 class _AttachmentsState extends BaseListWidgetState<Attachments> {
-
-  String tmpName = '';
 
   @override
   AdminState get adminState => widget.adminState;
@@ -56,19 +53,15 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
       if(f == null) return;
       _getHtmlFileContent(f, (fileData) async {
           fileData.fileName = f.name;
-          setLoading(true);
+          setLoading(true, loadingText: 'Wysyłanie pliku...');
           JsonResponse res = await service.apiService.sendFile(fileData);
-          setLoading(false);
+
           if(!mounted) return;
           if(res.isSuccess()) {
-            tmpName = res.json['tmp_name'];
-            print('tmp name = $tmpName');
-            //kolejne zapytanie do api aby zapisac zalacznik
-            //dodanie zdjecia do listy data[] - wyswietlenie widgetu - albo po prostu odswiezenie? - na latwizne
-            //czyli najpierw zapisanie a potem odswiezenie
-            //dodac set loading pzy wczytywaniu get html file content
+            saveAttachment(res.json['tmp_name'], f.name);
           } else {
-            showInfoDialog(context, title: const Text('Nie udało się'));
+            setLoading(false);
+            showInfoDialog(context, title:  Text(res.msg));
           }
       });
     });
@@ -79,6 +72,7 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
   void _getHtmlFileContent(html.File blob, Function(FileData fileData) callback) {
     html.FileReader reader = html.FileReader();
     reader.readAsDataUrl(blob);
+    setLoading(true, loadingText: 'Wczytywanie pliku...');
     reader.onLoadEnd.listen((e) {
       String res = reader.result.toString();//np: "data:application/pdf;base64,JVBERi0xLjQN..."
       FileData fileData = FileData(
@@ -89,9 +83,34 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
     });
   }
 
+  //zapisanie załącznika, gdy plik został przeslany na serwer - mamy identyfikator pliku
+  Future<void> saveAttachment(String tmpName, String fname) async {
+    setLoading(true, loadingText: 'Zapisywanie pliku...');
+    Attachment item = Attachment(data: <String, String>{});
+    item.table = widget.table;
+    item.itemId = widget.itemId;
+    item.name = fname;
+    item['tmp_name'] = tmpName;
+    JsonResponse res = await repo.insert(data: item.data as Map<String, String>);
+
+    if(!mounted) return;
+    setLoading(false);
+    if(res.isSuccess()) {
+      loadData();
+    }
+    else {
+      showInfoDialog(context, title: Text(res.msg));
+    }
+  }
+
   @override
   void showEditForm(int id) {
-//    Navigator.of(context).push( slideRoute( AdminScheduleForm(formApiArgs: editFormArgs(id) ) ) );
+    showDialog(
+        context: context,
+        builder: (context) => AttachmentsUpdateDialog(
+            formApiArgs: FormApiArgs( type: FormType.edit, data: id, adminState: adminState, refreshParent: loadData )
+        ),
+    );
   }
 
   @override
@@ -175,4 +194,119 @@ class _AttachmentsState extends BaseListWidgetState<Attachments> {
       ),
     );
   }
+}
+
+
+/*
+ AttachmentsUpdateDialog
+*/
+
+
+class AttachmentsUpdateDialog extends BaseFormApiDialogWidget {
+
+  AttachmentsUpdateDialog({  required super.formApiArgs }) :
+    super( editTitle: 'Edycja załącznika' );
+
+  @override
+  State<StatefulWidget> createState() => _AttachmentsUpdateDialogState();
+}
+
+class _AttachmentsUpdateDialogState extends BaseFormApiDialogWidgetState<AttachmentsUpdateDialog, Attachment> {
+
+  String url = '';
+
+  @override
+  Attachment createItem(Map<String, String> m) => Attachment(data: m);
+
+  @override
+  AdminModuleService createService() => AttachmentsService.fromState(adminState);
+
+  final TextEditingController name = TextEditingController();
+  final TextEditingController order = TextEditingController();
+
+  @override
+  void initAddModel([Attachment? obj]) {} //nie uzywane
+
+  @override
+  void initEditModel(Attachment obj) {
+    item.name = obj.name;
+    item.order = obj.order;
+    item.visible = obj.visible;
+    url = obj.url;
+  }
+
+  @override
+  void copyModelToFields() {
+    name.text = item.name;
+    order.text = '${item.order}';
+  }
+
+  @override
+  void initFormFields() {
+    name.addListener(() { item.name = name.text; });
+    order.addListener(() {
+      try {item.order = int.parse(order.text);}
+      catch (e) { item.order = 0; }
+    });
+  }
+
+  @override
+  void disposeFormFields() {
+    name.dispose();
+    order.dispose();
+  }
+
+
+  @override
+  List<Widget> buildFormFields() {
+    return  [
+
+      SizedBox(
+        width: double.infinity,
+        height: 120,
+        child: CachedNetworkImage(
+          imageUrl: url,
+          placeholder: (context, url) =>    Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+              child: const CircularProgressIndicator()
+          ),
+        ),
+      ),
+
+      gap(),
+      TextField(
+        controller: name,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
+        decoration: const InputDecoration(
+            label: Text('Nazwa')
+        ),
+      ),
+      gap(),
+
+      const Text('Widoczność'),
+      Switch(
+          value: item.visible,
+          onChanged: (value){ setState(() {
+            item.visible = value;
+          });  }
+      ),
+      gap(),
+
+      SizedBox(
+        width: 150,
+        child: TextField(
+          controller: order,
+          keyboardType: TextInputType.number,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+              label: Text('Kolejność')
+          ),
+        ),
+      ),
+      gap(),
+
+    ];
+  }
+
 }

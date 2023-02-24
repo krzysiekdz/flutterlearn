@@ -41,7 +41,7 @@ class _AdminLegendListState extends BaseListWidgetState<AdminLegendList> {
       child: ListTile(
         onTap: () { showEditForm(item.id); },
         contentPadding: const EdgeInsets.all(CustomStyles.padding),
-        title: ListTitleAndDelete(item.mark, actionDelete: (){ canDeleteItem(item.id); }),
+        title: listTitleAndDelete(item.mark, actionDelete: (){ canDeleteItem(item.id); }),
         subtitle: Text(item.descr),
       ),
     );

@@ -9,7 +9,7 @@ class AdminNews extends BaseListWidget {
   final ScreenSize screenSize;
 
   AdminNews({ required this.screenSize, super.key }) :
-    super(title: 'Aktualności', deleteConfirm: 'Czy usunąć artykuł?') ;
+    super(title: 'Aktualności', deleteConfirm: 'Czy usunąć artykuł?', heroTag: 'AdminNews') ;
 
   @override
   State<StatefulWidget> createState() => _AdminNewsState();

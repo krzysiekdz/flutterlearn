@@ -18,6 +18,7 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
 
   bool isLoading = true;
   bool isError = false;
+  String loadingText = '';
 
   late AdminModuleService service;
   late Repository repo;
@@ -45,8 +46,9 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
     setLoading(false);
   }
 
-  void setLoading(bool loading) {
+  void setLoading(bool loading, {String loadingText = ''}) {
     setState(() {
+      this.loadingText = loadingText;
       isLoading = loading;
     });
   }
@@ -123,8 +125,11 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
   Widget buildBody({required Widget child}) {
     Widget page;
     if(isLoading) {
-      page = const Center(
-        child: CircularProgressIndicator(),
+      page =  Center(
+        child: Column(children: [
+          const CircularProgressIndicator(),
+          if(loadingText != '') Text(loadingText),
+        ]),
       );
     }
     else if (data?.isEmpty ?? false) {

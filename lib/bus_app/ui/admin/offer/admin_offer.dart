@@ -1,37 +1,65 @@
-import 'package:flutter/material.dart';
-import 'package:flutterlearn/bus_app/ui/core/web_page.dart';
-import 'package:flutterlearn/bus_app/utils/types.dart';
+library bus_admin_offer;
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutterlearn/bus_app/bus_app.dart';
 
+part 'admin_offer_form.dart';
 
-class AdminOffer extends StatefulWidget {
+class AdminOffer extends BaseListWidget {
 
   final ScreenSize screenSize;
 
-  const AdminOffer({required this.screenSize, super.key});
+  AdminOffer({ required this.screenSize, super.key }) :
+    super(title: 'Oferty', deleteConfirm: 'Czy usunąć ofertę?', heroTag: 'AdminOffer') ;
 
   @override
   State<StatefulWidget> createState() => _AdminOfferState();
 
 }
 
-class _AdminOfferState extends State<AdminOffer> {
+class _AdminOfferState extends BaseListWidgetState<AdminOffer> {
 
   @override
-  void initState() {
-    super.initState();
-    print('AdminOffer: initState()');
+  AdminModuleService createService() => OfferService.fromContext(context);
+
+  @override
+  void showAddForm() {
+    Navigator.of(context).push( slideRoute(AdminOfferForm(formApiArgs: addFormArgs  ))  );
   }
 
   @override
-  Widget build(BuildContext context) {
-    print('AdminOffer: build()');
+  void showEditForm(int id) {
+    Navigator.of(context).push( slideRoute( AdminOfferForm(formApiArgs: editFormArgs(id) ) ) );
+  }
 
-    Widget page;
-    if(widget.screenSize == ScreenSize.sm) { page = Center(child: Text(''),); }
-    else { page = Center(child: Text(''),); }
-
-    return page;
-
+  @override
+  Widget buildItem(BuildContext context, int i) {
+    Offer item = data?[i] as Offer;
+    return Card(
+      child: ListTile(
+        onTap: () { showEditForm(item.id); },
+        contentPadding: const EdgeInsets.all(CustomStyles.padding),
+        leading:  SizedBox(
+          width: 80,
+          height: 120,
+          child: CachedNetworkImage(
+            imageUrl: item.url,
+            placeholder: (context, url) =>  const CircularProgressIndicator(),
+          ),
+        ),
+        title: listTitleAndDelete(item.title, actionDelete: () { canDeleteItem(item.id); } ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            gap(h:4),
+            Text(item.subtitle, style: const TextStyle(color: Colors.grey),),
+            gap(h:4),
+            Text(item.descr),
+            gap(),
+            chipVisible(item.visible),
+          ],
+        ),
+      ),
+    );
   }
 }
