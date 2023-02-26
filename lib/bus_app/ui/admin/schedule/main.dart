@@ -44,8 +44,9 @@ class _AdminScheduleState extends BaseListWidgetState<AdminSchedule> {
   }
 
   @override
-  List<Widget>? get actions => [
+  List<Widget> get actions => [
     TextButton(onPressed: (){ showLegendList(); }, child: const Text('LEGENDA', style: TextStyle(color: Colors.white),)),
+    ...super.actions,
 //    PopupMenuButton<int>(
 //        icon: const Icon(Icons.more_vert),
 //        onSelected: (value) {

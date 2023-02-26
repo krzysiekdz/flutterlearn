@@ -8,8 +8,8 @@ class Offer extends AdminModel {
   String get descr => this['descr'];
   String get url => this['url'];
 
-  set title(String v) { data['title'] = v; }
-  set subtitle(String v) { data['subtitle'] = v; }
-  set descr(String v) { data['descr'] = v; }
+  set title(String v) { this['title'] = v; }
+  set subtitle(String v) { this['subtitle'] = v; }
+  set descr(String v) { this['descr'] = v; }
 
 }

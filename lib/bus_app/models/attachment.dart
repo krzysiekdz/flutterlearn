@@ -9,9 +9,9 @@ class Attachment extends AdminModel {
   String get name => this['name'];
   String get ext => this['ext'];
 
-  set table(String v) { data['c_table'] = v; }
-  set itemId(int v) { data['c_item_id'] = '$v'; }
-  set name(String v) { data['name'] = v; }
-  set ext(String v) { data['ext'] = v; }
+  set table(String v) { this['c_table'] = v; }
+  set itemId(int v) { this['c_item_id'] = '$v'; }
+  set name(String v) { this['name'] = v; }
+  set ext(String v) { this['ext'] = v; }
 
 }

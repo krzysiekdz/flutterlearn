@@ -20,6 +20,8 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
 
   late E item;
   late Map<String, String> model;
+  @override
+  bool get isDirty => item.isDirty;
 
   bool get isInitAddFromApi => false;
   Map<String, String> get initAddParams => {};
@@ -34,6 +36,10 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
     repo = service.createRepo();
     model = {};
     item = createItem(model);
+//    item.streamController!.stream.listen((e) {
+//      print('event = ${e[0]}, ${e[1]}');
+//      isDirty = true;
+//    });
 
     initFormFields();
 
@@ -42,6 +48,7 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
       else {
         initAddModel();
         copyModelToFields();
+        item.isDirty = false;
       }
     }
     else { getItem(); }
@@ -61,6 +68,10 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
   void initFormFields();
 
   void disposeFormFields();
+
+  Widget get refreshAction => Tooltip( message: 'Odśwież',
+      child: TextButton(onPressed: (){ getItem(); setState((){}); }, child: const Icon(Icons.refresh, color: Colors.white,), )
+  );
 
 
   Future<void> getItem({bool getItemForAdd = false}) async {
@@ -84,6 +95,7 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
     }
 
     copyModelToFields();
+    item.isDirty = false;
   }
 
   @override
@@ -122,10 +134,16 @@ abstract class BaseFormApiWidgetState<T extends BaseFormApiWidget, E extends Bas
     }
   }
 
+  @override
+  Future<bool> canExitForm() async {
+    if( !isDirty ) return true;
+    return super.canExitForm();
+  }
 
   @override
   void dispose() {
     disposeFormFields();
+    item.dispose();
     super.dispose();
   }
 

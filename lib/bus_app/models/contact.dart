@@ -12,13 +12,13 @@ class Contact extends AdminModel {
   String get phone => this['phone'];
   String get email => this['email'];
 
-  set name1(String v) { data['name1'] = v; }
-  set name2(String v) { data['name2'] = v; }
-  set name3(String v) { data['name3'] = v; }
-  set address1(String v) { data['address1'] = v; }
-  set address2(String v) { data['address2'] = v; }
-  set address3(String v) { data['address3'] = v; }
-  set phone(String v) { data['phone'] = v; }
-  set email(String v) { data['email'] = v; }
+  set name1(String v) { this['name1'] = v; }
+  set name2(String v) { this['name2'] = v; }
+  set name3(String v) { this['name3'] = v; }
+  set address1(String v) { this['address1'] = v; }
+  set address2(String v) { this['address2'] = v; }
+  set address3(String v) { this['address3'] = v; }
+  set phone(String v) { this['phone'] = v; }
+  set email(String v) { this['email'] = v; }
 
 }

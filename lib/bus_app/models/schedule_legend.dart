@@ -6,7 +6,7 @@ class ScheduleLegend extends AdminModel {
   String get mark => this['mark'];
   String get descr => this['descr'];
 
-  set mark(String v) { data['mark'] = v; }
-  set descr(String v) { data['descr'] = v; }
+  set mark(String v) { this['mark'] = v; }
+  set descr(String v) { this['descr'] = v; }
 
 }

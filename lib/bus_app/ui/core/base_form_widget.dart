@@ -26,6 +26,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T> wi
   bool isLoading = false;
   bool isError = false;
   String errMsg = '';
+  bool get isDirty => true;
 
   int get tabCount => 1;
   bool get wrapInScrollView => true;
@@ -69,15 +70,17 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T> wi
 //    );
 //  }
 
+  List<Widget> get actions => [];
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return WillPopScope(
-      onWillPop: _canExitForm,
+      onWillPop: canExitForm,
       child: Scaffold(
         appBar: AppBar(
           title: Text( isAddForm? widget.addTitle : widget.editTitle ),
+          actions: actions,
           bottom: buildTabBar(),
         ),
         body: tabCount < 2 ? wrapForm( buildForm(), wrapInScrollView: wrapInScrollView ) : _buildTabBarView(),
@@ -178,7 +181,11 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T> wi
       child: SizedBox(
           width: double.infinity,
           height: 50,
-          child: ElevatedButton(onPressed:  isError||isLoading ? null : (){ submit(); }, child: Text( isAddForm? 'Dodaj' : 'Zapisz' ))),
+          child: ElevatedButton(
+              onPressed:  isError||isLoading||(isEditForm && !isDirty ) ? null : (){ submit(); },
+              child: Text( isAddForm? 'Dodaj' : 'Zapisz' )
+          )
+      ),
     );
   }
 
@@ -189,7 +196,7 @@ abstract class BaseFormWidgetState<T extends BaseFormWidget> extends State<T> wi
     Navigator.of(context).pop();
   }
 
-  Future<bool> _canExitForm() async {
+  Future<bool> canExitForm() async {
     bool result = await showDialog(
         context: context,
         builder: (context) {

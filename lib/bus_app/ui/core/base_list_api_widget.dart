@@ -70,7 +70,9 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
     super.dispose();
   }
 
-  List<Widget>? get actions { return []; }
+  List<Widget> get actions { return [
+    Tooltip( message: 'Odśwież', child: TextButton(onPressed: (){ loadData(); }, child: const Icon(Icons.refresh, color: Colors.white,), ) ),
+  ]; }
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +128,13 @@ abstract class BaseListWidgetState<T extends BaseListWidget> extends State<T> wi
     Widget page;
     if(isLoading) {
       page =  Center(
-        child: Column(children: [
-          const CircularProgressIndicator(),
-          if(loadingText != '') Text(loadingText),
-        ]),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircularProgressIndicator(),
+              if(loadingText != '') Text(loadingText),
+            ]
+        ),
       );
     }
     else if (data?.isEmpty ?? false) {

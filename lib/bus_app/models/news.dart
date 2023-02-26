@@ -6,7 +6,7 @@ class News extends AdminModel {
   String get title => this['title'];
   String get content => this['content'];
 
-  set title(String v) { data['title'] = v; }
-  set content(String v) { data['content'] = v; }
+  set title(String v) { this['title'] = v; }
+  set content(String v) { this['content'] = v; }
 
 }

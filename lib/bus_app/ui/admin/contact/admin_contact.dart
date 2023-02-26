@@ -99,6 +99,9 @@ class _AdminContactFormState extends BaseFormApiWidgetState<AdminContactForm, Co
   void exitForm() {}
 
   @override
+  List<Widget> get actions => [ if(isEditForm) refreshAction,  ];
+
+  @override
   void afterSubmit(ObjResponse response) {
     super.afterSubmit(response);
 

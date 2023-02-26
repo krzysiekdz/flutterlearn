@@ -22,15 +22,15 @@ class Schedule extends AdminModel {
   List<String> get markAsList => mark.split(';')..removeLast();
 
 
-  set sched_id(int v) { data['c_schedule_id'] = '$v'; }
-  set title(String v) { data['title'] = v; }
-  set title_rev(String v) { data['title_rev'] = v; }
-  set url(String v) { data['url'] = v; }
-  set url_rev(String v) { data['url_rev'] = v; }
-  set cities(String v) { data['cities'] = v; }
-  set hours(String v) { data['hours'] = v; }
-  set dir(int v) { data['c_dir'] = '$v'; }
-  set mark(String v) { data['mark'] = v; }
-  set legend(dynamic v) { data['legend'] = v; }
+  set sched_id(int v) { this['c_schedule_id'] = '$v'; }
+  set title(String v) { this['title'] = v; }
+  set title_rev(String v) { this['title_rev'] = v; }
+  set url(String v) { this['url'] = v; }
+  set url_rev(String v) { this['url_rev'] = v; }
+  set cities(String v) { this['cities'] = v; }
+  set hours(String v) { this['hours'] = v; }
+  set dir(int v) { this['c_dir'] = '$v'; }
+  set mark(String v) { this['mark'] = v; }
+  set legend(dynamic v) { this['legend'] = v; }
 
 }

@@ -1,14 +1,20 @@
-przycisk odswiez
-jesli zmieniono zalaczniki - prycisk odswiez nieaktywny a lista sie odswieza - dac opcje, czy po modyfikacji zalacznikow lista
-ma sie odswiezac - wtedy na cofnieciu lista powinna sie odswiezac
-mechanizm w formularzu - jesli zmieniono jakies pola to dopiero wtedy przycisk zapisz mozna wcisnac
-    oraz pojawia sie komunikat "czy na pewno?"
 
-usuwanie artykulu/oferty - musi usuwac zalaczniki
+item.isDirty - to zrobic jako stream
+oraz funkcja nssluchujaca : setState((){});
+mechanizm w formularzu -
+    jesli zmieniono jakies pola to dopiero wtedy przycisk zapisz mozna wcisnac
+    oraz pojawia sie komunikat "czy na pewno?"
+jesli zmieniono zalaczniki -
+    prycisk zapisz nieaktywny
+    ale lista moze sie odswiezyc - jako opcja
+
+usuwanie artykulu/oferty - musi usuwac zalaczniki - zalaczniki powinny sie usuwac, jesli rekord do ktorego sa przypiete, jest usuwany
+    obsluga na poziomie api -bo trzeba fizycznie usuwac
 
 strona -
     pobieranie danych,
     screen XL ,
+    jasna/ciemna skorka
 cykliczne odswiezanie zawartosci; odswiezanie zawartosci gdy zmieniamy zakladki
 ?artykuly (t_news) - mozliwosc podania html oraz osadzenia załączników (takze linków - po prostu html)
 aktualnosci - mozliwosc umieszcenia prostego htmla
